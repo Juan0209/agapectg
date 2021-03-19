@@ -1,6 +1,6 @@
 @extends('layouts.guest')
+@section('title', 'Producto')
 @section('content')
-
 <section class="breadcrumb_part single_product_breadcrumb">
         <div class="container">
             <div class="row">
