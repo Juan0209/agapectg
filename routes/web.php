@@ -4,19 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ShoppingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FileproductController;
 use Illuminate\Support\Facades\Route;
 
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/', [HomeController::class,'welcome'])->name('welcome.index')->middleware('guest');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 
 //Admin actions
 Route::get('/home', [AdminController::class,'index'])->name('home.index')->middleware('auth');
@@ -25,9 +16,6 @@ Route::get('/Funcionarios', [AdminController::class,'view'])->name('officials')-
 Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])->name('destroy.user')->middleware('auth');
 
 //Shopping actions
-
-
-
 Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
 Route::post('/cart-product', [ShoppingController::class, 'productCart'])->name('cart-product');
 Route::get('/payment/bill/{message}', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
@@ -42,16 +30,16 @@ Route::get('/payment/response', [ShoppingController::class, 'response'])->name('
 Route::get('/payment/transaccion/{transaccion}', [ShoppingController::class, 'transaccion'])->name('transaccion');
 
 //ProductsCRUD actions
-Route::get('/crud',[App\Http\Controllers\ProductsController::class,'crud'])->name('crud');
-Route::get('/crud/{id}',[App\Http\Controllers\ProductsController::class,'edit'])->name('edit');
-Route::put('/update',[App\Http\Controllers\ProductsController::class,'update'])->name('update');
-Route::post('/store',[App\Http\Controllers\ProductsController::class,'store'])->name('store');
-Route::delete('/destroy',[App\Http\Controllers\ProductsController::class,'destroy'])->name('destroy');
-Route::post('/create',[App\Http\Controllers\ProductsController::class,'create'])->name('create');
+Route::get('/crud',[ProductsController::class,'crud'])->name('crud');
+Route::get('/crud/{id}',[ProductsController::class,'edit'])->name('edit');
+Route::put('/update',[ProductsController::class,'update'])->name('update');
+Route::post('/store',[ProductsController::class,'store'])->name('store');
+Route::delete('/destroy',[ProductsController::class,'destroy'])->name('destroy');
+Route::post('/create',[ProductsController::class,'create'])->name('create');
 
 //FILE PRODUCT
-Route::get('/file',[App\Http\Controllers\FileproductController::class,'show'])->name('fileview');
-Route::post('/file/store', [App\Http\Controllers\FileproductController::class,'store'])->name('file.store');
+Route::get('/file',[FileproductController::class,'show'])->name('fileview');
+Route::post('/file/store', [FileproductController::class,'store'])->name('file.store');
 
 //clear cache
 Route::get('/clearcache', function () {

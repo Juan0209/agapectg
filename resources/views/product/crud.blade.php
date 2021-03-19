@@ -20,7 +20,6 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" style="margin: 4pt;">
             <i class="fas fa-plus"></i> Agregar
         </button>
-
         <table class="table table-bordered table-hover table-striped">
             <thead>
                 <tr>
@@ -41,7 +40,7 @@
                         <td>{{$row->name}}</td>
                         <td>{{$row->description}}</td>
                         <td>{{$row->image}}</td>
-                        <td>{{$row->price}}</td>
+                        <td>$ {{number_format($row->price)}}</td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{($row->id)}}editar">
                                 <i class="far fa-edit"></i> Editar
