@@ -45,6 +45,9 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="{{route('crud')}}" type="button" class="btn btn-success">
+                            <i class="fas fa-cogs"></i> Tabla de Productos
+                        </a>
                     </div>
                 </div>
 
@@ -59,8 +62,7 @@
                                         <b><h3>{{$product->name}}</h3>
                                         <p>Precio ${{number_format($product->price)}}</p>
                                     </a>
-                                 <a href="{{route('crud')}}" type="button" class="btn btn-success">
-                                    <i class="fas fa-cogs"></i> </a></b>
+                                    </b>
                                 </div>
                             </div>
                             @endforeach
