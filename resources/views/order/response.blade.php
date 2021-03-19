@@ -20,7 +20,7 @@
 <header id='main-header' style='margin-top:20px'>
     <div class='row'>
         <div class='col-lg-12 franja'>
-            <img class='center-block' src='{{asset('img/ÁGAPE_logo1.png')}}'>
+            <img class='center-block' src='{{asset('img/ÁGAPE_logo1.png')}}' height="150">
         </div>
     </div>
 </header>

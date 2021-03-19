@@ -38,7 +38,7 @@ Route::get('/products/catalogues/{catalogue}',[ProductsController::class,'catalo
 Route::delete('/Cancelar-Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
 
 Route::get('/payment/confirmation', [ShoppingController::class, 'confirmationPay']);
-Route::post('/payment/response', [ShoppingController::class, 'response'])->name('response');
+Route::get('/payment/response', [ShoppingController::class, 'response'])->name('response');
 Route::get('/payment/transaccion/{transaccion}', [ShoppingController::class, 'transaccion'])->name('transaccion');
 
 //ProductsCRUD actions
