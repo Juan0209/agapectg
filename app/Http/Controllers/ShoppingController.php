@@ -27,7 +27,7 @@ class ShoppingController extends Controller
             }elseif ($payed == 1 ){
                 $order = Order::select('orders.*')->where('user_id', '=', $id )->get();
                 $payed = true;
-                return view('order.payment', compact('order', 'payed'));
+                return view('order.payment', compact('order', 'payed', 'message'));
                 die();
             }
         }elseif($bill == null){

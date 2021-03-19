@@ -26,10 +26,8 @@
 </header>
 <div class='container'>
     <div class='row' style='margin-top:20px'>
-
-        <a id="enlace" class="btn btn-success">Continuar</a>
-
         <div class='col-lg-8 col-lg-offset-2 '>
+            <a id="enlace" class="btn btn-success" style="text-align: right">Continuar</a>
             <h4 style='text-align:left'> Respuesta de la Transacción </h4>
             <hr>
         </div>

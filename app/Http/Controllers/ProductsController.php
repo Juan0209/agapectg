@@ -33,7 +33,7 @@ class ProductsController extends Controller
         $products = Product::select("id","name","description","image","price","catalogues_id")
             ->where('catalogues_id','=',$catalogue)
             ->get();
-        return view('products', compact("products"));
+        return view('product.products', compact("products"));
     }
 
     public function crud()

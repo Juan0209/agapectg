@@ -155,6 +155,14 @@
 @include('layouts.register')
 <!--::footer_part end::-->
 
+@if(isset($message))
+    @if($message != 0)
+        <script>
+            alert("hola");
+        </script>
+    @endif
+@endif
+
 <!-- jquery plugins here-->
 <script src="{{asset('js/jquery-1.12.1.min.js')}}"></script>
 <!-- popper js -->
