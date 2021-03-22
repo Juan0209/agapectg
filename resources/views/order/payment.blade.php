@@ -226,6 +226,10 @@
             </div>
         </div>
     </section>
-
+    @if($message != 0 and $message != '')
+        <script>
+            alert("{{$message}}");
+        </script>
+    @endif
 <!--    ================End Checkout Area =================-->
 @endsection

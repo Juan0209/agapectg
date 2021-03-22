@@ -52,7 +52,7 @@
                                         </div>
 
                                         <div class="col-md-12 form-group p_star">
-                                            <input type="hidden" class="form-control" id="rol" name="rol" value="user_client" >
+                                            <input type="hidden" class="form-control" id="rol" name="rol" value="user" >
                                         </div>
 
                                         <div class="col-md-12 form-group">

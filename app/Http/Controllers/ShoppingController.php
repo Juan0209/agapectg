@@ -96,6 +96,14 @@ class ShoppingController extends Controller
         return view('order.response', compact('request'));
     }
 
+    public function transaccionState($transaccion, $referencia){
+        if ($transaccion == 0){ //consultar
+
+        }elseif ($transaccion == 1){
+
+        }
+    }
+
     public function transaccion($transaccion){
 
         if ($transaccion == 1){ //transaccion aceptada

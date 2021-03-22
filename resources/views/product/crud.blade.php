@@ -141,7 +141,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{action('App\Http\Controllers\ProductsController@store')}}">
+                    <form method="POST" action="{{route('store')}}">
+                        @csrf
                         <div class="form-row">
                             <div class="col">
                                 <input type="number" class="form-control" name="id" id="id" placeholder="ID">
