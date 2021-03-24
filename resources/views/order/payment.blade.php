@@ -226,10 +226,10 @@
             </div>
         </div>
     </section>
-    @if($message != 0 and $message != '')
+    {{--@if($message >= 0 and $message != '')
         <script>
             alert("{{$message}}");
         </script>
-    @endif
+    @endif--}}
 <!--    ================End Checkout Area =================-->
 @endsection

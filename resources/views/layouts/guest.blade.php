@@ -9,7 +9,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="img/faviconAgapect/apple-touch-icon.png">
     <link rel="shortcut icon" href="{{ asset('img/faviconAgapect/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="img/faviconAgapect/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -39,7 +38,7 @@
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="navbar-brand" href="{{route('products')}}"> <img src="{{asset('img/ÁGAPE_logo1.png')}}" width="130" alt="logo"> </a>
+                    <a class="navbar-brand" href="{{route('welcome.index')}}"> <img src="{{asset('img/ÁGAPE_logo1.png')}}" width="130" alt="logo"> </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +61,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                         <a class="dropdown-item" href="{{ route('cart') }}">Lista del carrito</a>
-                                        <a class="dropdown-item" href="{{ route('transaccion', 4) }}">Facturar pedido</a>
+                                        <a class="dropdown-item" href="{{ url('/payment/transaccion', array('transaccion'=>0,'referencia'=>0)) }}">Facturar pedido</a>
                                         <a class="dropdown-item" href="{{ route('confirmation') }}">confirmación</a>
                                     </div>
                                 </li>
@@ -154,11 +153,11 @@
 @include('layouts.login')
 @include('layouts.register')
 <!--::footer_part end::-->
-
 @if(isset($message))
-    @if($message != 0)
+    @if($message)
         <script>
-            alert("hola");
+            alert("{{$message}}");
+            console.log('{{$message}}');
         </script>
     @endif
 @endif

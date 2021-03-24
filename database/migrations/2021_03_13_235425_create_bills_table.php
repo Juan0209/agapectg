@@ -17,7 +17,7 @@ class CreateBillsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('payed');
-            $table->integer('ref_epayco')->nullable();
+            $table->string('ref_epayco')->nullable();
             $table->integer('total_price')->nullable();
             $table->integer('cupon')->nullable();
             $table->string('name2')->nullable();

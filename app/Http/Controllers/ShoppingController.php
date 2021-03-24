@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Crypt;
 class ShoppingController extends Controller
 {
 
@@ -37,7 +37,7 @@ class ShoppingController extends Controller
 
             $newBill->save();
 
-            return redirect('/payment');
+            return redirect('/payment/bill/0');
             die();
         }
     }
@@ -96,15 +96,75 @@ class ShoppingController extends Controller
         return view('order.response', compact('request'));
     }
 
-    public function transaccionState($transaccion, $referencia){
-        if ($transaccion == 0){ //consultar
+    public function transaccion($transaccion, $referencia){
+        if ($transaccion == 0 or $referencia == 1){ //consultar
 
-        }elseif ($transaccion == 1){
+            if ($referencia == 0){
 
+                $id = Auth::id();
+                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
+
+                if (empty($bill[0]) or $bill[0]->ref_epayco == null ){
+
+                    $message = 0;
+
+                    return redirect("/payment/bill/$message" );
+                    die();
+                }else{
+
+                    $referencia = $bill[0]->ref_epayco;
+
+                    return view('order.consultaTransaccion', compact('referencia'));
+                    die();
+                }
+            }
+
+            if ($transaccion == 1){ //transaccion aceptada
+
+                $id = Auth::id();
+                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+                $id = $bill[0]->id;
+
+                if ($bill[0]->payed == 0) {
+
+                    $app = Bill::find($id);
+                    $app->payed = 1;
+                    $app->save();
+                }
+
+                $message = 'La transacción ha sido exitosa, por favor continue con su pedido';
+
+            }elseif ($transaccion == 2) { //transaccion rechazada
+
+                $message = 'Su Transacción fue rechazada, intente realizar una nueva para continuar con la compra.';
+
+            }elseif($transaccion == 3){ //transaccion pendiente
+
+                $message = 'Su transacción esta en estado: PENDIENTE. para poder continuar es necesario que realize el pago antes de 24 horas. Una vez el pago sea confirmado la plataforma le permitira continuar con la compra.';
+
+            }elseif($transaccion == 4){ // transaccion cancelada
+
+                $message = 0;
+            }
+
+            return redirect("/payment/bill/$message");
+            die();
+
+        }elseif ($transaccion == 1){ //guardar referencia de pago
+            $id = Auth::id();
+            $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+            $id = $bill[0]->id;
+
+            $app = Bill::find($id);
+            $app->ref_epayco = $referencia;
+            $app->save();
+
+            return redirect('payment/transaccion/0/0');
+            die();
         }
     }
 
-    public function transaccion($transaccion){
+    /*public function transaccion($transaccion){
 
         if ($transaccion == 1){ //transaccion aceptada
 
@@ -132,7 +192,7 @@ class ShoppingController extends Controller
         }
 
         return redirect("/payment/bill/$message" );
-    }
+    }*/
 
     /**
      * Show the form for creating a new resource.

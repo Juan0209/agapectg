@@ -11,7 +11,7 @@
                                 pillow</h1>
                             <p>Seamlessly empower fully researched
                                 growth strategies and interoperable internal</p>
-                            <a href="product_list.html" class="btn_1">shop now</a>
+                            <a href="{{ route('products') }}" class="btn_1">shop now</a>
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="banner_img">
             <img src="img/banner.png" alt="#" class="img-fluid">
-            <img src="img/banner_pattern.png " alt="#" class="pattern_img img-fluid">
+            <img src="img/banner_pattern.png" alt="#" class="pattern_img img-fluid">
         </div>
     </section>
 @endsection

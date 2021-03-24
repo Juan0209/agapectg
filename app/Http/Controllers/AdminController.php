@@ -22,7 +22,6 @@ class AdminController extends Controller
 
     public function view()
     {
-//        $user = User::all();
         $user = User::select("id", "name", "email", "address", "phone", "created_at")
             ->where('rol','=','admin')
             ->get();
