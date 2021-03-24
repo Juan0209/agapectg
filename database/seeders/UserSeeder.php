@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make(123456789),
             'phone' => 1234567890,
             'rol' => 'admin',
+            'created_at' => now()->toDateString(),
         ]);
 
         DB::table('users')->insert([
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make(123456789),
             'phone' => 1234567890,
             'rol' => 'user',
+            'created_at' => now()->toDateString(),
         ]);
 
     }

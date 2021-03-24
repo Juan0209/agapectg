@@ -7,11 +7,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
 class ShoppingController extends Controller
 {
 
-    public function payment($message)
+    public function payment($message, $dissable)
     {
         $id = Auth::id();
         $order = Order::all()->where('user_id', $id)->first();
@@ -22,12 +21,12 @@ class ShoppingController extends Controller
             $payed = $bill->payed;
             if ($payed == 0){
                 $order = Order::select('orders.*')->where('user_id', '=', $id )->get();
-                return view('order.payment', compact('order', 'message'));
+                return view('order.payment', compact('order', 'message', 'dissable'));
                 die();
             }elseif ($payed == 1 ){
                 $order = Order::select('orders.*')->where('user_id', '=', $id )->get();
                 $payed = true;
-                return view('order.payment', compact('order', 'payed', 'message'));
+                return view('order.payment', compact('order', 'payed', 'message', 'dissable'));
                 die();
             }
         }elseif($bill == null){
@@ -37,7 +36,7 @@ class ShoppingController extends Controller
 
             $newBill->save();
 
-            return redirect('/payment');
+            return redirect('/payment/bill/0/false');
             die();
         }
     }
@@ -82,13 +81,13 @@ class ShoppingController extends Controller
 
     public function confirmation()
     {
-        $order = Order::all();
-        return view('order.confirmation', compact('order'));
-    }
+        $id = Auth::id();
+        $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
 
-    public function confirmationPay(Request $request)
-    {
-        return view('order.confirmationPay', compact('request'));
+        /*return $bill ;
+        die();*/
+        $order = Order::select('orders.*')->where('bill_id', '=', $bill[0]->id )->get();
+        return view('order.confirmation', compact('order', 'bill'));
     }
 
     public function response(Request $request){
@@ -96,15 +95,77 @@ class ShoppingController extends Controller
         return view('order.response', compact('request'));
     }
 
-    public function transaccionState($transaccion, $referencia){
-        if ($transaccion == 0){ //consultar
+    public function transaccion($transaccion, $referencia){
+        if ($transaccion == 0 or $referencia == 1){ //consultar
 
-        }elseif ($transaccion == 1){
+            if ($referencia == 0){
 
+                $id = Auth::id();
+                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
+
+                if (empty($bill[0]) or $bill[0]->ref_epayco == null ){
+
+                    return redirect("/payment/bill/0/0" );
+                    die();
+                }else{
+
+                    $referencia = $bill[0]->ref_epayco;
+
+                    return view('order.consultaTransaccion', compact('referencia'));
+                    die();
+                }
+            }
+
+            if ($transaccion == 1){ //transaccion aceptada
+
+                $id = Auth::id();
+                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+                $id = $bill[0]->id;
+
+                if ($bill[0]->payed == 0) {
+
+                    $app = Bill::find($id);
+                    $app->payed = 1;
+                    $app->save();
+                }
+
+                $message = 'La transacción ha sido exitosa, por favor continue con su pedido';
+                $dissable = 0;
+
+            }elseif ($transaccion == 2) { //transaccion rechazada
+
+                $message = 'Su Transacción fue rechazada, intente realizar una nueva para continuar con la compra.';
+                $dissable = 0;
+
+            }elseif($transaccion == 3){ //transaccion pendiente
+
+                $message = 'Su transacción esta en estado: PENDIENTE. para poder continuar es necesario que realize el pago antes de 24 horas. Una vez el pago sea confirmado la plataforma le permitira continuar con la compra.';
+                $dissable = 1;
+
+            }elseif($transaccion == 4){ // transaccion cancelada
+
+                $message = 0;
+                $dissable = 0;
+            }
+
+            return redirect("/payment/bill/$message/$dissable");
+            die();
+
+        }elseif ($transaccion == 1){ //guardar referencia de pago
+            $id = Auth::id();
+            $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+            $id = $bill[0]->id;
+
+            $app = Bill::find($id);
+            $app->ref_epayco = $referencia;
+            $app->save();
+
+            return redirect('payment/transaccion/0/0');
+            die();
         }
     }
 
-    public function transaccion($transaccion){
+    /*public function transaccion($transaccion){
 
         if ($transaccion == 1){ //transaccion aceptada
 
@@ -132,61 +193,23 @@ class ShoppingController extends Controller
         }
 
         return redirect("/payment/bill/$message" );
-    }
+    }*/
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function confirmationPay(Request $request){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $id = Auth::id();
+        $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+        $id = $bill[0]->id;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $app = Bill::find($id);
+        $app->name2 = $request->name2;
+        $app->phone2 = $request->phone2;
+        $app->add2 = $request->add2;
+        $app->message = $request->message;
+        $app->details = $request->details;
+        $app->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect('/confirmation');
     }
 
     /**
@@ -204,10 +227,5 @@ class ShoppingController extends Controller
         }
 
         return back();
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

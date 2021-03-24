@@ -71,7 +71,7 @@
                             <div class="checkout_btn_inner float-right">
                                 <button type="submit" class="btn_1" onclick='return Confirmdelete()'>Cancelar compra</button>
                                 <a class="btn_1" href="{{route('products')}}">Continuar comprando</a>
-                                <a class="btn_1 checkout_btn_1" href="{{ route('payment', 4) }}">Proceder a Pagar</a>
+                                <a class="btn_1 checkout_btn_1" href="{{ url('/payment/transaccion', array('transaccion'=>0,'referencia'=>0)) }}">Proceder a Pagar</a>
                             </div>
                         </form>
                     @else

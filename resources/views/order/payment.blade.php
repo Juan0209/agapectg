@@ -30,12 +30,19 @@
             <div class="billing_details">
                 <div class="row">
                     <div class="col-lg-8">
-                        <div class="cupon_area">
-                            <input type="text" placeholder="Ingresa el codigo del cupon" />
-                            <a class="tp_btn" href="#">Aplicar Cupón</a>
-                        </div>
+                        @if(isset($payed) and $payed == true)
+                            <div class="cupon_area">
+                                <input type="text" placeholder="Ingresa el codigo del cupon" disabled>
+                                <a class="tp_btn" href="#" disabled="true">Aplicar Cupón</a>
+                            </div>
+                        @else
+                            <div class="cupon_area">
+                                <input type="text" placeholder="Ingresa el codigo del cupon">
+                                <a class="tp_btn" href="#">Aplicar Cupón</a>
+                            </div>
+                        @endif
 
-                        <form class="row contact_form" action="#{{--{{route('confirmation')}}--}}" {{--method="post"--}}>
+                        <form class="row contact_form" action="{{route('confirmationPay')}}" method="post">
                             @csrf
 
                             @if(isset($payed) and $payed == true)
@@ -48,7 +55,7 @@
                                         <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}">
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="phone2" name="phone2" placeholder="Numero de telefono del destinatario secundario" value="{{ old('phone2') }}">
+                                        <input type="number" class="form-control" id="phone2" name="phone2" placeholder="Numero de telefono del destinatario secundario" value="{{ old('phone2') }}">
                                     </div>
 
                                     <div class="col-md-12 form-group p_star">
@@ -123,13 +130,13 @@
                                         @endforeach
                                     </ul>
 
-                                    <?php   $domicilio = 10000 ;
-                                            $descuento = 0 ;
-                                            $tarifa = 0.0268;
-                                            $totalbase = $subtotal + $domicilio - $descuento;
-                                            $impuesto = $totalbase * $tarifa;
-                                            $total = $totalbase + $impuesto;
-
+                                    <?php
+                                        $domicilio = 10000 ;
+                                        $descuento = 0 ;
+                                        $tarifa = 0.0268;
+                                        $totalbase = $subtotal + $domicilio - $descuento;
+                                        $impuesto = $totalbase * $tarifa;
+                                        $total = $totalbase + $impuesto;
                                     ?>
 
                                     <ul class="list list_2">
@@ -159,43 +166,45 @@
                                             </a>
                                         </li>
                                         @if(!isset($payed))
-                                        <li>
-                                            <div class="text-center">
-                                                <a href="#">
-                                                    <form>
-                                                        <?php
-                                                        $key = '7fb5144e899c4c5051732c5ac0baaf2f' ;
-                                                        $privateKey = '96d012f0a403671f4fb06bf2a7f6a704' ;
-                                                        ?>
-                                                        <script
-                                                            src="https://checkout.epayco.co/checkout.js"
-                                                            class="epayco-button"
-                                                            data-epayco-key="{{$key}}"
-                                                            data-epayco-private-key="{{$privateKey}}"
-                                                            data-epayco-amount="{{$total}}"
-                                                            data-epayco-tax-base="{{$totalbase}}"
-                                                            data-epayco-tax="{{$impuesto}}"
-                                                            data-epayco-name="ágape Design"
-                                                            data-epayco-description="Tu Pedido ágape"
-                                                            data-epayco-currency="cop"
-                                                            data-epayco-country="co"
-                                                            data-epayco-test="true"
-                                                            data-epayco-external="false"
-                                                            data-epayco-response="http://agapectg.test/payment/response"
-                                                            {{--data-epayco-acepted="http://agapectg.test/payment/response"
-                                                            data-epayco-rejected="http://agapectg.test/payment/response"
-                                                            data-epayco-pending="http://agapectg.test/payment/response"
-                                                            data-epayco-comfirmation="http://agapectg.test/payment/response"--}}
-                                                            {{--data-epayco-email-billing="{{auth()->user()->email}}"
-                                                            data-epayco-name-billing="{{auth()->user()->name}}"
-                                                            data-epayco-address-billing="{{auth()->user()->address}}"
-                                                            data-epayco-type-doc-billing="CC"
-                                                            data-epayco-mobilephone-billing="{{auth()->user()->phone}}"--}}>
-                                                        </script>
-                                                    </form>
-                                                </a>
-                                            </div>
-                                        </li>
+                                            @if($dissable == 0)
+                                                <li>
+                                                    <div class="text-center">
+                                                        <a href="#">
+                                                            <form>
+                                                                <?php
+                                                                $key = '7fb5144e899c4c5051732c5ac0baaf2f' ;
+                                                                $privateKey = '96d012f0a403671f4fb06bf2a7f6a704' ;
+                                                                ?>
+                                                                <script
+                                                                    src="https://checkout.epayco.co/checkout.js"
+                                                                    class="epayco-button"
+                                                                    data-epayco-key="{{$key}}"
+                                                                    data-epayco-private-key="{{$privateKey}}"
+                                                                    data-epayco-amount="{{$total}}"
+                                                                    data-epayco-tax-base="{{$totalbase}}"
+                                                                    data-epayco-tax="{{$impuesto}}"
+                                                                    data-epayco-name="ágape Design"
+                                                                    data-epayco-description="Tu pedido ágape"
+                                                                    data-epayco-currency="cop"
+                                                                    data-epayco-country="co"
+                                                                    data-epayco-test="true"
+                                                                    data-epayco-external="false"
+                                                                    data-epayco-response="http://agapectg.test/payment/response"
+                                                                    {{--data-epayco-acepted="http://agapectg.test/payment/response"
+                                                                    data-epayco-rejected="http://agapectg.test/payment/response"
+                                                                    data-epayco-pending="http://agapectg.test/payment/response"
+                                                                    data-epayco-comfirmation="http://agapectg.test/payment/response"--}}
+                                                                    {{--data-epayco-email-billing="{{auth()->user()->email}}"
+                                                                    data-epayco-name-billing="{{auth()->user()->name}}"
+                                                                    data-epayco-address-billing="{{auth()->user()->address}}"
+                                                                    data-epayco-type-doc-billing="CC"
+                                                                    data-epayco-mobilephone-billing="{{auth()->user()->phone}}"--}}>
+                                                                </script>
+                                                            </form>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            @endif
                                     </ul>
 
                                     <div class="text-center">
@@ -226,10 +235,10 @@
             </div>
         </div>
     </section>
-    @if($message != 0 and $message != '')
+    {{--@if($message >= 0 and $message != '')
         <script>
             alert("{{$message}}");
         </script>
-    @endif
+    @endif--}}
 <!--    ================End Checkout Area =================-->
 @endsection

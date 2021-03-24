@@ -29,29 +29,16 @@
                         <h4>Pedido</h4>
                         <ul>
                             <li>
-                                <p>Número de factura</p><span>: 60235</span>
+                                <p>Número de factura</p><span>: {{$bill[0]->id}}</span>
                             </li>
                             <li>
-                                <p>Fecha</p><span>: 03-10-2017</span>
+                                <p>Fecha</p><span>: {{$bill[0]->updated_at}}</span>
                             </li>
                             <li>
                                 <p>total</p><span>: COP 2210</span>
                             </li>
                             <li>
-                                <p>Metodo de Pago</p><span>: Pago Contra-Entrega</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-lx-4">
-                    <div class="single_confirmation_details">
-                        <h4>Destinatario</h4>
-                        <ul>
-                            <li>
-                                <p>Dirección</p><span>: Brr.alpes TV. 71 22B-52</span>
-                            </li>
-                            <li>
-                                <p>Ciudad</p><span>: Cartagena</span>
+                                <p>Metodo de Pago</p><span>: ePayco</span>
                             </li>
                         </ul>
                     </div>
@@ -61,10 +48,41 @@
                         <h4>Destinatario Secundario</h4>
                         <ul>
                             <li>
-                                <p>direccion</p><span>: Brr.alpes TV. 71 22B-51</span>
+                                <p>Nombre</p><span>: {{$bill[0]->name2}}</span>
                             </li>
                             <li>
-                                <p>Ciudad</p><span>: Cartagena</span>
+                                <p>direccion</p><span>: {{$bill[0]->add2}}</span>
+                            </li>
+                            <li>
+                                <p>Celular</p><span>: {{ substr($bill[0]->phone2,0,3) }} {{substr($bill[0]->phone2,3 )}}</span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-lx-4">
+                    <div class="single_confirmation_details">
+                        <h4>Destinatario</h4>
+                        <ul>
+                            <li>
+                                <p>Dirección</p><span>: {{auth()->user()->address}}</span>
+                            </li>
+                            <li>
+                                <p>Celular</p><span>: {{ substr(auth()->user()->phone,0,3) }} {{substr(auth()->user()->phone,3 )}}</span>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-lx-4">
+                    <div class="single_confirmation_details">
+                        <h4>Soporte de ágape</h4>
+                        <ul>
+                            <li>
+                                <p>Dirección de Correo</p><span>: agape@gmail.com</span>
+                            </li>
+                            <li>
+                                <p>Celular y Whatsapp</p><span>: 320 5195817</span>
                             </li>
                         </ul>
                     </div>
@@ -93,19 +111,37 @@
                                     <th> <span>$ {{ number_format($product->total) }}</span></th>
                                 </tr>
                             @endforeach
+
+                            <?php
+                            $domicilio = 10000 ;
+                            $descuento = 0 ;
+                            $tarifa = 0.0268;
+                            $totalbase = $subtotal + $domicilio - $descuento;
+                            $impuesto = $totalbase * $tarifa;
+                            $total = $totalbase + $impuesto;
+                            ?>
+
                             <tr>
                                 <th colspan="3">Subtotal</th>
                                 <th> <span>$ {{ number_format($subtotal) }}</span></th>
                             </tr>
                             <tr>
+                                <th colspan="3">Costo de domicilio</th>
+                                <th><span>-$ {{ number_format($domicilio)}}</span></th>
+                            </tr>
+                            <tr>
                                 <th colspan="3">Cupón de descuento</th>
-                                <th><span>-$ 50.000</span></th>
+                                <th><span>-$ {{number_format($descuento)}}</span></th>
+                            </tr>
+                            <tr>
+                                <th colspan="3">Impuestos</th>
+                                <th><span>-$ {{number_format($impuesto)}}</span></th>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th colspan="3">Total a Pagar</th>
-                                <th> <span>$ {{ number_format($subtotal-50000) }}</span></th>
+                                <th> <span>$ {{ number_format($total) }}</span></th>
                             </tr>
                             </tfoot>
                         </table>

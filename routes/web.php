@@ -16,26 +16,26 @@ Route::get('/Funcionarios', [AdminController::class,'view'])->name('officials')-
 Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])->name('destroy.user')->middleware('auth');
 
 //Shopping actions
-Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
-Route::post('/cart-product', [ShoppingController::class, 'productCart'])->name('cart-product');
-Route::get('/payment/bill/{message}', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
+Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart')->middleware('auth');
+Route::post('/cart-product', [ShoppingController::class, 'productCart'])->name('cart-product')->middleware('auth');
+Route::get('/payment/bill/{message}/{dissable}', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
 Route::get('/confirmation', [ShoppingController::class, 'confirmation'])->name('confirmation')->middleware('auth');
 Route::get('/products', [ProductsController::class,'index'])->name('products');
 Route::get('/products/{id}', [ProductsController::class,'productList'])->name('productList');
 Route::get('/products/catalogues/{catalogue}',[ProductsController::class,'catalogues'])->name('catalogues');
 Route::delete('/Cancelar-Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
 
-Route::get('/payment/confirmation', [ShoppingController::class, 'confirmationPay']);
+Route::post('/payment/confirmation', [ShoppingController::class, 'confirmationPay'])->name('confirmationPay');
 Route::get('/payment/response', [ShoppingController::class, 'response'])->name('response');
-Route::get('/payment/transaccion/{transaccion}', [ShoppingController::class, 'transaccion'])->name('transaccion');
+Route::get('/payment/transaccion/{transaccion}/{referencia}', [ShoppingController::class, 'transaccion'])->name('transaccion');
 
 //ProductsCRUD actions
-Route::get('/crud',[ProductsController::class,'crud'])->name('crud');
-Route::get('/crud/{id}',[ProductsController::class,'edit'])->name('edit');
-Route::put('/update',[ProductsController::class,'update'])->name('update');
-Route::post('/store',[ProductsController::class,'store'])->name('store');
-Route::delete('/destroy',[ProductsController::class,'destroy'])->name('destroy');
-Route::post('/create',[ProductsController::class,'create'])->name('create');
+Route::get('/crud',[ProductsController::class,'crud'])->name('crud')->middleware('auth');
+Route::get('/crud/{id}',[ProductsController::class,'edit'])->name('edit')->middleware('auth');
+Route::put('/update',[ProductsController::class,'update'])->name('update')->middleware('auth');
+Route::post('/store',[ProductsController::class,'store'])->name('store')->middleware('auth');
+Route::delete('/destroy',[ProductsController::class,'destroy'])->name('destroy')->middleware('auth');
+Route::post('/create',[ProductsController::class,'create'])->name('create')->middleware('auth');
 
 //FILE PRODUCT
 Route::get('/file',[FileproductController::class,'show'])->name('fileview');
