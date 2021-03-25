@@ -56,7 +56,24 @@
                     </div>
                     <div class="add_to_cart">
                         <a href="{{route('products')}}" class="btn_1"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Volver</a>
+                        @if(isset(Auth::User()->rol))
                         <button type="submit" class="btn_1">Agregar al carrito&nbsp;&nbsp;<i class="flaticon-shopping-cart-black-shape"></i></button>
+                        @else
+                            {{--<button  ></button>--}}
+                            <a href="#" role="button" class="btn_1" onclick="mensaje('Para poder continuar es necesario iniciar sesion.')">Agregar al carrito&nbsp;&nbsp;<i class="flaticon-shopping-cart-black-shape"></i></a>
+                            <script>
+                                function mensaje(texto) {
+                                    alert(texto);
+                                    redireccion();
+                                }
+                                function redireccion() {
+
+                                    var link = '/products/{{$product->id}}'
+                                    document.location.href = link;
+                                }
+
+                            </script>
+                        @endif
                     </div>
                 </div>
               </form>

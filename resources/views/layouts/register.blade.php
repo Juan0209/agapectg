@@ -15,7 +15,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="login_part_text text-center">
                                 <div class="login_part_text_iner">
-                                    <h3><img src="img/ÁGAPE_logo.png" width="350" height="350" alt="logo"></h3>
+                                    <h3><img src="{{asset('img/ÁGAPE_logo.png')}}" width="350" height="350" alt="logo"></h3>
                                     <a type="button" href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#login" data-dismiss="modal" aria-label="Close">Iniciar Sesion</a>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="login_part_form">
                                 <div class="login_part_form_iner">
-
+                                    <h3>Bienvenido</h3>
                                     <form class="row contact_form" action="{{ route('register') }}" method="post" novalidate="novalidate">
                                         @csrf
                                         <div class="col-md-12 form-group p_star">

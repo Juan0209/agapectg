@@ -25,11 +25,11 @@ class ShoppingController extends Controller
 
         }else{
 
-            if ($bill_id1 != null){
+            if ($bill_id2 != null){
 
-                $bill_id = $bill_id1;
-            }else{
                 $bill_id = $bill_id2;
+            }else{
+                $bill_id = $bill_id1;
             }
 
             $order = Order::select('orders.*')->where('user_id', $id )->where('state', 1)->get();
@@ -41,6 +41,9 @@ class ShoppingController extends Controller
                 $app->bill_id = $bill_id;
                 $app->save();
             }
+
+            return redirect('/payment/bill/0/0');
+            die();
         }
 
         if ($bill_id != null){
@@ -76,6 +79,8 @@ class ShoppingController extends Controller
 
             $bill = $bill = Bill::all()->where('user_id', $id)->last();
             $bill_id = $bill->id;
+
+            $order = Order::select('orders.*')->where('user_id', $id )->where('state', 1)->get();
 
             foreach ($order as $product){
                 $id = $product->id;

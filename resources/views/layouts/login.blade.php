@@ -15,7 +15,7 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="login_part_text text-center">
                                     <div class="login_part_text_iner">
-                                        <h3><img src="img/ÁGAPE_logo.png" width="260" height="230" alt="logo"></h3>
+                                        <h3><img src="{{asset('img/ÁGAPE_logo.png')}}" width="260" height="230" alt="logo"></h3>
                                         <a type="button" href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#register" data-dismiss="modal" aria-label="Close">Registrarse</a>
                                         <a href="#" class="btn btn-outline-danger">Recuperar Contraseña</a>
                                     </div>

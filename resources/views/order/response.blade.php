@@ -101,7 +101,7 @@
         $.get(urlapp, function(response) {
             if (response.success) {
 
-                var transaccion = 'http://agapectg.test/payment/transaccion/'+ 1 + '/' + ref_payco;
+                var transaccion = '/payment/transaccion/'+ 1 + '/' + ref_payco;
 
                 document.getElementById("enlace").setAttribute("href",transaccion);
 

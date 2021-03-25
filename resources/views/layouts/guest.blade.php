@@ -102,7 +102,7 @@
                                 <i class="fas fa-user-circle"></i>
                             </a>
                             <a href="#" style="color: #4B3049; font-size: 16px;font-family: 'Rubik', sans-serif; text-transform: capitalize; line-height: 16px; font-weight: 400;" data-toggle="modal" data-target="#login" title="Iniciar sesión">
-                                &nbsp;Acceder
+                                &nbsp;Iniciar Sesion
                             </a>
                         @endif
                     </div>

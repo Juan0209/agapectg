@@ -12,7 +12,7 @@
     $.get(urlapp, function(response) {
         var trasaccion = response.data.x_cod_response;
 
-        var link = 'http://agapectg.test/payment/transaccion/'+trasaccion+'/1';
+        var link = '/payment/transaccion/'+trasaccion+'/1';
         function redireccion() {
             document.location.href = link;
         }
