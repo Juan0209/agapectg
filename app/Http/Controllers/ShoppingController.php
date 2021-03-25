@@ -130,7 +130,7 @@ class ShoppingController extends Controller
         $id = Auth::id();
         $order = DB::Table('orders')
                 ->join('products', 'orders.product_id','=', 'products.id')
-                ->select('products.image as productImage', 'products.name as name', 'orders.image as image','orders.quantity as quantity', 'orders.total as total')
+                ->select('orders.id as id', 'products.image as productImage', 'products.name as name', 'orders.image as image','orders.quantity as quantity', 'orders.total as total')
                 ->where('user_id', $id)
                 ->where('state',1)
                 ->get();
@@ -289,6 +289,14 @@ class ShoppingController extends Controller
             $recordsCancel = Order::find($fact->id);
             $recordsCancel->delete();
         }
+
+        return back();
+    }
+
+    public function cancelProduct($id)
+    {
+        $recordsCancel = Order::find($id);
+        $recordsCancel->delete();
 
         return back();
     }

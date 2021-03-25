@@ -10,6 +10,14 @@
                 return false;
             }
         }
+        function Confirmdeleteproduct(){
+            var respuesta = confirm('¿Estas seguro de que quieres borrar este producto?');
+            if (respuesta == true){
+                return true;
+            }else{
+                return false;
+            }
+        }
     </script>
     <!-- breadcrumb part start-->
     <section class="breadcrumb_part">
@@ -37,6 +45,7 @@
                             <th scope="col">Foto</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Eliminar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -63,6 +72,12 @@
                                 </td>
                                 <td>
                                     <h5>$ {{number_format($product->total) }}</h5>
+                                </td>
+                                <td>
+                                    <form method="POST" action="{{ route('cancelProduct', $product->id) }}">
+                                        @csrf @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" onclick='return Confirmdeleteproduct()'><i class="fas fa-minus-circle"></i></button>
+                                    </form>
                                 </td>
                             </tr>
 

@@ -23,7 +23,9 @@ Route::get('/confirmation', [ShoppingController::class, 'confirmation'])->name('
 Route::get('/products', [ProductsController::class,'index'])->name('products');
 Route::get('/products/{id}', [ProductsController::class,'productList'])->name('productList');
 Route::get('/products/catalogues/{catalogue}',[ProductsController::class,'catalogues'])->name('catalogues');
-Route::delete('/Cancelar-Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
+Route::delete('/Cancelar/Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
+Route::delete('/Cancelar/producto/{id}',[ShoppingController::class,'cancelProduct'])->name('cancelProduct');
+
 
 Route::post('/payment/confirmation', [ShoppingController::class, 'confirmationPay'])->name('confirmationPay');
 Route::get('/payment/response', [ShoppingController::class, 'response'])->name('response');
