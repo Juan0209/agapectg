@@ -26,7 +26,7 @@
                   <th>ID</th>
                   <th>Nombre</th>
                   <th>Descripción</th>
-                  <th>Imagén</th>
+                  {{--<th>Imagén</th>--}}
                   <th>Precio</th>
 
                   <th>Opciones</th>
@@ -39,7 +39,7 @@
                         <th>{{$row->id}}</th>
                         <td>{{$row->name}}</td>
                         <td>{{$row->description}}</td>
-                        <td>{{$row->image}}</td>
+                        {{--<td>{{$row->image}}</td>--}}
                         <td>$ {{number_format($row->price)}}</td>
                         <td>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{($row->id)}}editar">
@@ -52,7 +52,7 @@
                         </td>
 
                         <!-- Modal de Editar-->
-                        <div class="modal fade" id="modal{{($row->id)}}editar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal{{($row->id)}}editar" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 100px;" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -63,35 +63,44 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <form method="POST" id="update-form" action="{{route('update')}}" >
+                                        <form method="POST" id="update-form" action="{{route('update')}}" enctype="multipart/form-data">
                                             <input type="hidden" name="id" value="{{ $row->id }}">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-row">
-                                                <div class="col" >
-                                                    <input type="number" class="form-control" name="id" id="id" value="{{$row->id}}" placeholder="ID" >
-                                                </div>
+
+                                                <input type="hidden" class="form-control" name="id" id="id" value="{{$row->id}}" placeholder="ID" readonly="">
+
                                                 <div class="col">
                                                     <input type="text" class="form-control" name="name" id="name" value="{{$row->name}}"  placeholder="name">
                                                 </div>
                                             </div>
+                                            <br>
                                             <div class="form-row">
                                                 <div class="col">
-                                                    <input type="text" class="form-control" name="description" id="description" value="{{$row->description}}"  placeholder="Description">
+                                                    <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required>{{$row->description}}</textarea>
                                                 </div>
+                                            </div>
+                                            <br>
+                                            <div class="form-row">
                                                 <div class="col">
                                                     <input type="number" class="form-control" name="price" id="price" value="{{$row->price}}" placeholder="Price">
                                                 </div>
-                                            </div>
-                                            <div class="form-row">
                                                 <div class="col">
-                                                    <input type="text" class="form-control" name="image" id="image" value="{{$row->image}}" placeholder="image">
+                                                    <input type="number" class="form-control" name="catalogues_id" id="catalogues_id" value="{{$row->catalogues_id}}" placeholder="numero del catalogo" required>
                                                 </div>
                                             </div>
-
+                                            <br>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <label for="image"><h5>Imagen: </h5></label>
+                                                    <input type="file" name="image" id="image" placeholder="image" accept="image/*">
+                                                </div>
+                                            </div>
+                                            <br>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close">Close</button>
-                                                <button type="submit" class="btn btn-primary rounded">Insertar</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close">Cancelar</button>
+                                                <button type="submit" class="btn btn-success">Actualizar</button>
                                             </div>
                                         </form>
                                     </div>
@@ -100,7 +109,7 @@
                         </div>
 
                         <!-- Modal de Eliminar-->
-                        <div class="modal fade" id="modal{{($row->id)}}destroy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="modal{{($row->id)}}destroy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 100px;" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -110,15 +119,15 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>  Borrar <strong>{{$row->name}}</strong> </p>
+                                        <p> ¿Estas seguro de eliminar el producto "<strong>{{$row->name}}</strong>" de la base de datos?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                                         <form action="{{route('destroy')}}" method="POST">
                                             <input type="hidden" name="id" value="{{ $row->id }}">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary" > Ejecutar </button>
+                                            <button type="submit" class="btn btn-danger" > Eliminar </button>
                                             @method('DELETE')
                                         </form>
                                     </div>
@@ -131,7 +140,7 @@
         </table>
     </div>
     <!-- Modal de Crear-->
-    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 110px;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -141,35 +150,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('store')}}">
+                <form method="POST" action="{{route('store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-row">
                             <div class="col">
-                                <input type="number" class="form-control" name="id" id="id" placeholder="ID">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="name">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
                             </div>
                         </div>
+                    <br>
                         <div class="form-row">
                             <div class="col">
-                                <input type="text" class="form-control" name="description" id="description" placeholder="Description">
-                            </div>
-                            <div class="col">
-                                <input type="number" class="form-control" name="price" id="price" placeholder="Price">
-                            </div>
-                            <div class="form-row">
-                                <div class="col">
-                                    <input type="text" class="form-control" name="image" id="image" placeholder="image">
-                                </div>
-                                <div class="col">
-                                    <input type="number" class="form-control" name="catalogues_id" id="catalogues_id" placeholder="catalogues id">
-                                </div>
+                                <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required></textarea>
                             </div>
                         </div>
+                    <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <input type="number" class="form-control" name="price" id="price" placeholder="Precio" required>
+                            </div>
+                            <div class="col">
+                                <input type="number" class="form-control" name="catalogues_id" id="catalogues_id" placeholder="numero del catalogo" required>
+                            </div>
+                        </div>
+                    <br>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="image"><h5>Imagen: </h5></label>
+                                <input type="file" name="image" id="image" accept="image/*">
+                            </div>
+                        </div>
+                    <br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
                         </div>
                     </form>
                 </div>

@@ -139,6 +139,8 @@
                                         $total = $totalbase + $impuesto;
                                     ?>
 
+                                    <input type="hidden" name="total_price" value="{{$total}}">
+
                                     <ul class="list list_2">
                                         <li>
                                             <a href="#">Subtotal

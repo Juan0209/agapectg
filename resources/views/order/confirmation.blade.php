@@ -35,7 +35,7 @@
                                 <p>Fecha</p><span>: {{$bill[0]->updated_at}}</span>
                             </li>
                             <li>
-                                <p>total</p><span>: COP 2210</span>
+                                <p>Total (COP)</p><span>: $ {{number_format($bill[0]->total_price)}}</span>
                             </li>
                             <li>
                                 <p>Metodo de Pago</p><span>: ePayco</span>

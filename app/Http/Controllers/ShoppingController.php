@@ -262,10 +262,11 @@ class ShoppingController extends Controller
     public function confirmationPay(Request $request){
 
         $id = Auth::id();
-        $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+        $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
         $id = $bill[0]->id;
 
         $app = Bill::find($id);
+        $app->total_price = $request->total_price;
         $app->name2 = $request->name2;
         $app->phone2 = $request->phone2;
         $app->add2 = $request->add2;

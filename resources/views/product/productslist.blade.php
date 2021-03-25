@@ -59,7 +59,6 @@
                         @if(isset(Auth::User()->rol))
                         <button type="submit" class="btn_1">Agregar al carrito&nbsp;&nbsp;<i class="flaticon-shopping-cart-black-shape"></i></button>
                         @else
-                            {{--<button  ></button>--}}
                             <a href="#" role="button" class="btn_1" onclick="mensaje('Para poder continuar es necesario iniciar sesion.')">Agregar al carrito&nbsp;&nbsp;<i class="flaticon-shopping-cart-black-shape"></i></a>
                             <script>
                                 function mensaje(texto) {
