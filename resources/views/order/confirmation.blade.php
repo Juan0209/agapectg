@@ -127,7 +127,7 @@
                             </tr>
                             <tr>
                                 <th colspan="3">Costo de domicilio</th>
-                                <th><span>-$ {{ number_format($domicilio)}}</span></th>
+                                <th><span>$ {{ number_format($domicilio)}}</span></th>
                             </tr>
                             <tr>
                                 <th colspan="3">Cupón de descuento</th>
@@ -135,7 +135,7 @@
                             </tr>
                             <tr>
                                 <th colspan="3">Impuestos</th>
-                                <th><span>-$ {{number_format($impuesto)}}</span></th>
+                                <th><span>$ {{number_format($impuesto)}}</span></th>
                             </tr>
                             </tbody>
                             <tfoot>

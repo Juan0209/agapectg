@@ -139,7 +139,13 @@ class ShoppingController extends Controller
         $id = Auth::id();
         $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
 
-        $order = Order::select('orders.*')->where('bill_id', '=', $bill[0]->id )->get();
+        $order = DB::Table('orders')
+            ->join('products', 'orders.product_id','=', 'products.id')
+            ->select('products.name as name','orders.quantity as quantity', 'orders.total as total')
+            ->where('user_id', $id)
+            ->where('state',1)
+            ->get();
+
         return view('order.confirmation', compact('order', 'bill'));
     }
 
