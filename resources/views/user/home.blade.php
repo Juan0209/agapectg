@@ -13,7 +13,7 @@
                                 <h1>{{ $fact->name }}</h1>
                                 <p>{{ $fact->description }}</p>
                                 <h4>Precio: {{ number_format($fact->price) }}</h4>
-                                <form method="POST" action="{{ route('cart-product') }}">
+                                <form method="POST" action="{{ route('cart.add') }}">
                                     @csrf
                                     <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
                                     <input type="hidden" name="id_product" value="{{ $fact->id }}">

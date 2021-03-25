@@ -7,75 +7,130 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 class ShoppingController extends Controller
 {
-
     public function payment($message, $dissable)
     {
         $id = Auth::id();
-        $order = Order::all()->where('user_id', $id)->first();
-        $bill_id = $order->bill_id;
-        $bill = Bill::all()->where('id', $bill_id)->last();
+        $order = Order::all()->where('user_id', $id )->where('state', 1)->first();
+        $bill_id1 = $order->bill_id;
+        $order = Order::all()->where('user_id', $id )->where('state', 1)->last();
+        $bill_id2 = $order->bill_id;
 
-        if ($bill != null){
+        if ($bill_id1 == $bill_id2){
+
+            $bill_id = $bill_id1;
+
+        }else{
+
+            if ($bill_id1 != null){
+
+                $bill_id = $bill_id1;
+            }else{
+                $bill_id = $bill_id2;
+            }
+
+            $order = Order::select('orders.*')->where('user_id', $id )->where('state', 1)->get();
+
+            foreach ($order as $product){
+                $id = $product->id;
+
+                $app = Order::find($id);
+                $app->bill_id = $bill_id;
+                $app->save();
+            }
+        }
+
+        if ($bill_id != null){
+
+            $bill = Bill::all()->where('id', $bill_id)->last();
+
+            $order = DB::Table('orders')
+                ->join('products', 'orders.product_id','=', 'products.id')
+                ->select( 'products.name as name', 'orders.quantity as quantity', 'orders.total as total')
+                ->where('user_id', $id)
+                ->where('state',1)
+                ->where('bill_id',$bill->id)
+                ->get();
+
             $payed = $bill->payed;
             if ($payed == 0){
-                $order = Order::select('orders.*')->where('user_id', '=', $id )->get();
+
                 return view('order.payment', compact('order', 'message', 'dissable'));
                 die();
             }elseif ($payed == 1 ){
-                $order = Order::select('orders.*')->where('user_id', '=', $id )->get();
+
                 $payed = true;
                 return view('order.payment', compact('order', 'payed', 'message', 'dissable'));
                 die();
             }
-        }elseif($bill == null){
+
+        }else{
+
             $newBill            = new Bill;
             $newBill->user_id   = $id;
             $newBill->payed     = 0;
-
             $newBill->save();
 
-            return redirect('/payment/bill/0/false');
+            $bill = $bill = Bill::all()->where('user_id', $id)->last();
+            $bill_id = $bill->id;
+
+            foreach ($order as $product){
+                $id = $product->id;
+
+                $app = Order::find($id);
+                $app->bill_id = $bill_id;
+                $app->save();
+            }
+
+            return redirect('/payment/bill/0/0');
             die();
         }
     }
 
     public function productCart(Request $request)
     {
-        $request->validate([
-            'id_user'    => 'required',
-            'id_product' => 'required',
-            'name'       => 'required',
-            'image'      => 'required',
-            'quantity'   => 'required',
-            'price'      => 'required',
-        ],
-            [
-                'quantity.required'   => 'El campo cantidad es obligatoria',
+        if (Auth::user()) {
+
+            $request->validate([
+                'id_product' => 'required',
+                'quantity' => 'required',
+                'file' => 'required|mimes:jpeg,jpg,png|min:20',
             ]);
 
-        $sale = new Order;
+            $imagenes = $request->file('file')->store('public/imagenes');
+            $url = storage::url($imagenes);
 
-        $sale->user_id=$request->id_user;
-        $sale->product_id=$request->id_product;
-        $sale->name=$request->name;
-        $sale->image=$request->image;
-        $sale->image=$request->image;
-        $sale->quantity=$request->quantity;
-        $sale->total=$request->quantity*$request->price;
-        $sale->state='1';
+            $sale = new Order;
 
-        $sale->save();
+            $sale->user_id = Auth::id();
+            $sale->product_id = $request->id_product;
+            $sale->image = $url;
+            $sale->quantity = $request->quantity;
+            $sale->total = $request->quantity * $request->price;
+            $sale->state = '1';
 
-        return redirect('/cart');
+            $sale->save();
+
+            return redirect('/cart');
+        }else{
+            return back();
+        }
     }
 
     public function cart()
     {
-        $user = Auth::user();
         $id = Auth::id();
-        $order = Order::select('orders.*')->where('user_id', '=', $id )->get();
+        $order = DB::Table('orders')
+                ->join('products', 'orders.product_id','=', 'products.id')
+                ->select('products.image as productImage', 'products.name as name', 'orders.image as image','orders.quantity as quantity', 'orders.total as total')
+                ->where('user_id', $id)
+                ->where('state',1)
+                ->get();
+
+
         return view('order.cart', compact('order'));
     }
 
@@ -84,8 +139,6 @@ class ShoppingController extends Controller
         $id = Auth::id();
         $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
 
-        /*return $bill ;
-        die();*/
         $order = Order::select('orders.*')->where('bill_id', '=', $bill[0]->id )->get();
         return view('order.confirmation', compact('order', 'bill'));
     }

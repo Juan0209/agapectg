@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         /*Order::factory(5)->create();*/
         /*Products::factory(5)->create();*/
         $this->call(ProductSeeder::class);
-        $this->call(OrderSeeder::class);
+        /*$this->call(OrderSeeder::class);*/
         $this->call(UserSeeder::class);
         /*$this->call(BillSeeder::class);*/
     }

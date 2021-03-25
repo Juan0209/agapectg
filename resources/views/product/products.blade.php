@@ -45,9 +45,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('crud')}}" type="button" class="btn btn-success">
-                            <i class="fas fa-cogs"></i> Tabla de Productos
-                        </a>
+                        @if(isset(Auth::User()->rol) and Auth::User()->rol == 'admin')
+                            <a href="{{route('crud')}}" type="button" class="btn btn-success">
+                                <i class="fas fa-cogs"></i> Tabla de Productos
+                            </a>
+                        @endif
                     </div>
                 </div>
 

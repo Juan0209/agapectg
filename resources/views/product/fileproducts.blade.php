@@ -8,11 +8,10 @@
          <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
              @csrf
              <div class="form-group">
-             <input type="file" name="file" id="file" accept="image/*">
-
-@error('file')
-<small class="text-danger">{{$message}}</small>
-@enderror
+                 <input type="file" name="file" id="file" accept="image/*">
+                 @error('file')
+                 <small class="text-danger">{{$message}}</small>
+                 @enderror
              </div>
 <button type="submit">   Subir imagen </button>
          </form>

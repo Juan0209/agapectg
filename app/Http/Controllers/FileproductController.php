@@ -38,8 +38,8 @@ class FileproductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-    'file'=> 'required|mimes:jpeg,jpg,png|max:1024'
-         ]);
+            'file'=> 'required|mimes:jpeg,jpg,png|max:1024'
+        ]);
 
         $imagenes= $request->file('file')->store('public/imagenes');
         $url= storage::url($imagenes);

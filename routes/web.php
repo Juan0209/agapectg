@@ -16,8 +16,8 @@ Route::get('/Funcionarios', [AdminController::class,'view'])->name('officials')-
 Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])->name('destroy.user')->middleware('auth');
 
 //Shopping actions
-Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart')->middleware('auth');
-Route::post('/cart-product', [ShoppingController::class, 'productCart'])->name('cart-product')->middleware('auth');
+Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
+Route::post('/cart/add', [ShoppingController::class, 'productCart'])->name('cart.add')->middleware('auth');
 Route::get('/payment/bill/{message}/{dissable}', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
 Route::get('/confirmation', [ShoppingController::class, 'confirmation'])->name('confirmation')->middleware('auth');
 Route::get('/products', [ProductsController::class,'index'])->name('products');

@@ -22,7 +22,7 @@ class ProductsController extends Controller
 
     public function productList($id)
     {
-        $products = Product::select('name', 'image', 'description', 'price')
+        $products = Product::select('id','name', 'image', 'description', 'price')
             ->where('id', '=', $id)
             ->get();
         return view('product.productslist', compact('products'));
