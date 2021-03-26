@@ -39,7 +39,7 @@
                     <div class="product_count_area">
                         <div class="product_count d-inline-block" >
                             <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                            <input class="product_count_item input-number" type="text" name="quantity" id="quantity" value="1" min="1" max="10">
+                            <input class="product_count_item input-number" type="text" name="quantity" id="quantity" value="1" min="1" max="30">
                             <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                         </div>
                     </div>

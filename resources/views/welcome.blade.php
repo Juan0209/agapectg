@@ -7,8 +7,10 @@
                 <div class="col-md-5">
                     <div class="banner_text">
                         <div class="banner_text_iner">
-                            <h2>ÁgapeDesign 🤍</h2>
-                            <p>Somos dos amigas que aman diseñar y crear algo nuevo cada día. Porque creemos que regalar o darte algo personalizado, le añade el plus de ser algo único.</p>
+                            <h1>ÁgapeDesign</h1>
+                            <p>▫️Ilustramos y plasmamos tus mejores momentos. <br>
+                                🤍 Catálogo en la pestaña de Productos. <br>
+                                🤍 Enamórate de todo como nosotras.</p>
                             <a href="{{ route('products') }}" class="btn_1">Explorar Catalogo</a>
                         </div>
                     </div>
@@ -215,4 +217,53 @@
             </div>
         </div>
     </section>
+
+    <!-- feature part here -->
+    <section class="feature_part section_padding">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-6">
+                    <div class="feature_part_tittle">
+                        <h3>Acerca de Nosotras...</h3>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="feature_part_content">
+                        <h3>Equipo ÁgapeDesign</h3>
+                        <p>Somos dos amigas que aman diseñar y crear algo nuevo cada día. Decidimos crear este proyecto porque creemos que regalar o darte algo personalizado, le añade el plus de ser algo único.
+                            <br><br>
+                            Los invitamos a ver nuestro catalogo, y enamorarse de todo como nosotras 🤍
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="img/icon/feature_icon_1.svg" alt="#">
+                        <h4>Soporte para tarjetas de credito</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="img/icon/feature_icon_2.svg" alt="#">
+                        <h4>Compra 100% Online y Segura</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="img/icon/feature_icon_3.svg" alt="#">
+                        <h4>entrega rapida y segura</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_feature_part">
+                        <img src="img/icon/feature_icon_4.svg" alt="#">
+                        <h4>Productos con obsequios</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- feature part end -->
 @endsection
