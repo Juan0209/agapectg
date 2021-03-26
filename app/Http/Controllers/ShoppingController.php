@@ -229,36 +229,6 @@ class ShoppingController extends Controller
         }
     }
 
-    /*public function transaccion($transaccion){
-
-        if ($transaccion == 1){ //transaccion aceptada
-
-            $id = Auth::id();
-            $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
-            $id = $bill[0]->id;
-
-            $app = Bill::find($id);
-            $app->payed = 1;
-            $app->save();
-
-            $message = 'La transacción ha sido exitosa, por favor continue con su pedido';
-
-        }elseif ($transaccion == 2) { //transaccion rechazada
-
-            $message = 'Su Transacción fue rechazada, intente realizar una nueva para continuar con la compra.';
-
-        }elseif($transaccion == 3){ //transaccion pendiente
-
-            $message = 'Su transacción esta en estado: PENDIENTE, para poder continuar realize el pago antes de 12 horas. Una vez realize el pago la plataforma le habilitara continuar despues de 12 a 24 horas de haber realizado el pago. Si despues de haber pasado 24 horas de haber realizado el pago la plataforma no le permite continuar con el pedido, por favor pongase en contcto con agape';
-
-        }elseif($transaccion == 4){ // transaccion cancelada
-
-            $message = 0;
-        }
-
-        return redirect("/payment/bill/$message" );
-    }*/
-
     public function confirmationPay(Request $request){
 
         $id = Auth::id();

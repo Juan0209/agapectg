@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'welcome'])->name('welcome.index')->middleware('guest');
 
 //Admin actions
-Route::get('/home', [AdminController::class,'index'])->name('home.index')->middleware('auth');
+Route::get('/home', [HomeController::class,'welcome'])->name('home.index');
 Route::post('/Nuevo-Admin', [AdminController::class,'create'])->name('newAdmin')->middleware('auth');
 Route::get('/Funcionarios', [AdminController::class,'view'])->name('officials')->middleware('auth');
 Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])->name('destroy.user')->middleware('auth');

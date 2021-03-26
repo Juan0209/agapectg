@@ -54,18 +54,10 @@
                                 <a class="nav-link" href="{{route('products')}}">Productos</a>
                             </li>
                             @if(isset(Auth::User()->rol))
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_3"
-                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Mis compras
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="{{ route('cart') }}">Lista del carrito</a>
-                                        <a class="dropdown-item" href="{{ url('/payment/transaccion', array('transaccion'=>0,'referencia'=>0)) }}">Facturar pedido</a>
-                                        <a class="dropdown-item" href="{{ route('confirmation') }}">confirmación</a>
-                                    </div>
-                                </li>
                                 @if(Auth::User()->rol == 'admin')
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Pedidos</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('officials') }}">Funcionarios</a>
                                     </li>
@@ -85,8 +77,8 @@
                                     <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="#">Perfil</a></li>
-                                    <li><a class="dropdown-item" href="#">Configuración</a></li>
+                                    <li><a class="dropdown-item" href="{{route('cart')}}">Mi Carrito</a></li>
+                                    <li><a class="dropdown-item" href="{{route('confirmation')}}">Mi Compra</a></li>
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
@@ -182,6 +174,7 @@
 
 @include('layouts.login')
 @include('layouts.register')
+@include('layouts.forgotPassword')
 <!--::footer_part end::-->
 @if(isset($message))
     @if($message)
