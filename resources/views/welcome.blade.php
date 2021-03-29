@@ -19,7 +19,7 @@
         </div>
         <div class="banner_img">
             <img src="{{asset('storage/home/1.jpg')}}" width="90%" class="img-fluid">
-            <img src="img/banner_pattern.png" alt="#" class="pattern_img img-fluid">
+            <img src="{{asset('img/banner_pattern.png')}}" alt="#" class="pattern_img img-fluid">
         </div>
     </section>
 
@@ -44,7 +44,7 @@
                                         <br><br>
                                         El precio depende de la cantidad de personas que se encuentren en la foto.
                                         <br><br>
-                                        ▪️Desde 25.000
+                                        ▪️Desde $25.000 COP
                                     </p><br><br>
                                     <a href="{{route('products')}}" class="btn_3">Explorar más</a>
                                 </div>
@@ -70,7 +70,7 @@
                                         ‑ Se entrega en caja sellada.
                                         ‑ El precio incluye foto, y frase que la persona desee.
                                         <br><br>
-                                        ▪️ Desde 25.000
+                                        ▪️ Desde $25.000 COP
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
@@ -89,13 +89,13 @@
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 5</h5>
+                                    <h5>N.º 3</h5>
                                     <h2> <a href="{{route('products')}}">Cuadro 21 cm X 30 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
                                         ‑ Colores disponibles: blanco, café, y negro.
                                         <br><br>
-                                        ▪️ Desde 48.000
+                                        ▪️ Desde $48.000COP
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 1</h5>
+                                    <h5>N.º 4</h5>
                                     <h2> <a href="{{route('products')}}">Portarretrato 13 cm X 18 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
@@ -141,17 +141,17 @@
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 1</h5>
+                                    <h5>N.º 5</h5>
                                     <h2> <a href="{{route('products')}}">Camisetas</a></h2>
                                     <p>¡Nadie había lucido tan cool!
                                         <br><br>
-                                        ‑ Tela: Algodón.
-                                        ‑ El diseño en la camiseta se hace bajo un proceso de estampado.
-                                        ‑ Colores: blanco y negro.
-                                        ‑ Se entrega en bolsa.
+                                        ‑ Tela: Algodón. <br>
+                                        ‑ El diseño en la camiseta se hace bajo un proceso de estampado. <br>
+                                        ‑ Colores: blanco y negro. <br>
+                                        ‑ Se entrega en bolsa. <br>
 
                                         <br><br>
-                                        ▪️ Desde 45.000
+                                        ▪️ Desde $45.000 COP
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
@@ -201,7 +201,7 @@
                                     <h2> <a href="{{route('products')}}">Grupos</a></h2>
                                     <p>▫¡Compartamos la experiencia en grupo!
                                         <br><br>
-                                        ‑ Precio especial.
+                                        ‑ Precio especial. <br>
                                         ‑ Empaque especial.
                                         <br><br>
                                         Por la compra de 12 unidades en adelante, se te personaliza el empaque con la temática que gustes.

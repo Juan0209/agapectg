@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Agape | @yield('title')</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="img/faviconAgapect/apple-touch-icon.png">
+    {{--<link rel="apple-touch-icon" sizes="180x180" href="img/faviconAgapect/apple-touch-icon.png">--}}
     <link rel="shortcut icon" href="{{ asset('img/faviconAgapect/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
