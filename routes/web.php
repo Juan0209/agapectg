@@ -7,7 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FileproductController;
 use Illuminate\Support\Facades\Route;
 
+//Home Routes
 Route::get('/', [HomeController::class,'welcome'])->name('welcome.index')->middleware('guest');
+Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 
 //Admin actions
 Route::get('/home', [HomeController::class,'welcome'])->name('home.index');
@@ -33,7 +35,7 @@ Route::get('/payment/transaccion/{transaccion}/{referencia}', [ShoppingControlle
 
 //ProductsCRUD actions
 Route::get('/crud',[ProductsController::class,'crud'])->name('crud')->middleware('auth');
-Route::get('/crud/{id}',[ProductsController::class,'edit'])->name('edit')->middleware('auth');
+/*Route::get('/crud/{id}',[ProductsController::class,'edit'])->name('edit')->middleware('auth');*/
 Route::put('/update',[ProductsController::class,'update'])->name('update')->middleware('auth');
 Route::post('/store',[ProductsController::class,'store'])->name('store')->middleware('auth');
 Route::delete('/destroy',[ProductsController::class,'destroy'])->name('destroy')->middleware('auth');

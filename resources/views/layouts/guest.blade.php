@@ -53,6 +53,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('products')}}">Productos</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('contact')}}">Contactanos</a>
+                            </li>
+
                             @if(isset(Auth::User()->rol))
                                 @if(Auth::User()->rol == 'admin')
                                     <li class="nav-item">

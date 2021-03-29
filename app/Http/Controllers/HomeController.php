@@ -10,7 +10,11 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        /*$product = Product::all();*/
         return view('welcome');
+    }
+
+    public function contact()
+    {
+        return view('user.contact');
     }
 }
