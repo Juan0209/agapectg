@@ -18,6 +18,11 @@
     <!--================Checkout Area =================-->
     <section class="checkout_area section_padding">
         <div class="container">
+            @if(isset($payed))
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> Por favor, continua y no abandones esta pagina. De lo contrario no podras ingresar de nuevo y podrias perder el pedido. <i class="fas fa-exclamation-triangle"></i>
+                </div>
+            @endif
             <div class="cupon_area">
                 <div class="check_title">
                     <h2>
@@ -25,7 +30,6 @@
                         <a href="#">¡Click aquí para consultar uno!</a>
                     </h2>
                 </div>
-
             </div>
             <div class="billing_details">
                 <div class="row">
@@ -49,7 +53,7 @@
 
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account">
-                                        <h3>Destinatario Secundario (OPCIONAL)</h3>
+                                        <h3>Destinatario Secundario (*Obligatorio*)</h3>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}">
@@ -79,7 +83,7 @@
                             @elseif(!isset($payed))
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account">
-                                        <h3>Destinatario Secundario (OPCIONAL)</h3>
+                                        <h3>Destinatario Secundario (OBLIGATORIO*)</h3>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
                                         <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}" disabled>
@@ -168,7 +172,8 @@
                                             </a>
                                         </li>
                                         @if(!isset($payed))
-                                            @if($dissable == 0)
+                                            {{--{{$hidden}}--}}
+                                            @if($hidden == 0)
                                                 <li>
                                                     <div class="text-center">
                                                         <a href="#">
@@ -207,20 +212,18 @@
                                                     </div>
                                                 </li>
                                             @endif
-                                    </ul>
-
-                                    <div class="text-center">
-
-                                        <br><br>
-                                        <input class="btn_1" type="button" onclick="mensaje('Para poder continuar es necesario que su Transaccion de pago haya sido exitosa.')" value="Continuar">
-                                        <script>
-                                            function mensaje(texto) {
-                                                alert(texto);
-                                            }
-                                        </script>
-                                    </div>
-                                    @elseif(isset($payed) and $payed == true)
                                         </ul>
+                                        <div class="text-center">
+
+                                            <br><br>
+                                            <input class="btn_1" type="button" onclick="mensaje('Para poder continuar es necesario que su Transaccion de pago haya sido exitosa.')" value="Continuar">
+                                            <script>
+                                                function mensaje(texto) {
+                                                    alert(texto);
+                                                }
+                                            </script>
+                                        </div>
+                                    @elseif(isset($payed) and $payed == true)
 
                                         <div class="text-center">
 

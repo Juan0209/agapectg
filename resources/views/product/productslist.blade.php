@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title', 'Producto')
+@section('title', 'Descripción')
 @section('content')
 <section class="breadcrumb_part single_product_breadcrumb">
         <div class="container">
@@ -18,11 +18,13 @@
     <div class="container">
       <div class="row justify-content-center">
           <?php $product = $products[0]; ?>
-
         <div class="col-lg-8">
           <div class="product_img_slide owl-carousel">
             <div class="single_product_img">
-               <img src="{{asset($product->image)}}" style="width: 70%; margin-left: auto; margin-right: auto;" class="img-fluid">
+                @if(session()->has('danger'))
+                    <div class="alert alert-danger text-center"><i class="fas fa-exclamation-triangle"></i> {{ session()->get('danger') }} <i class="fas fa-exclamation-triangle"></i></div>
+                @endif
+               <img src="{{asset($product->image)}}" style="width: 70%; margin-left: auto; margin-right: auto;" alt="" class="img-fluid">
             </div>
           </div>
         </div>
@@ -35,6 +37,7 @@
                   <input type="hidden" name="id_product" id="id_product" value="{{$product->id}}">
                   <input type="hidden" name="price" id="price" value="{{$product->price}}">
                 <div class="card_area">
+                    <p> <h3>$ {{number_format($product->price)}}</h3></p>
                     <h5>Cantidad</h5>
                     <div class="product_count_area">
                         <div class="product_count d-inline-block" >
@@ -43,15 +46,20 @@
                             <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                         </div>
                     </div>
-                    <p> <h3>$ {{number_format($product->price)}}</h3></p>
                     <div class="add_to_cart">
                         <h5>Foto a ilustrar</h5>
-                       {{--<a href="{{route('fileview')}}" class="btn_3">Subir imagen</a>--}}
                         <div class="container btn_3">
                             <input type="file" name="file" id="file" accept="image/*">
                             @error('file')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="add_to_cart">
+                        <h5>Personas/Mascotas a ilustrar</h5>
+                        <div class="container">
+                            <input type="number" value="1" class="form-control col-md-1 form-group p_star" name="peoples" id="peoples">
+                            <div class="alert alert-warning text-center"><i class="fas fa-exclamation-triangle"></i> En caso de que el numero de personas y/o mascotas a ilustrar sea mayor a los que se encuentran en la fotografia suministrada, nos comunicaremos con usted para aclarar dudas e inquietudes <i class="fas fa-exclamation-triangle"></i></div>
                         </div>
                     </div>
                     <div class="add_to_cart">

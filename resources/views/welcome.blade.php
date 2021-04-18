@@ -19,7 +19,7 @@
         </div>
         <div class="banner_img">
             <img src="{{asset('storage/home/1.jpg')}}" width="90%" class="img-fluid">
-            <img src="{{asset('img/banner_pattern.png')}}" alt="#" class="pattern_img img-fluid">
+            <img src="{{asset('img/banner_pattern.png')}}" class="pattern_img img-fluid">
         </div>
     </section>
 
@@ -62,7 +62,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 2</h5>
-                                    <h2> <a href="{{route('products')}}">Mug clásico</a></h2>
+                                    <h2> <a href="{{route('catalogues', 1)}}">Mug clásico</a></h2>
                                     <p>¡Mereces un mug tan único y especial como tú!
                                         <br><br>
                                         ‑ 11 Oz.
@@ -74,7 +74,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('products')}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 1)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 3</h5>
-                                    <h2> <a href="{{route('products')}}">Cuadro 21 cm X 30 cm</a></h2>
+                                    <h2> <a href="{{route('catalogues', 4)}}">Cuadro 21 cm X 30 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
                                         ‑ Colores disponibles: blanco, café, y negro.
@@ -99,7 +99,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('products')}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 4)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 4</h5>
-                                    <h2> <a href="{{route('products')}}">Portarretrato 13 cm X 18 cm</a></h2>
+                                    <h2> <a href="{{route('catalogues', 3)}}">Portarretrato 13 cm X 18 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
                                         ‑ Colores disponibles: blanco, café, y negro.
@@ -126,7 +126,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('products')}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 3)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 5</h5>
-                                    <h2> <a href="{{route('products')}}">Camisetas</a></h2>
+                                    <h2> <a href="{{route('catalogues', 2)}}">Camisetas</a></h2>
                                     <p>¡Nadie había lucido tan cool!
                                         <br><br>
                                         ‑ Tela: Algodón. <br>
@@ -155,7 +155,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('products')}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 2)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 7</h5>
-                                    <h2> <a href="{{route('products')}}">Grupos</a></h2>
+                                    <h2> <a href="{{route('catalogues', 5)}}">Grupos</a></h2>
                                     <p>▫¡Compartamos la experiencia en grupo!
                                         <br><br>
                                         ‑ Precio especial. <br>
@@ -208,7 +208,7 @@
                                         <br><br>
                                         El detalle perfecto para tus eventos😍
                                     </p><br><br>
-                                    <a href="{{route('products')}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 5)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -241,7 +241,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="img/icon/feature_icon_1.svg" alt="#">
-                        <h4>Soporte para tarjetas de credito</h4>
+                        <h4>Soporte para Tarjetas de Tredito</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
@@ -253,13 +253,13 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="img/icon/feature_icon_3.svg" alt="#">
-                        <h4>entrega rapida y segura</h4>
+                        <h4>Entrega Rapida y Segura</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_feature_part">
                         <img src="img/icon/feature_icon_4.svg" alt="#">
-                        <h4>Productos con obsequios</h4>
+                        <h4>Productos con Obsequios</h4>
                     </div>
                 </div>
             </div>

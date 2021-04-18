@@ -55,7 +55,6 @@
                             </li>
                             <li>
                                 <p>Celular</p><span>: {{ substr($bill[0]->phone2,0,3) }} {{substr($bill[0]->phone2,3 )}}</span>
-
                             </li>
                         </ul>
                     </div>
@@ -64,6 +63,9 @@
                     <div class="single_confirmation_details">
                         <h4>Destinatario</h4>
                         <ul>
+                            <li>
+                                <p>Nombre</p><span>: {{auth()->user()->name}}</span>
+                            </li>
                             <li>
                                 <p>Dirección</p><span>: {{auth()->user()->address}}</span>
                             </li>
@@ -83,6 +85,9 @@
                             </li>
                             <li>
                                 <p>Celular y Whatsapp</p><span>: 320 5195817</span>
+                            </li>
+                            <li>
+                                <span>: 302 3661801</span>
                             </li>
                         </ul>
                     </div>

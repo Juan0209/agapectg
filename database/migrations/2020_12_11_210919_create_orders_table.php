@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->integer('product_id');
             $table->string('image')->nullable();
             $table->integer('quantity');
+            $table->integer('peoples');
             $table->integer('total');
             $table->string('state');
 

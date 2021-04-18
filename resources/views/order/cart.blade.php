@@ -38,79 +38,80 @@
         <div class="container">
             <div class="cart_inner">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Foto</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Eliminar</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        <?php $i = 0 ?>
-                        @foreach($order as $product)
-                            <?php $i += 1 ?>
+                    @if(isset($order) and $order != '[]')
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="d-flex">
-                                            <img src="{{asset($product->productImage)}}" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <p>{{$product->name}}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#image{{$i}}" class="btn_1"><i class="fas fa-search-plus"></i>&nbsp;Observar</a>
-                                </td>
-                                <td>
-                                    <h5>{{$product->quantity}}</h5>
-                                </td>
-                                <td>
-                                    <h5>$ {{number_format($product->total) }}</h5>
-                                </td>
-                                <td>
-                                    <form method="POST" action="{{ route('cancelProduct', $product->id) }}">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" class="btn btn-danger" onclick='return Confirmdeleteproduct()'><i class="fas fa-minus-circle"></i></button>
-                                    </form>
-                                </td>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Foto</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Eliminar</th>
                             </tr>
+                            </thead>
+                            <tbody>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="image{{$i}}" tabindex="-1" aria-labelledby="exampleModalLabel" style="margin-top: 80px;" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header" style="background: #BB8FCE;">
-                                            <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Fotografia a ilustrar</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                            <?php $i = 0 ?>
+                            @foreach($order as $product)
+                                <?php $i += 1 ?>
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <img src="{{asset($product->productImage)}}" alt="">
+                                            </div>
+                                            <div class="media-body">
+                                                <p>{{$product->name}}</p>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
+                                    </td>
+                                    <td>
+                                        <a href="#" data-toggle="modal" data-target="#image{{$i}}" class="btn_1"><i class="fas fa-search-plus"></i>&nbsp;Observar</a>
+                                    </td>
+                                    <td>
+                                        <h5>{{$product->quantity}}</h5>
+                                    </td>
+                                    <td>
+                                        <h5>$ {{number_format($product->total) }}</h5>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{{ route('cancelProduct', $product->id) }}">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick='return Confirmdeleteproduct()'><i class="fas fa-minus-circle"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
 
-                                            <div class="container">
-                                                <div class="row align-items-center">
+                                <!-- Modal -->
+                                <div class="modal fade" id="image{{$i}}" tabindex="-1" aria-labelledby="exampleModalLabel" style="margin-top: 80px;" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background: #BB8FCE;">
+                                                <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Fotografia a ilustrar</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
 
-                                                    @if(isset($product->image))
-                                                        <img src="{{asset($product->image)}}" style="margin-left: auto; margin-right: auto;">
-                                                    @endif
+                                                <div class="container">
+                                                    <div class="row align-items-center">
 
+                                                        @if(isset($product->image))
+                                                            <img src="{{asset($product->image)}}" style="margin-left: auto; margin-right: auto;">
+                                                        @endif
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        @endforeach
-                        </tbody>
-                    </table>
-                    @if(isset($product) and !empty($product))
+                            @endforeach
+                            </tbody>
+                        </table>
+
                         <?php $product->user_id = auth()->user()->id ?>
                         <div class="checkout_btn_inner float-right">
                             <form method="POST" action="{{ route('cancelPurchase', $product->user_id) }}">
@@ -121,7 +122,11 @@
                             </form>
                         </div>
                     @else
-                        <h3>No has selecionado ningun Producto</h3>
+                        <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <h2 class="text-center">No Has Selecionado Ningun Producto :c</h2>
+                            </div>
+                        </div>
                     @endif
 
                 </div>

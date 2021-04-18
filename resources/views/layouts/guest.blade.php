@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="es">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -29,6 +28,10 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
+    <!--Datatable CSS-->
+    <link href="{{asset('datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="{{asset('css/nice-select.css')}}">
 </head>
 
 <body>
@@ -56,14 +59,17 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('contact')}}">Contactanos</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#{{--{{route('contact')}}--}}">Conocenos</a>
+                            </li>
 
                             @if(isset(Auth::User()->rol))
                                 @if(Auth::User()->rol == 'admin')
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Pedidos</a>
+                                        <a class="nav-link" href="{{route('orders')}}">Pedidos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('officials') }}">Funcionarios</a>
+                                        <a class="nav-link" href="{{ route('delivery') }}">Domicilios</a>
                                     </li>
                                 @endif
                             @endif
@@ -78,11 +84,17 @@
                         @if(isset(Auth::User()->rol))
                             <div class="dropdown">
                                 <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+                                    <?php $name = explode(" ", Auth::user()->name); if(!isset($name[1])){$name[1] = '';} ?>
+                                    <i class="fas fa-user-circle"></i> {{$name[0]}} {{$name[1]}}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="{{route('cart')}}">Mi Carrito</a></li>
                                     <li><a class="dropdown-item" href="{{route('confirmation')}}">Mi Compra</a></li>
+                                    @if(Auth::User()->rol == 'admin')
+                                        <li><a class="dropdown-item" href="{{ route('officials') }}">Funcionarios</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('user') }}">Usuarios</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('bill') }}">Facturas</a></li>
+                                    @endif
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
@@ -175,6 +187,11 @@
 <!-- custom js -->
 <script src="{{asset('js/custom.js')}}"></script>
 <script src="{{asset('js/toastr.js')}}"></script>
+
+<!-- Datatable JS -->
+<script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('datatables/datatables-demo.js')}}"></script>
 
 @include('layouts.login')
 @include('layouts.register')

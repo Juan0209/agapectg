@@ -17,7 +17,7 @@
     review.owlCarousel({
       items: 1,
       loop: true,
-      dots: true,
+      /*dots: true,*/
       autoplay: true,
       autoplayHoverPause: true,
       autoplayTimeout: 5000,
@@ -44,7 +44,7 @@
     product_slide.owlCarousel({
       items: 1,
       loop: true,
-      dots: true,
+      /*dots: true,*/
       autoplay: true,
       autoplayHoverPause: true,
       autoplayTimeout: 5000,
@@ -166,16 +166,16 @@
     $('#search_input_box').slideUp(500);
   });
 
-  //------- Mailchimp js --------//  
+  //------- Mailchimp js --------//
   function mailChimp() {
     $('#mc_embed_signup').find('form').ajaxChimp();
   }
   mailChimp();
 
-  //------- makeTimer js --------//  
+  //------- makeTimer js --------//
   function makeTimer() {
 
-    //		var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");	
+    //		var endTime = new Date("29 April 2018 9:56:00 GMT+01:00");
     var endTime = new Date("27 Sep 2019 12:56:00 GMT+01:00");
     endTime = (Date.parse(endTime) / 1000);
 
@@ -207,7 +207,7 @@
   }
 // click counter js
 (function() {
- 
+
   window.inputNumber = function(el) {
 
     var min = el.attr('min') || false;
@@ -248,12 +248,53 @@
 
 inputNumber($('.input-number'));
 
+(function() {
+
+    window.inputNumber = function(el) {
+
+        var min = el.attr('min') || false;
+        var max = el.attr('max') || false;
+
+        var els = {};
+
+        els.dec = el.prev();
+        els.inc = el.next();
+
+        el.each(function() {
+            init($(this));
+        });
+
+        function init(el) {
+
+            els.dec.on('click', decrement);
+            els.inc.on('click', increment);
+
+            function decrement() {
+                var value = el[0].value;
+                value--;
+                if(!min || value >= min) {
+                    el[0].value = value;
+                }
+            }
+
+            function increment() {
+                var value = el[0].value;
+                value++;
+                if(!max || value <= max) {
+                    el[0].value = value++;
+                }
+            }
+        }
+    }
+})();
+
+inputNumber($('.input-number2'));
 
 
   setInterval(function () {
     makeTimer();
   }, 1000);
- 
+
 
  $('.select_option_dropdown').hide();
  $(".select_option_list").click(function () {
@@ -272,7 +313,7 @@ inputNumber($('.input-number'));
 
  $('.controls').on('click', function(){
   $(this).addClass('active').siblings().removeClass('active');
- }); 
+ });
 
 
 }(jQuery));

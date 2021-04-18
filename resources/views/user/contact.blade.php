@@ -66,38 +66,45 @@
                     <h2 class="contact-title">Ponte en Contacto</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="#" method="post" id="contactForm"
-                          novalidate="novalidate">
+                    <form class="form-contact contact_form" action="{{route('send.message')}}" method="post" id="contactForm" novalidate="novalidate">
+                        @csrf
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-
-                  <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
-                            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
-                            placeholder='Ingrese un mensaje'></textarea>
+                                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ingrese su mensaje'"
+                                    placeholder='Ingrese su mensaje'></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input class="form-control" name="name" id="name" type="text" onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter your name'" placeholder='ingrese su nombre'>
+                                           onblur="this.placeholder = 'Ingrese su nombre'" placeholder='Ingrese su nombre'>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <input class="form-control" name="email" id="email" type="email" onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter email address'" placeholder='Ingrese su correo electronico'>
+                                           onblur="this.placeholder = 'Ingrese su correo electronico'" placeholder='Ingrese su correo electronico'>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''"
-                                           onblur="this.placeholder = 'Enter Subject'" placeholder='Ingrese el asunto'>
+                                           onblur="this.placeholder = 'Ingrese el asunto'" placeholder='Ingrese el asunto'>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control" name="number" id="number" type="number" onfocus="this.placeholder = ''"
+                                           onblur="this.placeholder = 'Ingrese su numero de celular'" placeholder='Ingrese su numero de celular'>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <a href="#" class="btn_3 button-contactForm">Enviar Mensaje</a>
+                            <button class="btn_3 button-contactForm" type="submit">
+                                Enviar Mensaje
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -113,7 +120,7 @@
                         <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                         <div class="media-body">
                             <h3>+57 (123) 4567 890</h3>
-                            <p>Lunes a Viernes de 9am a 6pm</p>
+                            <p>Lunes a Viernes de 9:00a.m. a 6:00p.m.</p>
                         </div>
                     </div>
                     <div class="media contact-info">

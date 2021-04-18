@@ -33,7 +33,20 @@ class ProductsController extends Controller
         $products = Product::select("id","name","description","image","price","catalogues_id")
             ->where('catalogues_id','=',$catalogue)
             ->get();
-        return view('product.products', compact("products"));
+
+        if ($catalogue == 1){
+            $category = 'Mugs';
+        }elseif ($catalogue == 2){
+            $category = 'camisas';
+        }elseif ($catalogue == 3){
+            $category = 'Portaretratos';
+        }elseif ($catalogue == 4){
+            $category = 'cuadros';
+        }elseif ($catalogue == 5){
+            $category = 'Promociones';
+        }
+
+        return view('product.products', compact("products", 'category'));
     }
 
     public function crud()
@@ -49,7 +62,7 @@ class ProductsController extends Controller
             'description'=>'required',
             'price'=>'required',
             'catalogues_id'=>'required',
-            'image'=> 'required|mimes:jpeg,jpg,png|min:30'
+            'image'=> 'required|mimes:jpeg,jpg,png'
         ]);
 
         $imagenes= $request->file('image')->store('public/productos');
@@ -75,18 +88,16 @@ class ProductsController extends Controller
             'description' => 'required',
             'price' => 'required',
             'catalogues_id' => 'required',
-            'image' => 'mimes:jpeg,jpg,png|min:30',
+            'image' => 'mimes:jpeg,jpg,png',
         ]);
-
-        if (!is_null($request->file('image'))) {
-            $imagenes= $request->file('image')->store('public/productos');
-            $url= storage::url($imagenes);
-        }
 
         $id= $request->input('id');
 
         $cruds=Product::find($id);
+
         if (!is_null($request->file('image'))) {
+            $imagenes= $request->file('image')->store('public/productos');
+            $url= storage::url($imagenes);
             $cruds->image = $url;
         }
         $cruds->name = $request->input('name');

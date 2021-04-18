@@ -15,7 +15,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="login_part_text text-center">
                                 <div class="login_part_text_iner">
-                                    <h3><img src="img/ÁGAPE_logo.png" width="170" height="150" alt="logo"></h3>
+                                    <h3><img src="{{asset('img/ÁGAPE_logo.png')}}" width="100%" alt="logo"></h3>
                                 </div>
                             </div>
                         </div>

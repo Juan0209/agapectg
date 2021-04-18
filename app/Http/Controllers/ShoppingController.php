@@ -11,13 +11,22 @@ use Illuminate\Support\Facades\Storage;
 
 class ShoppingController extends Controller
 {
-    public function payment($message, $dissable)
+    public function payment($message, $hidden)
     {
         $id = Auth::id();
-        $order = Order::all()->where('user_id', $id )->where('state', 1)->first();
-        $bill_id1 = $order->bill_id;
-        $order = Order::all()->where('user_id', $id )->where('state', 1)->last();
-        $bill_id2 = $order->bill_id;
+        $bill = Bill::all()->where('user_id', $id)->last();
+
+        if (isset($bill) and $bill->payed == 1){
+
+            $bill_id1 = $bill->id;
+            $bill_id2 = $bill->id;
+        }else {
+
+            $order = Order::all()->where('user_id', $id)->where('state', 1)->first();
+            $bill_id1 = $order->bill_id;
+            $order = Order::all()->where('user_id', $id)->where('state', 1)->last();
+            $bill_id2 = $order->bill_id;
+        }
 
         if ($bill_id1 == $bill_id2){
 
@@ -54,19 +63,19 @@ class ShoppingController extends Controller
                 ->join('products', 'orders.product_id','=', 'products.id')
                 ->select( 'products.name as name', 'orders.quantity as quantity', 'orders.total as total')
                 ->where('user_id', $id)
-                ->where('state',1)
                 ->where('bill_id',$bill->id)
                 ->get();
 
             $payed = $bill->payed;
+
             if ($payed == 0){
 
-                return view('order.payment', compact('order', 'message', 'dissable'));
+                return view('order.payment', compact('order', 'message', 'hidden'));
                 die();
             }elseif ($payed == 1 ){
 
                 $payed = true;
-                return view('order.payment', compact('order', 'payed', 'message', 'dissable'));
+                return view('order.payment', compact('order', 'payed', 'message', 'hidden'));
                 die();
             }
 
@@ -99,9 +108,18 @@ class ShoppingController extends Controller
     {
         if (Auth::user()) {
 
+            $id = Auth::id();
+            $order = Order::select('orders.*')->where('user_id', $id )->where('state', 2)->get();
+
+            if ( $order != '[]'){
+                return back()->with(['danger' => '¡Tienes una factura pendiente!, terminala para poder realizar otro pedido.']);
+                die();
+            }
+
             $request->validate([
                 'id_product' => 'required',
                 'quantity' => 'required',
+                'peoples' => 'required',
                 'file' => 'required|mimes:jpeg,jpg,png|min:20',
             ]);
 
@@ -113,8 +131,10 @@ class ShoppingController extends Controller
             $sale->user_id = Auth::id();
             $sale->product_id = $request->id_product;
             $sale->image = $url;
+            $sale->peoples = $request->peoples;
             $sale->quantity = $request->quantity;
-            $sale->total = $request->quantity * $request->price;
+            $peoples = $request->peoples * 5000;
+            $sale->total = $request->quantity * $request->price + $peoples;
             $sale->state = '1';
 
             $sale->save();
@@ -148,7 +168,8 @@ class ShoppingController extends Controller
             ->join('products', 'orders.product_id','=', 'products.id')
             ->select('products.name as name','orders.quantity as quantity', 'orders.total as total')
             ->where('user_id', $id)
-            ->where('state',1)
+            ->where('state',3)
+            ->where('bill_id',$bill[0]->id)
             ->get();
 
         return view('order.confirmation', compact('order', 'bill'));
@@ -165,7 +186,7 @@ class ShoppingController extends Controller
             if ($referencia == 0){
 
                 $id = Auth::id();
-                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
+                $bill = DB::table("bills")->where("user_id",$id)->where("payed",0)->orderby('id','DESC')->take(1)->get();
 
                 if (empty($bill[0]) or $bill[0]->ref_epayco == null ){
 
@@ -183,7 +204,7 @@ class ShoppingController extends Controller
             if ($transaccion == 1){ //transaccion aceptada
 
                 $id = Auth::id();
-                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
                 $id = $bill[0]->id;
 
                 if ($bill[0]->payed == 0) {
@@ -191,28 +212,56 @@ class ShoppingController extends Controller
                     $app = Bill::find($id);
                     $app->payed = 1;
                     $app->save();
+
+                    $orders = DB::table("orders")->where("bill_id",$id)->get();
+
+                    if ($orders[0]->state == 1 or $orders[0]->state == 2) {
+                        foreach ($orders as $product) {
+                            $id = $product->id;
+
+                            $app = Order::find($id);
+                            $app->state = 3;
+                            $app->save();
+                        }
+                    }
                 }
 
                 $message = 'La transacción ha sido exitosa, por favor continue con su pedido';
-                $dissable = 0;
+                $hidden = 0;
 
             }elseif ($transaccion == 2) { //transaccion rechazada
 
                 $message = 'Su Transacción fue rechazada, intente realizar una nueva para continuar con la compra.';
-                $dissable = 0;
+                $hidden = 0;
 
             }elseif($transaccion == 3){ //transaccion pendiente
 
+                $id = Auth::id();
+                $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
+                $id = $bill[0]->id;
+
+                $orders = DB::table("orders")->where("bill_id",$id)->get();
+
+                if ($orders[0]->state == 1) {
+                    foreach ($orders as $product) {
+                        $id = $product->id;
+
+                        $app = Order::find($id);
+                        $app->state = 2;
+                        $app->save();
+                    }
+                }
+
                 $message = 'Su transacción esta en estado: PENDIENTE. para poder continuar es necesario que realize el pago antes de 24 horas. Una vez el pago sea confirmado la plataforma le permitira continuar con la compra.';
-                $dissable = 1;
+                $hidden = 1;
 
             }elseif($transaccion == 4){ // transaccion cancelada
 
                 $message = 0;
-                $dissable = 0;
+                $hidden = 0;
             }
 
-            return redirect("/payment/bill/$message/$dissable");
+            return redirect("/payment/bill/$message/$hidden");
             die();
 
         }elseif ($transaccion == 1){ //guardar referencia de pago
@@ -270,5 +319,81 @@ class ShoppingController extends Controller
         $recordsCancel->delete();
 
         return back();
+    }
+
+    public function orders()
+    {
+        $orders = DB::Table('bills')
+            ->join('users', 'bills.user_id','=', 'users.id')
+            ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.total_price as total')
+            ->where('payed', 0)
+            ->get();
+
+        return view('order.orders', compact('orders'));
+    }
+
+    public function order($id, $mode)
+    {
+        $bill_id = $id;
+        $dates = DB::Table('bills')
+            ->join('users', 'bills.user_id','=', 'users.id')
+            ->select('users.name as name','users.phone as phone', 'users.address as address', 'bills.id as id', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2', 'bills.message as message', 'bills.details as details', 'bills.updated_at as updated_at')
+            ->where('bills.id', $bill_id)
+            ->where('payed', 0) /*editar*/
+            ->get();
+
+        $orders = DB::Table('orders')
+            ->join('products', 'orders.product_id','=', 'products.id')
+            ->select('products.name as name','orders.quantity as quantity', 'orders.image as image', 'orders.peoples as peoples')
+            ->where('state', 1)/*editar*/
+            ->where('bill_id', $bill_id)
+            ->get();
+
+        $mod = $mode;
+
+        foreach ($dates as $date){/*editar*/
+
+            if ($date->name2 != null) {
+                return 'date is good';
+            } else {
+                /*return redirect('/orders');*/
+                return view('order.orderSingle', compact('date', 'orders', 'mod'));
+            }
+        }
+    }
+
+    public function delivery(){
+        $deliveries = DB::Table('bills')
+            ->join('users', 'bills.user_id','=', 'users.id')
+            ->select('users.name as name','users.address as address','users.phone as phone', 'bills.id as id', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
+            ->where('payed', 0)/*editar*/
+            ->get();
+
+        return view('order.delivery', compact('deliveries'));
+    }
+    public function confirmationDelivery(){
+        $deliveries = DB::Table('bills')
+            ->join('users', 'bills.user_id','=', 'users.id')
+            ->select('users.name as name', 'users.id as id_user','users.address as address','users.phone as phone', 'bills.id as id', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
+            ->where('payed', 0)/*editar*/
+            ->get();
+
+        $products = DB::Table('orders')
+            ->join('products', 'orders.product_id','=', 'products.id')
+            ->select('products.name as name','orders.quantity as quantity','orders.peoples as peoples', 'orders.user_id as user_id')
+            ->where('state', 1)/*editar*/
+            ->get();
+
+        return view('order.confirmationDelivery', compact('deliveries', 'products'));
+    }
+    public function bill()
+    {
+        $orders = DB::Table('bills')
+            ->join('users', 'bills.user_id','=', 'users.id')
+            ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.total_price as total')
+            ->where('payed', 0)
+            ->get();
+
+        return view('order.bill', compact('orders'));
     }
 }

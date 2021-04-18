@@ -10,12 +10,21 @@ use Illuminate\Support\Facades\Route;
 //Home Routes
 Route::get('/', [HomeController::class,'welcome'])->name('welcome.index')->middleware('guest');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
+Route::post('/contact/send', [HomeController::class,'sendMessage'])->name('send.message');
 
 //Admin actions
 Route::get('/home', [HomeController::class,'welcome'])->name('home.index');
 Route::post('/Nuevo-Admin', [AdminController::class,'create'])->name('newAdmin')->middleware('auth');
 Route::get('/Funcionarios', [AdminController::class,'view'])->name('officials')->middleware('auth');
 Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])->name('destroy.user')->middleware('auth');
+Route::get('/orders', [ShoppingController::class,'orders'])->name('orders')->middleware('auth');
+Route::get('/orders/{id}/{mode}', [ShoppingController::class,'order'])->name('order')->middleware('auth');
+Route::get('/delivery', [ShoppingController::class,'delivery'])->name('delivery')->middleware('auth');
+Route::get('/delivery/confirmation', [ShoppingController::class,'confirmationDelivery'])->name('confirmationDelivery')->middleware('auth');
+Route::get('/bill', [ShoppingController::class,'bill'])->name('bill')->middleware('auth');
+
+//Table Users
+Route::get('/user', [AdminController::class,'users'])->name('user')->middleware('auth');
 
 //Shopping actions
 Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
@@ -35,7 +44,6 @@ Route::get('/payment/transaccion/{transaccion}/{referencia}', [ShoppingControlle
 
 //ProductsCRUD actions
 Route::get('/crud',[ProductsController::class,'crud'])->name('crud')->middleware('auth');
-/*Route::get('/crud/{id}',[ProductsController::class,'edit'])->name('edit')->middleware('auth');*/
 Route::put('/update',[ProductsController::class,'update'])->name('update')->middleware('auth');
 Route::post('/store',[ProductsController::class,'store'])->name('store')->middleware('auth');
 Route::delete('/destroy',[ProductsController::class,'destroy'])->name('destroy')->middleware('auth');
@@ -53,6 +61,7 @@ Route::get('/clearcache', function () {
     echo Artisan::call('route:clear');
     echo Artisan::call('route:cache');
     echo Artisan::call('view:clear');
+    echo Artisan::call('view:cache');
 
     return back();
 });

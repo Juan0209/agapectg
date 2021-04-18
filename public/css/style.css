@@ -4500,6 +4500,14 @@ input:focus {
   border-left: 1px solid #dddddd;
   display: inline-block;
 }
+.cart_area .product_count .input-number-increment2 {
+    position: absolute;
+    right: 0;
+    top: -7px;
+    padding: 10px;
+    border-left: 1px solid #dddddd;
+    display: inline-block;
+}
 
 /* line 786, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .cart_area .product_count .input-number-increment:after {
@@ -4511,6 +4519,15 @@ input:focus {
   height: 1px;
   background-color: #dddddd;
 }
+.cart_area .product_count .input-number-increment2:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 7px;
+    width: 100%;
+    height: 1px;
+    background-color: #dddddd;
+}
 
 /* line 798, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
 .cart_area .product_count .input-number-decrement {
@@ -4520,6 +4537,14 @@ input:focus {
   padding: 10px;
   border-left: 1px solid #dddddd;
   display: inline-block;
+}
+.cart_area .product_count .input-number-decrement2 {
+    position: absolute;
+    right: 0;
+    bottom: -9px;
+    padding: 10px;
+    border-left: 1px solid #dddddd;
+    display: inline-block;
 }
 
 @media (max-width: 576px) {
@@ -6002,12 +6027,19 @@ input:focus {
   display: inline-block;
   width: 60px;
 }
+.s_product_text .product_count .input-number2 {
+    display: inline-block;
+    width: 60px;
+}
 
 @media (max-width: 576px) {
   /* line 2062, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
   .s_product_text .product_count .input-number {
     width: 30px;
   }
+    .s_product_text .product_count .input-number2 {
+        width: 30px;
+    }
 }
 
 /* line 2079, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_product.scss */
