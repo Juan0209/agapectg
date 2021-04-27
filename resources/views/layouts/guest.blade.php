@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Agape | @yield('title')</title>
+    <title>ágape | @yield('title')</title>
     {{--<link rel="apple-touch-icon" sizes="180x180" href="img/faviconAgapect/apple-touch-icon.png">--}}
     <link rel="shortcut icon" href="{{ asset('img/faviconAgapect/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#da532c">
@@ -69,7 +69,7 @@
                                         <a class="nav-link" href="{{route('orders')}}">Pedidos</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('delivery') }}">Domicilios</a>
+                                        <a class="nav-link" href="{{ route('delivery', 0) }}">Domicilios</a>
                                     </li>
                                 @endif
                             @endif
@@ -93,7 +93,7 @@
                                     @if(Auth::User()->rol == 'admin')
                                         <li><a class="dropdown-item" href="{{ route('officials') }}">Funcionarios</a></li>
                                         <li><a class="dropdown-item" href="{{ route('user') }}">Usuarios</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('bill') }}">Facturas</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('bill', 0) }}">Facturas</a></li>
                                     @endif
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}">

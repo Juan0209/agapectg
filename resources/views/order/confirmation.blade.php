@@ -87,7 +87,7 @@
                                 <p>Celular y Whatsapp</p><span>: 320 5195817</span>
                             </li>
                             <li>
-                                <span>: 302 3661801</span>
+                                <span>: 101 1101001</span>
                             </li>
                         </ul>
                     </div>
@@ -99,11 +99,11 @@
                         <h3>Detalles de Facturación</h3>
                         <table class="table table-borderless">
                             <thead>
-                            <tr>
-                                <th scope="col" colspan="2">Producto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Total</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col" colspan="2">Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>
+                                </tr>
                             </thead>
                             <tbody>
 

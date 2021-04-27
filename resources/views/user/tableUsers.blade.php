@@ -38,7 +38,7 @@
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Telefono</th>
-                                <th>Fecha de Registro</th>
+                                <th>Ultima Modificación</th>
                                 <th>Configurar</th>
                             </tr>
                             </thead>
@@ -48,7 +48,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->created_at->diffForHumans() }}</td>
+                                    <td>{{ $user->updated_at->diffForHumans() }}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{($user->id)}}visualizar">
                                             Visualizar
@@ -56,10 +56,9 @@
                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{($user->id)}}editar">
                                             Editar
                                         </button>&nbsp;&nbsp;&nbsp;
-                                        <form action="{{ route('destroy.user', $user->id) }}" method="post">
-                                            @csrf @method('DELETE')
-                                            <button onclick='return Confirmdelete()' title="Borrar" class="btn btn-danger" ><i class="fas fa-trash"></i> Eliminar</button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal{{($user->id)}}destroy">
+                                            <i class="far fa-trash-alt"></i> Eliminar
+                                        </button>
                                     </td>
                                 </tr>
 
@@ -81,7 +80,8 @@
                                                     </div>
                                                     <div class="col">
                                                         <label>Telefono: </label>
-                                                        <input type="text" class="form-control" value="{{$user->phone}}" readonly>                                                    </div>
+                                                        <input type="text" class="form-control" value="{{$user->phone}}" readonly>
+                                                    </div>
                                                 </div>
                                                 <br>
                                                 <div class="form-row">
@@ -98,7 +98,7 @@
                                                     </div>
                                                     <div class="col">
                                                         <label>Contraseña: </label>
-                                                        <input type="password" class="form-control" value="{{$user->password}}" readonly>
+                                                        <input type="password" class="form-control" value="{{ substr($user->password, 0, 10) }}" readonly>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -121,44 +121,72 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <label>Nombre: </label>
-                                                        <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
+                                                <form action="{{route('update.user')}}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <input type="hidden" name="id" id="id" value="{{$user->id}}">
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <label>Nombre: </label>
+                                                            <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Telefono: </label>
+                                                            <input type="text" class="form-control" name="phone" id="phone" value="{{$user->phone}}">                                                    </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <label>Telefono: </label>
-                                                        <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción">{{$user->description}}</textarea>
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <label>Dirección: </label>
+                                                            <input type="text" class="form-control" name="address" id="address" value="{{$user->address}}">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <br>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <label>Dirección: </label>
-                                                        <input type="number" class="form-control" name="price" id="price" value="{{$user->price}}">
+                                                    <br>
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <label>Correo: </label>
+                                                            <input type="text" class="form-control" name="email" id="email" value="{{$user->email}}">
+                                                        </div>
+                                                        <div class="col">
+                                                            <label>Contraseña: (OPCIONAL)</label>
+                                                            <input type="password" class="form-control" name="password" id="password" placeholder="Ingresar nueva contraseña">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <br>
-                                                <div class="form-row">
-                                                    <div class="col">
-                                                        <label>Correo: </label>
-                                                        <input type="number" class="form-control" name="price" id="price" value="{{$user->price}}">
+                                                    <br>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close">Cancelar</button>
+                                                        <button type="submit" class="btn btn-success"><i class="far fa-edit"></i> Editar</button>
                                                     </div>
-                                                    <div class="col">
-                                                        <label>Contrasena: </label>
-                                                        <input type="number" class="form-control" name="price" id="price" value="{{$user->price}}">
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close">Cancelar</button>
-                                                    <button type="submit" class="btn btn-success"><i class="far fa-edit"></i> Editar</button>
-                                                </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                                <!-- Modal de Eliminar-->
+                                <div class="modal fade" id="modal{{($user->id)}}destroy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 100px;" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="exampleModalLabel">{{('Eliminar Usario')}}</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label> ¿Estas seguro de eliminar al usuario "<strong>{{$user->name}}</strong>" de la base de datos?</label>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <form action="{{route('destroy')}}" method="POST">
+                                                    <input type="hidden" name="id" value="{{ $user->id }}">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i> Eliminar</button>
+                                                    @method('DELETE')
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                             </tbody>
                         </table>

@@ -16,7 +16,7 @@
     <!-- breadcrumb part end-->
 
     <!-- ================ contact section start ================= -->
-    <section class="contact-section section_padding">
+    <section class="container" style="margin-top: 20px;">
         <div class="container">
             <div class="card shadow mb-4">
                 <div class="card-body">
@@ -45,7 +45,7 @@
                                             <button type="button" data-toggle="modal" data-target="#modal{{$delivery->id}}" class="btn btn-primary">Visualizar Pedido</button>
                                         </td>
                                     </tr>
-                                    <!-- Modal de Crear-->
+                                    <!-- Modal de Información-->
                                     <div class="modal fade" id="modal{{$delivery->id}}" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 5%;" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -56,7 +56,6 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    @csrf
                                                     <div class="form-row">
                                                         <div class="col">
                                                             <h5>Información del Cliente</h5>
@@ -101,7 +100,7 @@
                                                     @endforeach
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                                                        <a href="#" class="btn btn-success">Pedido Recibido</a>
+                                                        <a href="{{ url('/state', array('bill'=>$delivery->id,'view'=>'confirmationDelivery')) }}" class="btn btn-success">Pedido Recibido</a>
                                                     </div>
                                                 </div>
                                             </div>

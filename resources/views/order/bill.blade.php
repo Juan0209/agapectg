@@ -16,12 +16,12 @@
     <!-- breadcrumb part end-->
 
     <!-- ================ contact section start ================= -->
-    <section class="contact-section section_padding">
+    <section class="container" style="margin-top: 20px;">
         <div class="container">
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        @if($orders == '[]')
+                        @if($bills == '[]')
                             <h2 class="text-center">No Hay Facturas Pendientes</h2>
                         @else
                             <table class="table table-bordered table-hover table-striped" id="dataTable">
@@ -35,16 +35,29 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $order)
+                                <?php $i = 0 ?>
+                                @foreach($bills as $bill)
                                     <tr>
-                                        <th>{{$order->id}}</th>
-                                        <td>{{$order->name}}</td>
-                                        <td>{{$order->phone}}</td>
-                                        <td>$ {{number_format($order->total)}}</td>
-                                        <td>
-                                            <a href="{{url('/orders', array('id'=>$order->id, 'mode'=> 1))}}" class="btn btn-primary"><i class="far fa-edit"></i> Visualizar Pedido</a>
-                                        </td>
+                                        <th>{{$bill->id}}</th>
+                                        <td>{{$bill->name}}</td>
+                                        <td>{{$bill->phone}}</td>
+                                        <td>$ {{number_format($bill->total)}}</td>
+                                        @if($orders[$i] > 3 )
+                                            <td>
+                                                <a href="{{url('/orders', array('id'=>$bill->id, 'mode'=> 1))}}" class="btn btn-primary"><i class="far fa-edit"></i> Visualizar Pedido</a>
+                                            </td>
+                                        @else
+                                            <td>
+                                                <input class="btn btn-primary" type="button" onclick="mensaje('El usuario aun no ha rellenado la encuesta requerida. Por favor, intenta mas tarde.')" value="Visualizar Pedido">
+                                                <script>
+                                                    function mensaje(texto) {
+                                                        alert(texto);
+                                                    }
+                                                </script>
+                                            </td>
+                                        @endif
                                     </tr>
+                                    <?php $i++ ?>
                                 @endforeach
                                 </tbody>
                             </table>

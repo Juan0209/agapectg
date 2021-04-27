@@ -19,8 +19,8 @@
     <section class="checkout_area section_padding">
         <div class="container">
             @if(isset($payed))
-                <div class="alert alert-danger" role="alert">
-                    <i class="fas fa-exclamation-triangle"></i> Por favor, continua y no abandones esta pagina. De lo contrario no podras ingresar de nuevo y podrias perder el pedido. <i class="fas fa-exclamation-triangle"></i>
+                <div class="alert alert-danger text-center" role="alert">
+                    <i class="fas fa-exclamation-triangle "></i> Por favor, continua y no abandones esta pagina. De lo contrario, probablemente no podras ingresar de nuevo y podrias perder el pedido. <i class="fas fa-exclamation-triangle"></i>
                 </div>
             @endif
             <div class="cupon_area">
@@ -56,14 +56,14 @@
                                         <h3>Destinatario Secundario (*Obligatorio*)</h3>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}">
+                                        <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}" required>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="number" class="form-control" id="phone2" name="phone2" placeholder="Numero de telefono del destinatario secundario" value="{{ old('phone2') }}">
+                                        <input type="number" class="form-control" id="phone2" name="phone2" placeholder="Numero de telefono del destinatario secundario" value="{{ old('phone2') }}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"                                               required>
                                     </div>
 
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="add2" name="add2"placeholder="Direccion de Residencia del destinatario secundario" value="{{ old('add2') }}">
+                                        <input type="text" class="form-control" id="add2" name="add2"placeholder="Direccion de Residencia del destinatario secundario" value="{{ old('add2') }}" required>
                                     </div>
                                 </div>
 
@@ -172,7 +172,6 @@
                                             </a>
                                         </li>
                                         @if(!isset($payed))
-                                            {{--{{$hidden}}--}}
                                             @if($hidden == 0)
                                                 <li>
                                                     <div class="text-center">
@@ -196,16 +195,7 @@
                                                                     data-epayco-country="co"
                                                                     data-epayco-test="true"
                                                                     data-epayco-external="false"
-                                                                    data-epayco-response="http://agapectg.test/payment/response"
-                                                                    {{--data-epayco-acepted="http://agapectg.test/payment/response"
-                                                                    data-epayco-rejected="http://agapectg.test/payment/response"
-                                                                    data-epayco-pending="http://agapectg.test/payment/response"
-                                                                    data-epayco-comfirmation="http://agapectg.test/payment/response"--}}
-                                                                    {{--data-epayco-email-billing="{{auth()->user()->email}}"
-                                                                    data-epayco-name-billing="{{auth()->user()->name}}"
-                                                                    data-epayco-address-billing="{{auth()->user()->address}}"
-                                                                    data-epayco-type-doc-billing="CC"
-                                                                    data-epayco-mobilephone-billing="{{auth()->user()->phone}}"--}}>
+                                                                    data-epayco-response="http://agapectg.test/payment/response">
                                                                 </script>
                                                             </form>
                                                         </a>
@@ -224,11 +214,8 @@
                                             </script>
                                         </div>
                                     @elseif(isset($payed) and $payed == true)
-
                                         <div class="text-center">
-
                                             <button type="submit" class="btn_1">Continuar</button>
-
                                         </div>
                                     @endif
                                 </div>
@@ -240,10 +227,5 @@
             </div>
         </div>
     </section>
-    {{--@if($message >= 0 and $message != '')
-        <script>
-            alert("{{$message}}");
-        </script>
-    @endif--}}
 <!--    ================End Checkout Area =================-->
 @endsection

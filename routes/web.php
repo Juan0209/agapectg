@@ -17,11 +17,13 @@ Route::get('/home', [HomeController::class,'welcome'])->name('home.index');
 Route::post('/Nuevo-Admin', [AdminController::class,'create'])->name('newAdmin')->middleware('auth');
 Route::get('/Funcionarios', [AdminController::class,'view'])->name('officials')->middleware('auth');
 Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])->name('destroy.user')->middleware('auth');
+Route::put('/update/user', [AdminController::class,'update'])->name('update.user')->middleware('auth');
 Route::get('/orders', [ShoppingController::class,'orders'])->name('orders')->middleware('auth');
 Route::get('/orders/{id}/{mode}', [ShoppingController::class,'order'])->name('order')->middleware('auth');
 Route::get('/delivery', [ShoppingController::class,'delivery'])->name('delivery')->middleware('auth');
 Route::get('/delivery/confirmation', [ShoppingController::class,'confirmationDelivery'])->name('confirmationDelivery')->middleware('auth');
 Route::get('/bill', [ShoppingController::class,'bill'])->name('bill')->middleware('auth');
+Route::get('/state/{bill}/{view}', [ShoppingController::class,'state'])->name('state')->middleware('auth');
 
 //Table Users
 Route::get('/user', [AdminController::class,'users'])->name('user')->middleware('auth');

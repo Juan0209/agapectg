@@ -113,7 +113,7 @@
                         <span class="contact-info__icon"><i class="ti-home"></i></span>
                         <div class="media-body">
                             <h3>Cartagena, Colombia.</h3>
-                            <p>[[*Direccion del Negocio*]]</p>
+                            <p>¡Proximamente nueva sede!</p>
                         </div>
                     </div>
                     <div class="media contact-info">

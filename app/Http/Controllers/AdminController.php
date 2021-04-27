@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -58,6 +59,29 @@ class AdminController extends Controller
 
         return back();
 
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::find($request->id);
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->email = $request->email;
+
+        if (!empty($request->password) or !is_null($request->password) or $request->password != '') {
+            $user->password = Hash::make($request->name);
+        }
+        $user->save();
+
+        return back();
     }
 
     public function destroy($id)

@@ -8,8 +8,8 @@
                     <div class="banner_text">
                         <div class="banner_text_iner">
                             <h1>ÁgapeDesign</h1>
-                            <p>▫️Ilustramos y plasmamos tus mejores momentos. <br>
-                                🤍 Catálogo en la pestaña de Productos. <br>
+                            <p>▫️ilustramos y plasmamos tus mejores momentos. <br>
+                                🤍 Echa un vistazo a nuestros productos. <br>
                                 🤍 Enamórate de todo como nosotras.</p>
                             <a href="{{ route('products') }}" class="btn_1">Explorar Catalogo</a>
                         </div>
@@ -25,6 +25,8 @@
 
     <!-- product list start-->
     <section class="single_product_list">
+        <div class="container text-center"><h2><i class="far fa-star"></i> Catalogo <i class="far fa-star"></i></h2></div>
+        <br><br>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">

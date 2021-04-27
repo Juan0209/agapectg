@@ -58,7 +58,7 @@
                     <input type="text" class="form-control" value="{{ $date->add2 }}" disabled>
                 </div>
                 <br><br>
-                @if($date->message == null)
+                @if($date->message != null)
                     <div class="creat_account">
                         <h3>Mensaje</h3><hr>
                     </div>
@@ -68,13 +68,13 @@
                     </div>
                     <br><br>
                 @endif
-                @if($date->details == null)
+                @if($date->details != null)
                     <div class="creat_account">
                         <h3>Detalles de la Compra</h3><hr>
                     </div>
                     <div class="col-md-12 form-group p_star">
                         {{--<input type="text" class="form-control" value="{{ $date->details }}" disabled>--}}
-                        <textarea class="form-control" cols="30" rows="10" disabled>{{$date->message}}</textarea>
+                        <textarea class="form-control" cols="30" rows="10" disabled>{{$date->details}}</textarea>
                     </div>
                 @endif
                 <div class="creat_account">
@@ -108,7 +108,7 @@
                         <a href="{{route('bill')}}" class="btn btn-outline-secondary">Volver</a>
                     @else
                         <a href="{{route('orders')}}" class="btn btn-outline-secondary">Volver</a>
-                        <a href="{{route('delivery')}}" class="btn btn-success">Confirmar Pedido</a>
+                        <a href="{{ url('/state', array('bill'=>$date->id,'view'=>'orders')) }}" class="btn btn-success">Confirmar Pedido</a>
                     @endif
                 </div>
             </div>

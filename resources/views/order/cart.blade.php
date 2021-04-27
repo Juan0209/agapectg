@@ -42,11 +42,12 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Foto</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Eliminar</th>
+                                <th scope="col" class="text-center">Producto</th>
+                                <th scope="col" class="text-center">Foto</th>
+                                <th scope="col" class="text-center">Cantidad</th>
+                                <th scope="col" class="text-center">Personas</th>
+                                <th scope="col" class="text-center">Total</th>
+                                <th scope="col" class="text-center">Eliminar</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,7 +57,7 @@
                                 <?php $i += 1 ?>
                                 <tr>
                                     <td>
-                                        <div class="media">
+                                        <div class="media content-center">
                                             <div class="d-flex">
                                                 <img src="{{asset($product->productImage)}}" alt="">
                                             </div>
@@ -65,16 +66,19 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="#" data-toggle="modal" data-target="#image{{$i}}" class="btn_1"><i class="fas fa-search-plus"></i>&nbsp;Observar</a>
                                     </td>
                                     <td>
-                                        <h5>{{$product->quantity}}</h5>
+                                        <h5 class="text-center">{{$product->quantity}}</h5>
                                     </td>
                                     <td>
-                                        <h5>$ {{number_format($product->total) }}</h5>
+                                        <h5 class="text-center">{{$product->peoples}}</h5>
                                     </td>
                                     <td>
+                                        <h5 class="text-center">$ {{number_format($product->total) }}</h5>
+                                    </td>
+                                    <td class="text-center">
                                         <form method="POST" action="{{ route('cancelProduct', $product->id) }}">
                                             @csrf @method('DELETE')
                                             <button type="submit" class="btn btn-danger" onclick='return Confirmdeleteproduct()'><i class="fas fa-minus-circle"></i></button>
@@ -93,14 +97,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-
-                                                <div class="container">
+                                                <div class="col-lg-12 col-md-12">
                                                     <div class="row align-items-center">
-
                                                         @if(isset($product->image))
                                                             <img src="{{asset($product->image)}}" style="margin-left: auto; margin-right: auto;">
                                                         @endif
-
                                                     </div>
                                                 </div>
                                             </div>

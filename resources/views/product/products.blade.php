@@ -76,7 +76,7 @@
                             @endforeach
                         </div>
                         <div class="load_more_btn text-center">
-                            <a href="#" class="btn_3">Mostrar Más</a>
+                            <a href="#" class="btn_3">Mostrar más</a>
                         </div>
                     </div>
                     @else

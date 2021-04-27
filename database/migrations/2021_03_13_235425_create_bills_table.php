@@ -16,7 +16,8 @@ class CreateBillsTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('payed');
+            $table->boolean('payed');
+            $table->boolean('send')->nullable();
             $table->string('ref_epayco')->nullable();
             $table->integer('total_price')->nullable();
             $table->integer('cupon')->nullable();

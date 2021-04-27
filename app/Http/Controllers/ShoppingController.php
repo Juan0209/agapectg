@@ -150,7 +150,7 @@ class ShoppingController extends Controller
         $id = Auth::id();
         $order = DB::Table('orders')
                 ->join('products', 'orders.product_id','=', 'products.id')
-                ->select('orders.id as id', 'products.image as productImage', 'products.name as name', 'orders.image as image','orders.quantity as quantity', 'orders.total as total')
+                ->select('orders.id as id', 'products.image as productImage', 'products.name as name', 'orders.image as image','orders.quantity as quantity', 'orders.total as total', 'orders.peoples as peoples')
                 ->where('user_id', $id)
                 ->where('state',1)
                 ->get();
@@ -166,9 +166,9 @@ class ShoppingController extends Controller
 
         $order = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
-            ->select('products.name as name','orders.quantity as quantity', 'orders.total as total')
+            ->select('products.name as name','orders.quantity as quantity', 'orders.total as total', 'orders.peoples as peoples')
             ->where('user_id', $id)
-            ->where('state',3)
+            ->where('state', '>',4)
             ->where('bill_id',$bill[0]->id)
             ->get();
 
@@ -218,7 +218,6 @@ class ShoppingController extends Controller
                     if ($orders[0]->state == 1 or $orders[0]->state == 2) {
                         foreach ($orders as $product) {
                             $id = $product->id;
-
                             $app = Order::find($id);
                             $app->state = 3;
                             $app->save();
@@ -293,15 +292,19 @@ class ShoppingController extends Controller
         $app->details = $request->details;
         $app->save();
 
+        $orders = DB::table("orders")->where("bill_id",$id)->get();
+
+        foreach ($orders as $order){
+
+            $id = $order->id;
+            $app = Order::find($id);
+            $app->state = 4;
+            $app->save();
+        }
+
         return redirect('/confirmation');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function cancelPurchase($id)
     {
         $records = DB::table('orders')->where('user_id', '=', $id)->get()->toArray();
@@ -326,10 +329,20 @@ class ShoppingController extends Controller
         $orders = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.total_price as total')
-            ->where('payed', 0)
+            ->where('payed', 1)
             ->get();
 
-        return view('order.orders', compact('orders'));
+        foreach ($orders as $order){
+            $id = $order->id;
+            $order1 = DB::table("orders")->where("bill_id",$id)->orderby('id','DESC')->take(1)->get();
+
+            foreach ($order1 as $order2) {
+                $state = $order2->state;
+                break;
+            }
+        }
+
+        return view('order.orders', compact('orders', 'state'));
     }
 
     public function order($id, $mode)
@@ -339,61 +352,110 @@ class ShoppingController extends Controller
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name','users.phone as phone', 'users.address as address', 'bills.id as id', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2', 'bills.message as message', 'bills.details as details', 'bills.updated_at as updated_at')
             ->where('bills.id', $bill_id)
-            ->where('payed', 0) /*editar*/
+            ->where('payed', 1)
             ->get();
 
         $orders = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
             ->select('products.name as name','orders.quantity as quantity', 'orders.image as image', 'orders.peoples as peoples')
-            ->where('state', 1)/*editar*/
+            ->where('state', 4)
+            ->orWhere('state', 7)
             ->where('bill_id', $bill_id)
             ->get();
 
         $mod = $mode;
 
-        foreach ($dates as $date){/*editar*/
+        foreach ($dates as $date){
 
             if ($date->name2 != null) {
-                return 'date is good';
-            } else {
-                /*return redirect('/orders');*/
                 return view('order.orderSingle', compact('date', 'orders', 'mod'));
+            } else {
+                return redirect('/orders');
             }
         }
     }
 
-    public function delivery(){
+    public function delivery()
+    {
         $deliveries = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
-            ->select('users.name as name','users.address as address','users.phone as phone', 'bills.id as id', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
-            ->where('payed', 0)/*editar*/
+            ->select('bills.id as id', 'users.name as name','users.address as address','users.phone as phone', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
+            ->where('bills.payed', 1)
             ->get();
 
-        return view('order.delivery', compact('deliveries'));
+        foreach ($deliveries as $order) {
+            $id = $order->id;
+            $order1 = DB::table("orders")->where("bill_id", $id)->orderby('id', 'DESC')->take(1)->get();
+
+            foreach ($order1 as $order2) {
+                $state = $order2->state;
+                break;
+            }
+        }
+        return view('order.delivery', compact('deliveries', 'state'));
     }
-    public function confirmationDelivery(){
+
+    public function confirmationDelivery()
+    {
         $deliveries = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name', 'users.id as id_user','users.address as address','users.phone as phone', 'bills.id as id', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
-            ->where('payed', 0)/*editar*/
+            ->where('payed', 1)
+            ->where('send', null)
             ->get();
 
         $products = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
             ->select('products.name as name','orders.quantity as quantity','orders.peoples as peoples', 'orders.user_id as user_id')
-            ->where('state', 1)/*editar*/
+            ->where('state', 6)/*editar*/
             ->get();
 
         return view('order.confirmationDelivery', compact('deliveries', 'products'));
     }
+
     public function bill()
     {
-        $orders = DB::Table('bills')
+        $bills = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.total_price as total')
-            ->where('payed', 0)
+            ->where('payed', 1)
             ->get();
 
-        return view('order.bill', compact('orders'));
+        foreach ($bills as $bill){
+            $id = $bill->id;
+            $order1 = DB::table("orders")->where("bill_id",$id)->orderby('id','DESC')->take(1)->get();
+
+            foreach ($order1 as $order2) {
+                $orders[] = $order2->state;
+            }
+        }
+
+        return view('order.bill', compact('bills', 'orders'));
+    }
+
+    public function state($bill, $view){
+        if (isset($bill) and $bill !=0){
+            $id = $bill;
+            $orders = DB::table("orders")->where("bill_id",$id)->get();
+
+
+
+            foreach ($orders as $order){
+                $id = $order->id;
+                $app = Order::find($id);
+                $state = $app->state;
+                $app->state = $state + 1;
+                $app->save();
+            }
+
+            $send = $app->bill_id;
+
+            if ($app->state == 7){
+                $app = Bill::find($send);
+                $app->send = 1;
+                $app->save();
+            }
+        }
+        return redirect()->route($view);
     }
 }
