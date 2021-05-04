@@ -44,7 +44,7 @@
                                             <td>$ {{number_format($order->total)}}</td>
                                             @if($state[$i] == 4)
                                                 <td>
-                                                    <a href="{{url('/orders', array('id'=>$order->id, 'mode'=> 0))}}" class="btn btn-primary"><i class="far fa-edit"></i> Visualizar Pedido</a>
+                                                    <a href="{{url('/orders', array('id'=>$order->id, 'mode'=> 0))}}" class="btn btn-primary"><i class="fas fa-eye"></i> Visualizar Pedido</a>
                                                 </td>
                                             @else
                                                 <td>

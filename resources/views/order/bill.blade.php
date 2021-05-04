@@ -44,7 +44,7 @@
                                         <td>$ {{number_format($bill->total)}}</td>
                                         @if($orders[$i] > 3 )
                                             <td>
-                                                <a href="{{url('/orders', array('id'=>$bill->id, 'mode'=> 1))}}" class="btn btn-primary"><i class="far fa-edit"></i> Visualizar Pedido</a>
+                                                <a href="{{url('/orders', array('id'=>$bill->id, 'mode'=> 1))}}" class="btn btn-primary"><i class="fas fa-eye"></i> Visualizar Pedido</a>
                                             </td>
                                         @else
                                             <td>

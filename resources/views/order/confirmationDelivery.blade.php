@@ -42,7 +42,7 @@
                                         <td>{{$delivery->phone}}</td>
                                         <td>$ {{number_format($delivery->total)}}</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modal{{$delivery->id}}" class="btn btn-primary">Visualizar Pedido</button>
+                                            <button type="button" data-toggle="modal" data-target="#modal{{$delivery->id}}" class="btn btn-primary"><i class="fas fa-eye"></i> Visualizar Pedido</button>
                                         </td>
                                     </tr>
                                     <!-- Modal de Información-->
@@ -99,8 +99,8 @@
                                                         @endif
                                                     @endforeach
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                                                        <a href="{{ url('/state', array('bill'=>$delivery->id,'view'=>'confirmationDelivery')) }}" class="btn btn-success">Pedido Recibido</a>
+                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="far fa-times-circle"></i> Cancelar</button>
+                                                        <a href="{{ url('/state', array('bill'=>$delivery->id,'view'=>'confirmationDelivery')) }}" class="btn btn-success"><i class="fas fa-dolly"></i> Pedido Recibido</a>
                                                     </div>
                                                 </div>
                                             </div>

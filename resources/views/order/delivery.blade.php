@@ -17,8 +17,8 @@
 
     <!-- ================ contact section start ================= -->
     <section class="container" style="margin-top: 20px;">
-        <div class=" container">
-            <a href="{{route('confirmationDelivery', 0)}}" class="btn btn-success">Confirmar Entrega</a>
+        <div class="container">
+            <a href="{{route('confirmationDelivery', 0)}}" class="btn btn-success"><i class="fas fa-truck-loading"></i> Confirmar Entregas</a>
         </div>
         <br>
         <div class="container">
@@ -46,7 +46,7 @@
                                         <td>{{$delivery->phone}}</td>
                                         <td>$ {{number_format($delivery->total)}}</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modal{{$delivery->id}}" class="btn btn-primary">Visualizar Domicilio</button>
+                                            <button type="button" data-toggle="modal" data-target="#modal{{$delivery->id}}" class="btn btn-primary"><i class="fas fa-eye"></i> Visualizar Domicilio</button>
                                         </td>
                                     </tr>
                                     <!-- Modal de Visualizar-->
@@ -103,8 +103,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
-                                                        <a href="{{ url('/state', array('bill'=>$delivery->id,'view'=>'delivery')) }}" class="btn btn-primary">En Camino</a>
+                                                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><i class="far fa-times-circle"></i> Cancelar</button>
+                                                        <a href="{{ url('/state', array('bill'=>$delivery->id,'view'=>'delivery')) }}" class="btn btn-primary"><i class="fas fa-truck"></i> En Camino</a>
                                                     </div>
                                                 </div>
                                             </div>

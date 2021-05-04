@@ -101,7 +101,8 @@
                                                                             <option value="1" @if($row->catalogues_id == 1) selected @endif>Mugs</option>
                                                                             <option value="2" @if($row->catalogues_id == 2) selected @endif>Camisas</option>
                                                                             <option value="3" @if($row->catalogues_id == 3) selected @endif>Portaretratos</option>
-                                                                            <option value="4" @if($row->catalogues_id == 4) selected @endif>Promociones</option>
+                                                                            <option value="4" @if($row->catalogues_id == 4) selected @endif>Cuadros</option>
+                                                                            <option value="5" @if($row->catalogues_id == 5) selected @endif>Promociones</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>

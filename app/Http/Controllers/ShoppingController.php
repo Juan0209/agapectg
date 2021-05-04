@@ -284,6 +284,7 @@ class ShoppingController extends Controller
         $id = $bill[0]->id;
 
         $app = Bill::find($id);
+        $app->send = 0;
         $app->total_price = $request->total_price;
         $app->name2 = $request->name2;
         $app->phone2 = $request->phone2;
@@ -401,13 +402,13 @@ class ShoppingController extends Controller
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name', 'users.id as id_user','users.address as address','users.phone as phone', 'bills.id as id', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
             ->where('payed', 1)
-            ->where('send', null)
+            ->where('send', 0)
             ->get();
 
         $products = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
             ->select('products.name as name','orders.quantity as quantity','orders.peoples as peoples', 'orders.user_id as user_id')
-            ->where('state', 6)/*editar*/
+            ->where('state', 6)
             ->get();
 
         return view('order.confirmationDelivery', compact('deliveries', 'products'));

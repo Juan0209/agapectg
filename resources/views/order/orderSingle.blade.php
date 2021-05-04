@@ -105,10 +105,10 @@
                 @endforeach
                 <div class="float-right">
                     @if($mod ==1)
-                        <a href="{{route('bill')}}" class="btn btn-outline-secondary">Volver</a>
+                        <a href="{{route('bill')}}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
                     @else
-                        <a href="{{route('orders')}}" class="btn btn-outline-secondary">Volver</a>
-                        <a href="{{ url('/state', array('bill'=>$date->id,'view'=>'orders')) }}" class="btn btn-success">Confirmar Pedido</a>
+                        <a href="{{route('orders')}}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Volver</a>
+                        <a href="{{ url('/state', array('bill'=>$date->id,'view'=>'orders')) }}" class="btn btn-success"><i class="fas fa-clipboard-check"></i> Confirmar Pedido</a>
                     @endif
                 </div>
             </div>

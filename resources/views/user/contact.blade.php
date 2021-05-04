@@ -57,9 +57,7 @@
                 <script
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap">
                 </script>
-
             </div>
-
 
             <div class="row">
                 <div class="col-12">
@@ -102,9 +100,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <button class="btn_3 button-contactForm" type="submit">
-                                Enviar Mensaje
-                            </button>
+                            <input class="btn_3 button-contactForm submit-btn" type="submit" id="submit-btn" name="submit-btn" value="Enviar Mensaje">
                         </div>
                     </form>
                 </div>
@@ -135,4 +131,44 @@
         </div>
     </section>
     <!-- ================ contact section end ================= -->
+    <!-- Modal success -->
+    <div class="modal fade" id="success" data-backdrop="static" data-keyboard="false" style="margin-top: 10%;" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Confirmación de Correo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¡El correo ha sido enviado exitosamente! En un momento una de nuestras asesoras se comunicara contigo. Ademas, hemos enviado una copia a tu correo.
+                    <div class="alert-msg"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{route('contact')}}" type="button" class="btn btn-primary">Aceptar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal error -->
+    <div class="modal fade" id="error" data-backdrop="static" data-keyboard="false" tabindex="-1" style="margin-top: 10%;" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Notificación de Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¡Vaya! Al parecer ha ocurrido un error. Por favor, vuelve a intentarlo.
+                    <div class="alert-msg"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{route('contact')}}" type="button" class="btn btn-primary">Volver a Intentar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

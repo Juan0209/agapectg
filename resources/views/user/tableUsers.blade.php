@@ -51,10 +51,10 @@
                                     <td>{{ $user->updated_at->diffForHumans() }}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{($user->id)}}visualizar">
-                                            Visualizar
+                                            <i class="fas fa-eye"></i> Visualizar
                                         </button>&nbsp;&nbsp;&nbsp;
                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{($user->id)}}editar">
-                                            Editar
+                                            <i class="fas fa-edit"></i> Editar
                                         </button>&nbsp;&nbsp;&nbsp;
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal{{($user->id)}}destroy">
                                             <i class="far fa-trash-alt"></i> Eliminar
@@ -63,7 +63,7 @@
                                 </tr>
 
                                 <!-- Modal de Visualizar-->
-                                <div class="modal fade" id="modal{{($user->id)}}visualizar" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 5%;" aria-hidden="true">
+                                <div class="modal fade" id="modal{{($user->id)}}visualizar" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 10%;" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -103,7 +103,7 @@
                                                 </div>
                                                 <br>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="close">Aceptar</button>
+                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="close"><i class="fas fa-check"></i> Aceptar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,11 +111,11 @@
                                 </div>
 
                                 <!-- Modal de Editar-->
-                                <div class="modal fade" id="modal{{($user->id)}}editar" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 5%;" aria-hidden="true">
+                                <div class="modal fade" id="modal{{($user->id)}}editar" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 10%;" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="updateModal">{{('Editar Producto')}}</h4>
+                                                <h4 class="modal-title" id="updateModal">{{('Editar Usuario')}}</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -154,7 +154,7 @@
                                                     </div>
                                                     <br>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close">Cancelar</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close"><i class="far fa-times-circle"></i> Cancelar</button>
                                                         <button type="submit" class="btn btn-success"><i class="far fa-edit"></i> Editar</button>
                                                     </div>
                                                 </form>
@@ -163,11 +163,11 @@
                                     </div>
                                 </div>
                                 <!-- Modal de Eliminar-->
-                                <div class="modal fade" id="modal{{($user->id)}}destroy" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 100px;" aria-hidden="true">
+                                <div class="modal fade" id="modal{{($user->id)}}destroy" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 100px;" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="exampleModalLabel">{{('Eliminar Usario')}}</h4>
+                                                <h4 class="modal-title" id="exampleModalLabel">{{('Eliminar Usuario')}}</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -176,7 +176,7 @@
                                                 <label> ¿Estas seguro de eliminar al usuario "<strong>{{$user->name}}</strong>" de la base de datos?</label>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="far fa-times-circle"></i> Cancelar</button>
                                                 <form action="{{route('destroy')}}" method="POST">
                                                     <input type="hidden" name="id" value="{{ $user->id }}">
                                                     @csrf

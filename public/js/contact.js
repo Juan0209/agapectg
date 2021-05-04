@@ -14,7 +14,7 @@ $(document).ready(function(){
             rules: {
                 name: {
                     required: true,
-                    minlength: 2
+                    minlength: 5
                 },
                 subject: {
                     required: true,
@@ -22,7 +22,7 @@ $(document).ready(function(){
                 },
                 number: {
                     required: true,
-                    minlength: 5
+                    minlength: 10
                 },
                 email: {
                     required: true,
@@ -30,21 +30,21 @@ $(document).ready(function(){
                 },
                 message: {
                     required: true,
-                    minlength: 20
+                    minlength: 10
                 }
             },
             messages: {
                 name: {
                     required: "¡vamos! tienes un nombre, ¿no?",
-                    minlength: "su nombre debe tener al menos 2 caracteres"
+                    minlength: "su nombre debe tener al menos 5 caracteres"
                 },
                 subject: {
-                    required: "¡vamos! tienes un tema, ¿no?",
+                    required: "¡vamos! tienes un asunto, ¿no?",
                     minlength: "tu asunto debe constar de al menos 4 caracteres"
                 },
                 number: {
                     required: "¡vamos! tienes un número, ¿no?",
-                    minlength: "su número debe constar de al menos 5 caracteres"
+                    minlength: "su número debe contener 10 caracteres"
                 },
                 email: {
                     required: "no hay email, no hay mensaje"
@@ -56,9 +56,9 @@ $(document).ready(function(){
             },
             submitHandler: function(form) {
                 $(form).ajaxSubmit({
-                    type:"POST",
+                    type: form.attr('method'),
                     data: $(form).serialize(),
-                    url:"/contact/send",
+                    url: form.attr('action'),
                     success: function() {
                         $('#contactForm :input').attr('disabled', 'disabled');
                         $('#contactForm').fadeTo( "slow", 1, function() {
@@ -75,11 +75,16 @@ $(document).ready(function(){
                             $('.modal').modal('hide');
 		                	$('#error').modal('show');
                         })
-                    }
+                    },
                 })
             }
         })
     })
 
  })(jQuery)
+})
+
+$(function (){
+    var link = "http://www.google.co";
+    $(location).attr('href',link);
 })
