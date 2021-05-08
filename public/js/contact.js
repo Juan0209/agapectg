@@ -83,8 +83,3 @@ $(document).ready(function(){
 
  })(jQuery)
 })
-
-$(function (){
-    var link = "http://www.google.co";
-    $(location).attr('href',link);
-})

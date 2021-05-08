@@ -55,4 +55,8 @@ class HomeController extends Controller
 
         mail($to, $csubject, $body, $headers);
     }
+    public function about()
+    {
+        return view('user.about');
+    }
 }

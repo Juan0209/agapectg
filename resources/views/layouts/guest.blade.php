@@ -60,7 +60,7 @@
                                 <a class="nav-link" href="{{route('contact')}}">Contactanos</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#{{--{{route('contact')}}--}}">Conocenos</a>
+                                <a class="nav-link" href="{{route('about')}}">Conocenos</a>
                             </li>
 
                             @if(isset(Auth::User()->rol))

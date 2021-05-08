@@ -2,8 +2,6 @@
 
      $(document).ready(function() {
         var form = $('#contactForm'); // contact form
-        var submit = $('.submit-btn'); // submit button
-        var alert = $('.alert-msg'); // alert div for show alert message
 
         // form submit event
         form.on('submit', function(e) {
@@ -16,7 +14,7 @@
                 data: form.serialize(), // serialize form data
                 beforeSend: function() {
                     alert.fadeOut();
-                    submit.html('Enviando...'); // change submit button text
+                    $('#btnsubmit').html('Enviando...'); // change submit button text
                 },
                 success: function(data) {
                     alert.html(data).fadeIn(); // fade in response data

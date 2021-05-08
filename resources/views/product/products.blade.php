@@ -75,9 +75,9 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="load_more_btn text-center">
+                        {{--<div class="load_more_btn text-center">
                             <a href="#" class="btn_3">Mostrar más</a>
-                        </div>
+                        </div>--}}
                     </div>
                     @else
                         <div class="card shadow mb-3">

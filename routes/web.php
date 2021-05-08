@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,'welcome'])->name('welcome.index')->middleware('guest');
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 Route::post('/contact/send', [HomeController::class,'sendMessage'])->name('send.message');
+Route::get('/about', [HomeController::class,'about'])->name('about');
 
 //Admin actions
 Route::get('/home', [HomeController::class,'welcome'])->name('home.index');

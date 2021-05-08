@@ -100,7 +100,8 @@
                             </div>
                         </div>
                         <div class="form-group mt-3">
-                            <input class="btn_3 button-contactForm submit-btn" type="submit" id="submit-btn" name="submit-btn" value="Enviar Mensaje">
+                            {{--<input class="btn_3 button-contactForm" type="submit" id="submit-btn" name="submit-btn" value="Enviar Mensaje">--}}
+                            <button class="btn_3 button-contactForm submit-btn" type="submit" id="btnsubmit">Enviar Mensaje</button>
                         </div>
                     </form>
                 </div>
@@ -143,7 +144,6 @@
                 </div>
                 <div class="modal-body">
                     ¡El correo ha sido enviado exitosamente! En un momento una de nuestras asesoras se comunicara contigo. Ademas, hemos enviado una copia a tu correo.
-                    <div class="alert-msg"></div>
                 </div>
                 <div class="modal-footer">
                     <a href="{{route('contact')}}" type="button" class="btn btn-primary">Aceptar</a>
@@ -163,7 +163,6 @@
                 </div>
                 <div class="modal-body">
                     ¡Vaya! Al parecer ha ocurrido un error. Por favor, vuelve a intentarlo.
-                    <div class="alert-msg"></div>
                 </div>
                 <div class="modal-footer">
                     <a href="{{route('contact')}}" type="button" class="btn btn-primary">Volver a Intentar</a>
