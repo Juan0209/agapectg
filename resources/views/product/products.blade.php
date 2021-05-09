@@ -28,9 +28,9 @@
                 <div class="col-md-4">
                     <div class="product_sidebar">
                         <div class="single_sedebar">
-                            <form action="#">
-                                <input type="text" name="#" placeholder="Buscador">
-                                <i class="ti-search"></i>
+                            <form action="{{route('consult')}}" method="get">
+                                <input type="text" name="search" class="search" placeholder="Buscar" @if(isset($search)) value="{{$search}}" @endif>
+                                <button type="submit" class="btn hide"><i class="ti-search"></i></button>
                             </form>
                         </div>
                         <div class="single_sedebar">
@@ -95,6 +95,21 @@
 </body>
 @endsection
 
-
-
-
+@section('footer')
+    <script>
+        $('.search').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "{{route('search')}}",
+                    dataType: 'json',
+                    data: {
+                        term: request.term
+                    },
+                    success: function (data){
+                        response(data)
+                    }
+                });
+            }
+        });
+    </script>
+@endsection

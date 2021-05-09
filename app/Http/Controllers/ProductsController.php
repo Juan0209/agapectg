@@ -119,4 +119,29 @@ class ProductsController extends Controller
          return redirect('/crud')->with('success','Data Deleted');
 
     }
+
+    public function search(Request $request)
+    {
+        $term = $request->get('term');
+
+        $querys = Product::where('name', 'LIKE', '%' . $term . '%')->get();
+
+        $data = [];
+
+        foreach ($querys as $query){
+            $data[] = [
+                'label' => $query->name
+            ];
+        }
+
+        return $data;
+    }
+
+    public function consult(Request  $request)
+    {
+        $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->get();
+        $search = $request->search;
+
+        return view('product.products', compact("products", 'search'));
+    }
 }

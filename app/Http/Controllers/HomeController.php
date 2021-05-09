@@ -76,8 +76,7 @@ class HomeController extends Controller
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
             $body = "<!DOCTYPE html><html lang='es'><head><meta charset='utf-8'><title>ÁgapeDesign</title></head><body>";
-            $body .= "<table style='width: 100%;'>";
-            $body .= "<h3>Restablecimiento de contraseña</h3><br>";
+            $body .= "<h3 class='text-center'>Restablecimiento de contraseña</h3><br>";
             $body .= "<p>Codigo de Seguridad: ".$codigo."</p>";
 
             mail($to, $csubject, $body, $headers);

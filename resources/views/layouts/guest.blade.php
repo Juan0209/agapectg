@@ -32,6 +32,8 @@
     <!-- nice select CSS -->
     <link rel="stylesheet" href="{{asset('css/nice-select.css')}}">
 
+    <link rel="stylesheet" href="{{asset('js/jquery-ui/jquery-ui.min.css')}}">
+
 </head>
 
 <body>
@@ -76,7 +78,7 @@
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
-                        <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                        <a id="search_1" href="javascript:void(0)" class="search"><i class="ti-search"></i></a>
                         <a href="{{ route('cart') }}">
                             <i class="flaticon-shopping-cart-black-shape"></i>
                         </a>
@@ -168,6 +170,8 @@
 
 <!-- jquery plugins here-->
 <script src="{{asset('js/jquery-1.12.1.min.js')}}"></script>
+<!-- jquery UI plugins here-->
+<script src="{{asset('js/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- popper js -->
 <script src="{{asset('js/popper.min.js')}}"></script>
 <!-- bootstrap js -->
@@ -198,6 +202,8 @@
 <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('datatables/datatables-demo.js')}}"></script>
+
+@yield('footer')
 
 @include('layouts.login')
 @include('layouts.register')

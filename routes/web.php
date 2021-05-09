@@ -32,14 +32,18 @@ Route::get('/state/{bill}/{view}', [ShoppingController::class,'state'])->name('s
 //Table Users
 Route::get('/user', [AdminController::class,'users'])->name('user')->middleware('auth');
 
+//Products
+Route::get('/products', [ProductsController::class,'index'])->name('products');
+Route::get('/products/{id}', [ProductsController::class,'productList'])->name('productList');
+Route::get('/products/catalogues/{catalogue}',[ProductsController::class,'catalogues'])->name('catalogues');
+Route::get('/product/search', [ProductsController::class,'search'])->name('search');
+Route::get('/product/consult/', [ProductsController::class,'consult'])->name('consult');
+
 //Shopping actions
 Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
 Route::post('/cart/add', [ShoppingController::class, 'productCart'])->name('cart.add')->middleware('auth');
 Route::get('/payment/bill/{message}/{dissable}', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
 Route::get('/confirmation', [ShoppingController::class, 'confirmation'])->name('confirmation')->middleware('auth');
-Route::get('/products', [ProductsController::class,'index'])->name('products');
-Route::get('/products/{id}', [ProductsController::class,'productList'])->name('productList');
-Route::get('/products/catalogues/{catalogue}',[ProductsController::class,'catalogues'])->name('catalogues');
 Route::delete('/Cancelar/Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
 Route::delete('/Cancelar/producto/{id}',[ShoppingController::class,'cancelProduct'])->name('cancelProduct');
 
