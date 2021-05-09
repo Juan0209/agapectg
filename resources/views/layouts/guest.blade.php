@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ágape | @yield('title')</title>
-    {{--<link rel="apple-touch-icon" sizes="180x180" href="img/faviconAgapect/apple-touch-icon.png">--}}
     <link rel="shortcut icon" href="{{ asset('img/faviconAgapect/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -32,6 +31,7 @@
     <link href="{{asset('datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <!-- nice select CSS -->
     <link rel="stylesheet" href="{{asset('css/nice-select.css')}}">
+
 </head>
 
 <body>
@@ -90,6 +90,15 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="{{route('cart')}}">Mi Carrito</a></li>
                                     <li><a class="dropdown-item" href="{{route('confirmation')}}">Mi Compra</a></li>
+                                    <li>
+                                        <form action="{{route('validateCode')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="email" value="{{Auth::user()->email}}">
+                                            <input type="hidden" name="code" value="123">
+                                            <input type="hidden" name="code2" value="123">
+                                            <input type="submit" class="dropdown-item" value="Mis Datos">
+                                        </form>
+                                    </li>
                                     @if(Auth::User()->rol == 'admin')
                                         <li><a class="dropdown-item" href="{{ route('officials') }}">Funcionarios</a></li>
                                         <li><a class="dropdown-item" href="{{ route('user') }}">Usuarios</a></li>
@@ -148,7 +157,6 @@
                             <div class="social_icon">
                                 <a href="https://www.facebook.com/agapectg" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 <a href="https://www.instagram.com/agapectg/" target="_blank"><i class="fab fa-instagram"></i></a>
-
                             </div>
                         </div>
                     </div>
@@ -157,8 +165,6 @@
         </div>
     </div>
 </footer>
-
-
 
 <!-- jquery plugins here-->
 <script src="{{asset('js/jquery-1.12.1.min.js')}}"></script>
@@ -196,6 +202,15 @@
 @include('layouts.login')
 @include('layouts.register')
 @include('layouts.forgotPassword')
+@include('layouts.updateInformationSuccess')
+@if(isset($codigo))
+    @include('layouts.codeForgotPassword')
+    @include('layouts.noCodeForgotPassword')
+@endif
+@if(isset($users))
+    @include('layouts.updateInfo')
+@endif
+
 <!--::footer_part end::-->
 @if(isset($message))
     @if($message)
@@ -204,6 +219,14 @@
             console.log('{{$message}}');
         </script>
     @endif
+@endif
+
+@if(isset($modal))
+    <script>
+        $(function () {
+            $('#{{$modal}}').modal()
+        })
+    </script>
 @endif
 
 </body>

@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="forgotPassword" tabindex="-1" aria-labelledby="exampleModalLabel" style="margin-top: 100px;" aria-hidden="true">
+<div class="modal fade" id="codeForgotPassword" tabindex="-1" style="margin-top: 100px;" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="background: #BB8FCE;">
-                <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Recuperar Contraseña</h5>
+                <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Recuperación de Contraseña</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -24,22 +24,18 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="login_part_form">
                                 <div class="login_part_form_iner">
-                                    <h3>Lamentamos lo Ocurrido</h3>
-                                    <p>Lo sabemos... aveces pasan cosas como esta, pero afortunadamente podemos ayudarte a recuperar lo que has olvidado.</p>
-                                    <br> <p>por favor introduce tu correo.</p>
-                                    <div class="container">
-                                        <h4>{!! $errors->first('email','<small style="color: red;">:message</small>') !!}
-                                            {!! $errors->first('password','<small style="color: red;">:message</small>') !!}</h4>
-                                    </div>
-                                    <form class="row contact_form" action="{{ route('forgotPassword') }}" method="post" novalidate="novalidate">
+                                    <h3>El Codigo Suministrado es Incorrecto</h3>
+                                    <p>Por favor, introduce nuevamente el codigo de seguridad que hemos enviado a tu correo.</p>
+                                    <form class="row contact_form" action="{{ route('validateCode') }}" method="post" novalidate="novalidate">
                                         @csrf
                                         <div class="col-md-12 form-group p_star">
-                                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}"
-                                                   placeholder="Correo">
+                                            <input type="hidden" name="code" value="{{$codigo}}">
+                                            <input type="hidden" name="email" value="{{$to}}">
+                                            <input type="text" class="form-control" id="code2" name="code2" value="{{ old('code') }}" placeholder="Codigo de Seguridad">
                                         </div>
                                         <div class="col-md-12 form-group text-center">
                                             <button type="submit" value="submit" class="btn_3">
-                                                Enviar Codigo
+                                                Verificar Codigo
                                             </button>
                                         </div>
                                     </form>

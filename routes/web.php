@@ -12,6 +12,9 @@ Route::get('/', [HomeController::class,'welcome'])->name('welcome.index')->middl
 Route::get('/contact', [HomeController::class,'contact'])->name('contact');
 Route::post('/contact/send', [HomeController::class,'sendMessage'])->name('send.message');
 Route::get('/about', [HomeController::class,'about'])->name('about');
+Route::post('/send/code', [HomeController::class,'forgotPassword'])->name('forgotPassword');
+Route::post('/validate/code', [HomeController::class,'validateCode'])->name('validateCode');
+Route::put('/update/information', [HomeController::class,'updateInfo'])->name('updateInfo');
 
 //Admin actions
 Route::get('/home', [HomeController::class,'welcome'])->name('home.index');
