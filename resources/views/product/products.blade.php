@@ -29,7 +29,7 @@
                     <div class="product_sidebar">
                         <div class="single_sedebar">
                             <form action="{{route('consult')}}" method="get">
-                                <input type="text" name="search" class="search" placeholder="Buscar" @if(isset($search)) value="{{$search}}" @endif>
+                                <input type="text" name="search" id="search" class="search_input" placeholder="Buscar" @if(isset($search)) value="{{$search}}" @endif>
                                 <button type="submit" class="btn hide"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -95,9 +95,9 @@
 </body>
 @endsection
 
-{{--@section('footer')
+@section('footer')
     <script>
-        $('.search').autocomplete({
+        $('#search').autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "{{route('search')}}",
@@ -112,4 +112,4 @@
             }
         });
     </script>
-@endsection--}}
+@endsection

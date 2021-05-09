@@ -77,7 +77,7 @@ class AdminController extends Controller
         $user->email = $request->email;
 
         if (!empty($request->password) or !is_null($request->password) or $request->password != '') {
-            $user->password = Hash::make($request->name);
+            $user->password = Hash::make($request->password);
         }
         $user->save();
 
