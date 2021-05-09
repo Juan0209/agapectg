@@ -78,7 +78,7 @@
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
-                        <a id="search_1" href="javascript:void(0)" class="search"><i class="ti-search"></i></a>
+                        <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                         <a href="{{ route('cart') }}">
                             <i class="flaticon-shopping-cart-black-shape"></i>
                         </a>
@@ -131,8 +131,8 @@
     </div>
     <div class="search_input" id="search_input_box">
         <div class="container">
-            <form class="d-flex justify-content-between search-inner">
-                <input type="text" class="form-control" id="search_input" placeholder="Buscar">
+            <form class="d-flex justify-content-between search-inner" method="get" action="{{route('consult')}}">
+                <input type="text" class="form-control  search" id="search_input" name="search" placeholder="Buscar">
                 <button type="submit" class="btn"></button>
                 <span class="ti-close" id="close_search" title="Close Search"></span>
             </form>
@@ -202,8 +202,9 @@
 <script src="{{asset('datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('datatables/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('datatables/datatables-demo.js')}}"></script>
+<script src="{{asset('js/search.js')}}"></script>
 
-@yield('footer')
+{{--@yield('footer')--}}
 
 @include('layouts.login')
 @include('layouts.register')

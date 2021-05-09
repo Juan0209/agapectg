@@ -95,7 +95,7 @@
 </body>
 @endsection
 
-@section('footer')
+{{--@section('footer')
     <script>
         $('.search').autocomplete({
             source: function (request, response) {
@@ -112,4 +112,4 @@
             }
         });
     </script>
-@endsection
+@endsection--}}
