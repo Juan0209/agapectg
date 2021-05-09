@@ -32,7 +32,7 @@ class CreateNewUser implements CreatesNewUsers
 
         return DB::transaction(function () use ($input) {
             return tap(User::create([
-                'name' => $input['name'],
+                'name' => ucwords(strtolower($input['name'])),
                 'address' => $input['address'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),

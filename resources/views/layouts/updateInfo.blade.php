@@ -2,7 +2,7 @@
 @endforeach
 
 <!-- Modal de Editar-->
-<div class="modal fade" id="updateInformation" data-keyboard="false" tabindex="-1" style="margin-top: 10%;" aria-hidden="true">
+<div class="modal fade" id="updateInformation" data-keyboard="false" tabindex="-1" style="margin-top: 5%;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background: #BB8FCE;">

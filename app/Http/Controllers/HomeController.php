@@ -118,7 +118,7 @@ class HomeController extends Controller
         ]);
 
         $user = User::find($request->id);
-        $user->name = $request->name;
+        $user->name = ucwords(strtolower($request->name));
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->email = $request->email;

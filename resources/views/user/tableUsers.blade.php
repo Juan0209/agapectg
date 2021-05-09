@@ -177,8 +177,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="far fa-times-circle"></i> Cancelar</button>
-                                                <form action="{{route('destroy')}}" method="POST">
-                                                    <input type="hidden" name="id" value="{{ $user->id }}">
+                                                <form action="{{route('destroy.user', $user->id)}}" method="POST">
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i> Eliminar</button>
                                                     @method('DELETE')
