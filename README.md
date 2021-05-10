@@ -11,7 +11,6 @@ ejecuta los siguientes comandos.
 
 Listo, con eso ya deberías tener el proyecto funcionando correctamente.
 
-
 INFORMACIÓN ADICIONAL
 
 Nombre del proyecto: agapectg.
