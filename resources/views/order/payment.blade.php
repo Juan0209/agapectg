@@ -215,6 +215,9 @@
                                         </div>
                                     @elseif(isset($payed) and $payed == true)
                                         <div class="text-center">
+                                            <input type="checkbox" id="f-option4" name="selector" />
+                                            <label for="f-option4">I’ve read and accept the </label>
+                                            <a href="#">terms & conditions*</a><br><br>
                                             <button type="submit" class="btn_1">Continuar</button>
                                         </div>
                                     @endif

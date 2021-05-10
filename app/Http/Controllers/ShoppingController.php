@@ -167,7 +167,21 @@ class ShoppingController extends Controller
     public function confirmation()
     {
         $id = Auth::id();
-        $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();;
+        $bill = DB::table("bills")->where("user_id",$id)->where('payed', 1)->orderby('id','DESC')->take(1)->get();
+
+        if (!isset($bill[0]->id)){
+            return "<script>
+
+                        alert('Aun no has realizado una compra. O bien, ya han pasado mas de 30 dias desde que recibiste tu pedido');
+                        redireccion();
+
+                        function redireccion() {
+
+                            var link = '/'
+                            document.location.href = link;
+                        }
+                    </script>";
+        }
 
         $order = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
