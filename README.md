@@ -14,9 +14,9 @@ Listo, con eso ya deberías tener el proyecto funcionando correctamente.
 
 INFORMACIÓN ADICIONAL
 
-Nombre del proyecto: agapectg
-Destinatario: ÁgapeDesign (@agapectg)
-Creado por: Juan García (@juang_0209), Sebastián Blanquicet (@seblanquicett) y wilfer Bru (@wilferjose)
-Tipo de proyecto: Tienda Online
-Creación del repositorio: 19/03/2021
-Ultima actualización: 10/04/2021
+Nombre del proyecto: agapectg.
+Destinatario: ÁgapeDesign (@agapectg).
+Creado por: Juan García (@juang_0209), Sebastián Blanquicet (@seblanquicett) y wilfer Bru (@wilferjose).
+Tipo de proyecto: Tienda Online.
+Creación del repositorio: 19/03/2021.
+Ultima actualización: 10/04/2021.
