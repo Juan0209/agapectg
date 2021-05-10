@@ -96,6 +96,9 @@ class ProductsController extends Controller
         $cruds=Product::find($id);
 
         if (!is_null($request->file('image'))) {
+            $url = str_replace('storage', 'public', $cruds->image);
+            Storage::delete($url);
+
             $imagenes= $request->file('image')->store('public/productos');
             $url= storage::url($imagenes);
             $cruds->image = $url;
@@ -114,7 +117,9 @@ class ProductsController extends Controller
         $id= $request->input('id');
 
         $cruds=Product::find($id);
-         $cruds->delete();
+        $url = str_replace('storage', 'public', $cruds->image);
+        Storage::delete($url);
+        $cruds->delete();
 
          return redirect('/crud')->with('success','Data Deleted');
 

@@ -21,7 +21,7 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
-                        @if($deliveries == '[]')
+                        @if($deliveries == '[]' or $products == '[]')
                             <h2 class="text-center">No Hay Confirmaciones de Entrega Pendientes</h2>
                         @else
                             <table class="table table-bordered table-hover table-striped" id="dataTable">
@@ -46,8 +46,8 @@
                                         </td>
                                     </tr>
                                     <!-- Modal de Información-->
-                                    <div class="modal fade modal-dialog-scrollable" id="modal{{$delivery->id}}" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 5%;" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                    <div class="modal fade" id="modal{{$delivery->id}}" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" style="margin-top: 5%;" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title" id="createmodal">Informacion del Pedido</h4>

@@ -107,7 +107,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <br>
                                                             <div class="form-row">
                                                                 <div class="col">
                                                                     <label>Imagen: </label>

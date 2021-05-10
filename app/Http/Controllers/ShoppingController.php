@@ -20,6 +20,7 @@ class ShoppingController extends Controller
 
             $bill_id1 = $bill->id;
             $bill_id2 = $bill->id;
+
         }else {
 
             $order = Order::all()->where('user_id', $id)->where('state', 1)->first();
@@ -31,6 +32,10 @@ class ShoppingController extends Controller
         if ($bill_id1 == $bill_id2){
 
             $bill_id = $bill_id1;
+
+            if ($bill->payed == 1 and $bill->send == 1){
+                $bill_id = null;
+            }
 
         }else{
 
@@ -86,7 +91,7 @@ class ShoppingController extends Controller
             $newBill->payed     = 0;
             $newBill->save();
 
-            $bill = $bill = Bill::all()->where('user_id', $id)->last();
+            $bill = Bill::all()->where('user_id', $id)->last();
             $bill_id = $bill->id;
 
             $order = Order::select('orders.*')->where('user_id', $id )->where('state', 1)->get();
@@ -311,6 +316,8 @@ class ShoppingController extends Controller
         $records = DB::table('orders')->where('user_id', '=', $id)->get()->toArray();
         foreach ($records as $fact){
             $recordsCancel = Order::find($fact->id);
+            $url = str_replace('storage', 'public', $recordsCancel->image);
+            Storage::delete($url);
             $recordsCancel->delete();
         }
 
@@ -320,6 +327,8 @@ class ShoppingController extends Controller
     public function cancelProduct($id)
     {
         $recordsCancel = Order::find($id);
+        $url = str_replace('storage', 'public', $recordsCancel->image);
+        Storage::delete($url);
         $recordsCancel->delete();
 
         return back();
@@ -419,7 +428,7 @@ class ShoppingController extends Controller
         $bills = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.total_price as total')
-            ->where('payed', 1)
+            ->where('send', 1)
             ->get();
 
         foreach ($bills as $bill){
@@ -431,6 +440,10 @@ class ShoppingController extends Controller
             }
         }
 
+        if (!isset($orders)){
+            $orders[] = '';
+        }
+
         return view('order.bill', compact('bills', 'orders'));
     }
 
@@ -438,8 +451,6 @@ class ShoppingController extends Controller
         if (isset($bill) and $bill !=0){
             $id = $bill;
             $orders = DB::table("orders")->where("bill_id",$id)->get();
-
-
 
             foreach ($orders as $order){
                 $id = $order->id;
@@ -451,7 +462,14 @@ class ShoppingController extends Controller
 
             $send = $app->bill_id;
 
-            if ($app->state == 7){
+            if ($app->state == 6){
+
+                $app = Bill::find($send);
+                $app->send = 0;
+                $app->save();
+
+            }elseif ($app->state == 7){
+
                 $app = Bill::find($send);
                 $app->send = 1;
                 $app->save();

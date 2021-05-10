@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bill;
+use App\Models\Order;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -96,5 +99,38 @@ class AdminController extends Controller
         $users = User::all();
 
         return view('user.tableUsers', compact('users'));
+    }
+
+    public function clearSystem()
+    {
+        $orders = Order::all();
+
+        foreach ($orders as $order) {
+
+            $date = getdate();
+            $date1 = $date['yday'];
+            $date2 = $order->updated_at->dayOfYear();
+
+            if ($date1-$date2 >30){
+
+                $bill = Bill::find($order->bill_id);
+
+                if (isset($bill->id)){
+
+                    $bill->delete();
+                }
+
+                unset($bill);
+
+                $order2 = Order::findOrFail($order->id);
+                $url = str_replace('storage', 'public', $order->image);
+                Storage::delete($url);
+                $order2->delete();
+
+                unset($order2);
+            }
+        }
+
+        return back();
     }
 }

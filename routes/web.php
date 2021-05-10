@@ -28,6 +28,7 @@ Route::get('/delivery', [ShoppingController::class,'delivery'])->name('delivery'
 Route::get('/delivery/confirmation', [ShoppingController::class,'confirmationDelivery'])->name('confirmationDelivery')->middleware('auth');
 Route::get('/bill', [ShoppingController::class,'bill'])->name('bill')->middleware('auth');
 Route::get('/state/{bill}/{view}', [ShoppingController::class,'state'])->name('state')->middleware('auth');
+Route::get('/clear/system', [AdminController::class,'clearSystem'])->name('clearSystem')->middleware('auth');
 
 //Table Users
 Route::get('/user', [AdminController::class,'users'])->name('user')->middleware('auth');

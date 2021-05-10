@@ -18,6 +18,7 @@
     <!-- ================ contact section start ================= -->
     <section class="container" style="margin-top: 20px;">
         <div class="container">
+            <a href="{{route('clearSystem')}}" class="btn btn-primary"><i class="fas fa-broom"></i> Limpiar Sistema</a><br><br>
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
