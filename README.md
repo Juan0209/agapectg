@@ -1,6 +1,7 @@
 # Proyecto Final Grupo 6 ADSI #1834480
 
 TUTORIAL DE INSTALACIÓN
+
 ejecuta los siguientes comandos.
 1. git clone . https://github.com/Juan0209/agapectg.git
 2. cd agapectg
