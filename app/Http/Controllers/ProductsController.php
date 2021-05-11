@@ -35,15 +35,17 @@ class ProductsController extends Controller
             ->get();
 
         if ($catalogue == 1){
-            $category = 'Mugs';
-        }elseif ($catalogue == 2){
-            $category = 'camisas';
-        }elseif ($catalogue == 3){
-            $category = 'Portaretratos';
-        }elseif ($catalogue == 4){
-            $category = 'cuadros';
-        }elseif ($catalogue == 5){
             $category = 'Promociones';
+        }elseif ($catalogue == 2){
+            $category = 'Productos Temporales';
+        }elseif ($catalogue == 3){
+            $category = 'Mugs';
+        }elseif ($catalogue == 4){
+            $category = 'Camisas';
+        }elseif ($catalogue == 5){
+            $category = 'Portaretratos';
+        }else{
+            $category = 'Cuadros';
         }
 
         return view('product.products', compact("products", 'category'));

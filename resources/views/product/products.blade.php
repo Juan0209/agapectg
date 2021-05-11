@@ -43,11 +43,12 @@
                                     @endif
                                 <div class="select_option_dropdown">
                                     <p><a href="{{route('products')}}">Todos los Productos</a></p>
-                                    <p><a href="{{route('catalogues', 1)}}">Mugs</a></p>
-                                    <p><a href="{{route('catalogues', 2)}}">Camisas</a></p>
-                                    <p><a href="{{route('catalogues', 3)}}">Portaretratos</a></p>
-                                    <p><a href="{{route('catalogues', 4)}}">Cuadros</a></p>
-                                    <p><a href="{{route('catalogues', 5)}}">promociones</a></p>
+                                    <p><a href="{{route('catalogues', 1)}}">promociones</a></p>
+                                    <p><a href="{{route('catalogues', 2)}}">Productos Temporales</a></p>
+                                    <p><a href="{{route('catalogues', 3)}}">Mugs</a></p>
+                                    <p><a href="{{route('catalogues', 4)}}">Camisas</a></p>
+                                    <p><a href="{{route('catalogues', 5)}}">Portaretratos</a></p>
+                                    <p><a href="{{route('catalogues', 6)}}">Cuadros</a></p>
                                 </div>
                             </div>
                         </div>

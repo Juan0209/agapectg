@@ -84,13 +84,6 @@
                                                             <br>
                                                             <div class="form-row">
                                                                 <div class="col">
-                                                                    <label>Descripción: </label>
-                                                                    <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required>{{$row->description}}</textarea>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <div class="form-row">
-                                                                <div class="col">
                                                                     <label>Precio: </label>
                                                                     <input type="number" class="form-control" name="price" id="price" value="{{$row->price}}" placeholder="Price">
                                                                 </div>
@@ -98,15 +91,23 @@
                                                                     <label>Catalogo: </label>
                                                                     <div id="default-select_2">
                                                                         <select class="mb-30" style="align-content: center" name="catalogues_id" id="catalogues_id">
-                                                                            <option value="1" @if($row->catalogues_id == 1) selected @endif>Mugs</option>
-                                                                            <option value="2" @if($row->catalogues_id == 2) selected @endif>Camisas</option>
-                                                                            <option value="3" @if($row->catalogues_id == 3) selected @endif>Portaretratos</option>
-                                                                            <option value="4" @if($row->catalogues_id == 4) selected @endif>Cuadros</option>
-                                                                            <option value="5" @if($row->catalogues_id == 5) selected @endif>Promociones</option>
+                                                                            <option value="5" @if($row->catalogues_id == 1) selected @endif>Promociones</option>
+                                                                            <option value="5" @if($row->catalogues_id == 2) selected @endif>Productos Temporales</option>
+                                                                            <option value="1" @if($row->catalogues_id == 3) selected @endif>Mugs</option>
+                                                                            <option value="2" @if($row->catalogues_id == 4) selected @endif>Camisas</option>
+                                                                            <option value="3" @if($row->catalogues_id == 5) selected @endif>Portaretratos</option>
+                                                                            <option value="4" @if($row->catalogues_id == 6) selected @endif>Cuadros</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-row">
+                                                                <div class="col">
+                                                                    <label>Descripción: </label>
+                                                                    <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required>{{$row->description}}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <br>
                                                             <div class="form-row">
                                                                 <div class="col">
                                                                     <label>Imagen: </label>

@@ -11,7 +11,7 @@
                             <p>▫️ilustramos y plasmamos tus mejores momentos. <br>
                                 🤍 Echa un vistazo a nuestros productos. <br>
                                 🤍 Enamórate de todo como nosotras.</p>
-                            <a href="{{ route('products') }}" class="btn_1">Explorar Catalogo</a>
+                            <a href="{{ route('products') }}" class="btn_1">Explorar Productos</a>
                         </div>
                     </div>
                 </div>

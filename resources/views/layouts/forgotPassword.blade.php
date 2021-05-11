@@ -27,10 +27,6 @@
                                     <h3>Lamentamos lo Ocurrido</h3>
                                     <p>Lo sabemos... aveces pasan cosas como esta, pero afortunadamente podemos ayudarte a recuperar lo que has olvidado.</p>
                                     <br> <p>por favor introduce tu correo.</p>
-                                    <div class="container">
-                                        <h4>{!! $errors->first('email','<small style="color: red;">:message</small>') !!}
-                                            {!! $errors->first('password','<small style="color: red;">:message</small>') !!}</h4>
-                                    </div>
                                     <form class="row contact_form" action="{{ route('forgotPassword') }}" method="post" novalidate="novalidate">
                                         @csrf
                                         <div class="col-md-12 form-group p_star">
