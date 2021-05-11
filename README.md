@@ -3,7 +3,7 @@
 TUTORIAL DE INSTALACIÓN
 
 ejecuta los siguientes comandos.
-1. git clone . https://github.com/Juan0209/agapectg.git
+1. git clone https://github.com/Juan0209/agapectg.git
 2. cd agapectg
 3. composer install
 4. php artisan key: generate
