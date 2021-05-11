@@ -69,7 +69,7 @@
                                                     <div class="modal-body">
 
                                                         <form method="POST" id="update-form" action="{{route('update')}}" enctype="multipart/form-data">
-                                                            <input type="hidden" name="id" value="{{ $row->id }}">
+                                                            <input type="hidden" name="id" value="{{$row->id}}">
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="form-row">
