@@ -64,7 +64,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 2</h5>
-                                    <h2> <a href="{{route('catalogues', 1)}}">Mug clásico</a></h2>
+                                    <h2> <a href="{{route('catalogues', 3)}}">Mug clásico</a></h2>
                                     <p>¡Mereces un mug tan único y especial como tú!
                                         <br><br>
                                         ‑ 11 Oz.
@@ -76,7 +76,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('catalogues', 1)}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 3)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 3</h5>
-                                    <h2> <a href="{{route('catalogues', 4)}}">Cuadro 21 cm X 30 cm</a></h2>
+                                    <h2> <a href="{{route('catalogues', 6)}}">Cuadro 21 cm X 30 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
                                         ‑ Colores disponibles: blanco, café, y negro.
@@ -101,7 +101,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('catalogues', 4)}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 6)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 4</h5>
-                                    <h2> <a href="{{route('catalogues', 3)}}">Portarretrato 13 cm X 18 cm</a></h2>
+                                    <h2> <a href="{{route('catalogues', 5)}}">Portarretrato 13 cm X 18 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
                                         ‑ Colores disponibles: blanco, café, y negro.
@@ -128,7 +128,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('catalogues', 3)}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 5)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 5</h5>
-                                    <h2> <a href="{{route('catalogues', 2)}}">Camisetas</a></h2>
+                                    <h2> <a href="{{route('catalogues', 4)}}">Camisetas</a></h2>
                                     <p>¡Nadie había lucido tan cool!
                                         <br><br>
                                         ‑ Tela: Algodón. <br>
@@ -157,7 +157,7 @@
                                         <br><br>
                                         Si deseas agregar más personas a la ilustración, podemos cotizarte.
                                     </p><br><br>
-                                    <a href="{{route('catalogues', 2)}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 4)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 7</h5>
-                                    <h2> <a href="{{route('catalogues', 5)}}">Grupos</a></h2>
+                                    <h2> <a href="{{route('catalogues', 1)}}">Grupos</a></h2>
                                     <p>▫¡Compartamos la experiencia en grupo!
                                         <br><br>
                                         ‑ Precio especial. <br>
@@ -210,7 +210,7 @@
                                         <br><br>
                                         El detalle perfecto para tus eventos😍
                                     </p><br><br>
-                                    <a href="{{route('catalogues', 5)}}" class="btn_3">Explorar más</a>
+                                    <a href="{{route('catalogues', 1)}}" class="btn_3">Explorar más</a>
                                 </div>
                             </div>
                         </div>
