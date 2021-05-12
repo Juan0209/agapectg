@@ -51,7 +51,7 @@ $(document).ready(function(){
                 },
                 message: {
                     required: "ummmm... sí, tienes que escribir algo para enviar este mensaje.",
-                    minlength: "¿eso es todo? ¿seguro?"
+                    minlength: "¿eso es todo? ¿seguro? su mensaje debe tener al menos 20 caracteres"
                 }
             },
             submitHandler: function(form) {

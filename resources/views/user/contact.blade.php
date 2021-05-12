@@ -64,7 +64,7 @@
                     <h2 class="contact-title">Ponte en Contacto</h2>
                 </div>
                 <div class="col-lg-8">
-                    <form class="form-contact contact_form" action="{{route('send.message')}}" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="form-contact contact_form" action="{{route('send.message')}}" method="POST" id="contactForm" novalidate="novalidate">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -99,9 +99,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group mt-3">
-                            {{--<input class="btn_3 button-contactForm" type="submit" id="submit-btn" name="submit-btn" value="Enviar Mensaje">--}}
-                            <button class="btn_3 button-contactForm submit-btn" type="submit" id="btnsubmit">Enviar Mensaje</button>
+                        <div class="form-group mt-3" id="alert-msg">
+                            <button class="btn_3 button-contactForm" type="submit" id="btnsubmit">Enviar Mensaje</button>
                         </div>
                     </form>
                 </div>
