@@ -194,7 +194,7 @@
                                                                 data-epayco-country="co"
                                                                 data-epayco-test="true"
                                                                 data-epayco-external="false"
-                                                                data-epayco-response="/payment/response">
+                                                                data-epayco-response="{{route('response')}}">
                                                             </script>
                                                         </form>
                                                     </a>
@@ -221,10 +221,10 @@
                                             </script>
                                         </div>
                                     @elseif(isset($payed) and $payed == true)
-                                        <div class="text-center">
-                                            <input type="checkbox" id="f-option4" name="selector" />
-                                            <label for="f-option4">Estoy de acuerdo y acepto los </label>
-                                            <a href="#">Terminos & Condiciones*</a><br><br>
+                                        <div class="text-center"><br>
+                                            <input type="checkbox" id="f-option4" name="selector" required />
+                                            <label for="f-option4">Acepto los </label>
+                                            <a href="#">Terminos & Condiciones</a><br><br>
                                             <button type="submit" class="btn_1">Continuar</button>
                                         </div>
                                     @endif
