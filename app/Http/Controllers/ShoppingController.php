@@ -33,7 +33,7 @@ class ShoppingController extends Controller
 
             $bill_id = $bill_id1;
 
-            if ($bill->payed == 1 and $bill->send == 1){
+            if ( isset($bill->payed) and $bill->payed == 1 and $bill->send == 1){
                 $bill_id = null;
             }
 
