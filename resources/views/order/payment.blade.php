@@ -107,7 +107,7 @@
                                     <div class="creat_account">
                                         <h3>Detalles de Presentación (OPCIONAL)</h3>
                                     </div>
-                                    <textarea class="form-control" name="details" id="details" rows="1" placeholder="¿Quieres darnos especificaciones sobre como quieres la presentacion de tu pedido? adelante, escribelo aquí. (Esto Puede Contener Costos Adicionales)" value="{{ old('details') }}" disabled></textarea>
+                                    <textarea class="form-control" name="details" id="details" rows="1" placeholder="¿Quieres darnos especificaciones sobre como quieres la presentacion de tu pedido? adelante, escribelo aquí. (Esto Puede Contener Costos Adicionales los cuales le cobraremos mas adelante)" value="{{ old('details') }}" disabled></textarea>
                                 </div>
                             @endif
 
@@ -171,42 +171,49 @@
                                                 <span>$ {{ number_format($total) }}</span>
                                             </a>
                                         </li>
-                                        @if(!isset($payed))
-                                            @if($hidden == 0)
-                                                <li>
-                                                    <div class="text-center">
-                                                        <a href="#">
-                                                            <form>
-                                                                <?php
-                                                                $key = '7fb5144e899c4c5051732c5ac0baaf2f' ;
-                                                                $privateKey = '96d012f0a403671f4fb06bf2a7f6a704' ;
-                                                                ?>
-                                                                <script
-                                                                    src="https://checkout.epayco.co/checkout.js"
-                                                                    class="epayco-button"
-                                                                    data-epayco-key="{{$key}}"
-                                                                    data-epayco-private-key="{{$privateKey}}"
-                                                                    data-epayco-amount="{{$total}}"
-                                                                    data-epayco-tax-base="{{$totalbase}}"
-                                                                    data-epayco-tax="{{$impuesto}}"
-                                                                    data-epayco-name="ágape Design"
-                                                                    data-epayco-description="Tu pedido ágape"
-                                                                    data-epayco-currency="cop"
-                                                                    data-epayco-country="co"
-                                                                    data-epayco-test="true"
-                                                                    data-epayco-external="false"
-                                                                    data-epayco-response="http://agapectg.test/payment/response">
-                                                                </script>
-                                                            </form>
-                                                        </a>
-                                                    </div>
-                                                </li>
-                                            @endif
+                                        @if(!isset($payed) and $hidden == 0)
+                                            <li>
+                                                <div class="text-center">
+                                                    <a href="#">
+                                                        <form>
+                                                            <?php
+                                                            $key = '7fb5144e899c4c5051732c5ac0baaf2f' ;
+                                                            $privateKey = '96d012f0a403671f4fb06bf2a7f6a704' ;
+                                                            ?>
+                                                            <script
+                                                                src="https://checkout.epayco.co/checkout.js"
+                                                                class="epayco-button"
+                                                                data-epayco-key="{{$key}}"
+                                                                data-epayco-private-key="{{$privateKey}}"
+                                                                data-epayco-amount="{{$total}}"
+                                                                data-epayco-tax-base="{{$totalbase}}"
+                                                                data-epayco-tax="{{$impuesto}}"
+                                                                data-epayco-name="ágape Design"
+                                                                data-epayco-description="Tu pedido ágape"
+                                                                data-epayco-currency="cop"
+                                                                data-epayco-country="co"
+                                                                data-epayco-test="true"
+                                                                data-epayco-external="false"
+                                                                data-epayco-response="/payment/response">
+                                                            </script>
+                                                        </form>
+                                                    </a>
+                                                </div>
+                                            </li>
                                         </ul>
                                         <div class="text-center">
-
                                             <br><br>
-                                            <input class="btn_1" type="button" onclick="mensaje('Para poder continuar es necesario que su Transaccion de pago haya sido exitosa.')" value="Continuar">
+                                            <input class="btn_1" type="button" onclick="mensaje('Para poder continuar es necesario que su Transaccion de pago haya sido valida y exitosa.')" value="Continuar">
+                                            <script>
+                                                function mensaje(texto) {
+                                                    alert(texto);
+                                                }
+                                            </script>
+                                        </div>
+                                    @elseif(!isset($payed))
+                                        <div class="text-center">
+                                            <br><br>
+                                            <input class="btn_1" type="button" onclick="mensaje('Tu trasaccion se encuentra en estado PENDIENTE. Para poder continuar es necesario que el pago haya sido validado. En caso de que ya hayas realizado el pago, ingresa a la pestaña contactanos y cuentanos tu problema.')" value="Continuar">
                                             <script>
                                                 function mensaje(texto) {
                                                     alert(texto);
@@ -216,8 +223,8 @@
                                     @elseif(isset($payed) and $payed == true)
                                         <div class="text-center">
                                             <input type="checkbox" id="f-option4" name="selector" />
-                                            <label for="f-option4">I’ve read and accept the </label>
-                                            <a href="#">terms & conditions*</a><br><br>
+                                            <label for="f-option4">Estoy de acuerdo y acepto los </label>
+                                            <a href="#">Terminos & Condiciones*</a><br><br>
                                             <button type="submit" class="btn_1">Continuar</button>
                                         </div>
                                     @endif

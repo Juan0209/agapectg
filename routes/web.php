@@ -45,12 +45,12 @@ Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
 Route::post('/cart/add', [ShoppingController::class, 'productCart'])->name('cart.add')->middleware('auth');
 Route::get('/payment/bill/{message}/{dissable}', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
 Route::get('/confirmation', [ShoppingController::class, 'confirmation'])->name('confirmation')->middleware('auth');
-Route::delete('/Cancelar/Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
-Route::delete('/Cancelar/producto/{id}',[ShoppingController::class,'cancelProduct'])->name('cancelProduct');
+Route::delete('/Cancelar/Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase')->middleware('auth');;
+Route::delete('/Cancelar/producto/{id}',[ShoppingController::class,'cancelProduct'])->name('cancelProduct')->middleware('auth');;
 
 
-Route::post('/payment/confirmation', [ShoppingController::class, 'confirmationPay'])->name('confirmationPay');
-Route::get('/payment/response', [ShoppingController::class, 'response'])->name('response');
+Route::post('/payment/confirmation', [ShoppingController::class, 'confirmationPay'])->name('confirmationPay')->middleware('auth');;
+Route::get('/payment/response', [ShoppingController::class, 'response'])->name('response')->middleware('auth');;
 Route::get('/payment/transaccion/{transaccion}/{referencia}', [ShoppingController::class, 'transaccion'])->name('transaccion');
 
 //ProductsCRUD actions
