@@ -24,9 +24,17 @@ class ShoppingController extends Controller
         }else {
 
             $order = Order::all()->where('user_id', $id)->where('state', 1)->first();
-            $bill_id1 = $order->bill_id;
-            $order = Order::all()->where('user_id', $id)->where('state', 1)->last();
-            $bill_id2 = $order->bill_id;
+
+            if (isset($order->bill_id)) {
+                $bill_id1 = $order->bill_id;
+                $order = Order::all()->where('user_id', $id)->where('state', 1)->last();
+                $bill_id2 = $order->bill_id;
+            }else{
+                $order = Order::all()->where('user_id', $id)->where('state', 2)->first();
+                $bill_id1 = $order->bill_id;
+                $order = Order::all()->where('user_id', $id)->where('state', 2)->last();
+                $bill_id2 = $order->bill_id;
+            }
         }
 
         if ($bill_id1 == $bill_id2){
@@ -167,6 +175,11 @@ class ShoppingController extends Controller
     public function confirmation()
     {
         $id = Auth::id();
+        $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
+        if ($bill[0]->payed == 0 and isset($bill[0]->ref_epayco)){
+            return redirect('payment/transaccion/0/0');
+            die();
+        }
         $bill = DB::table("bills")->where("user_id",$id)->where('payed', 1)->orderby('id','DESC')->take(1)->get();
 
         if (!isset($bill[0]->id)){

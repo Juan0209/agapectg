@@ -213,7 +213,7 @@
                                     @elseif(!isset($payed))
                                         <div class="text-center">
                                             <br><br>
-                                            <input class="btn_1" type="button" onclick="mensaje('Tu trasaccion se encuentra en estado PENDIENTE. Para poder continuar es necesario que el pago haya sido validado. En caso de que ya hayas realizado el pago, ingresa a la pestaña contactanos y cuentanos tu problema.')" value="Continuar">
+                                            <input class="btn_1" type="button" onclick="mensaje('Su trasaccion se encuentra en estado PENDIENTE. Para poder continuar es necesario que el pago haya sido validado. En caso de que ya hayas realizado el pago ingresa a \'Mi Compra\', si tienes algun problema ve a la pestaña contactanos y cuentanos tu lo que sucede.')" value="Continuar">
                                             <script>
                                                 function mensaje(texto) {
                                                     alert(texto);
