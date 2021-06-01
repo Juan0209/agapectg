@@ -91,12 +91,12 @@
                                                                     <label>Catalogo: </label>
                                                                     <div id="default-select_2">
                                                                         <select class="mb-30" style="align-content: center" name="catalogues_id" id="catalogues_id">
-                                                                            <option value="5" @if($row->catalogues_id == 1) selected @endif>Promociones</option>
-                                                                            <option value="5" @if($row->catalogues_id == 2) selected @endif>Productos Temporales</option>
-                                                                            <option value="1" @if($row->catalogues_id == 3) selected @endif>Mugs</option>
-                                                                            <option value="2" @if($row->catalogues_id == 4) selected @endif>Camisas</option>
-                                                                            <option value="3" @if($row->catalogues_id == 5) selected @endif>Portaretratos</option>
-                                                                            <option value="4" @if($row->catalogues_id == 6) selected @endif>Cuadros</option>
+                                                                            <option value="1" @if($row->catalogues_id == 1) selected @endif>Promociones</option>
+                                                                            <option value="2" @if($row->catalogues_id == 2) selected @endif>Productos Temporales</option>
+                                                                            <option value="3" @if($row->catalogues_id == 3) selected @endif>Mugs</option>
+                                                                            <option value="4" @if($row->catalogues_id == 4) selected @endif>Camisetas</option>
+                                                                            <option value="5" @if($row->catalogues_id == 5) selected @endif>Portaretratos</option>
+                                                                            <option value="6" @if($row->catalogues_id == 6) selected @endif>Cuadros</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -205,10 +205,12 @@
                                 <label>Catalogo: </label>
                                 <div id="default-select_2">
                                     <select class="mb-30" style="align-content: center" name="catalogues_id" id="catalogues_id">
-                                        <option value="1">Mugs</option>
-                                        <option value="2">Camisas</option>
-                                        <option value="3">Portaretratos</option>
-                                        <option value="4">Promociones</option>
+                                        <option value="1">promociones</option>
+                                        <option value="2">Productos Temporales</option>
+                                        <option value="3">Mugs</option>
+                                        <option value="4">Camisetas</option>
+                                        <option value="5">Portaretratos</option>
+                                        <option value="6">Promociones</option>
                                     </select>
                                 </div>
                             </div>

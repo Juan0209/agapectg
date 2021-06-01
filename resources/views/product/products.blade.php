@@ -46,7 +46,7 @@
                                     <p><a href="{{route('catalogues', 1)}}">promociones</a></p>
                                     <p><a href="{{route('catalogues', 2)}}">Productos Temporales</a></p>
                                     <p><a href="{{route('catalogues', 3)}}">Mugs</a></p>
-                                    <p><a href="{{route('catalogues', 4)}}">Camisas</a></p>
+                                    <p><a href="{{route('catalogues', 4)}}">Camisetas</a></p>
                                     <p><a href="{{route('catalogues', 5)}}">Portaretratos</a></p>
                                     <p><a href="{{route('catalogues', 6)}}">Cuadros</a></p>
                                 </div>
