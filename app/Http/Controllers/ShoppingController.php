@@ -286,7 +286,7 @@ class ShoppingController extends Controller
                 $message = 'Su transacción esta en estado: PENDIENTE. para poder continuar es necesario que realize el pago antes de 24 horas. Una vez el pago sea confirmado la plataforma le permitira continuar con la compra.';
                 $hidden = 1;
 
-            }elseif($transaccion == 4){ // transaccion cancelada
+            }else/*if($transaccion == 4)*/{ // transaccion cancelada
 
                 $message = 0;
                 $hidden = 0;

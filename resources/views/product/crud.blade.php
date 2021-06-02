@@ -46,11 +46,10 @@
                                         <td>{{$row->description}}</td>
                                         {{--<td>{{$row->image}}</td>--}}
                                         <td>$ {{number_format($row->price)}}</td>
-                                        <td>
+                                        <td style="width: 3%">
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{($row->id)}}editar">
                                                 <i class="far fa-edit"></i> Editar
-                                            </button>&nbsp;&nbsp;&nbsp;
-
+                                            </button>&nbsp;&nbsp;&nbsp;<br>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal{{($row->id)}}destroy">
                                                 <i class="far fa-trash-alt"></i> Eliminar
                                             </button>
@@ -104,7 +103,7 @@
                                                             <div class="form-row">
                                                                 <div class="col">
                                                                     <label>Descripción: </label>
-                                                                    <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required>{{$row->description}}</textarea>
+                                                                    <textarea style="word-break: break-all; !important;" name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required>{{$row->description}}</textarea>
                                                                 </div>
                                                             </div>
                                                             <br>
@@ -181,20 +180,13 @@
                 </div>
                 <div class="modal-body">
                 <form method="POST" action="{{route('store')}}" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-row">
-                            <div class="col">
-                                <label>Nombre: </label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
-                            </div>
+                    @csrf
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Nombre: </label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
                         </div>
-                    <br>
-                        <div class="form-row">
-                            <div class="col">
-                                <label>Descripción: </label>
-                                <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required></textarea>
-                            </div>
-                        </div>
+                    </div>
                     <br>
                         <div class="form-row">
                             <div class="col">
@@ -210,9 +202,15 @@
                                         <option value="3">Mugs</option>
                                         <option value="4">Camisetas</option>
                                         <option value="5">Portaretratos</option>
-                                        <option value="6">Promociones</option>
+                                        <option value="6">cuadros</option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label>Descripción: </label>
+                                <textarea name="description" id="description" class="form-control" cols="30" rows="3" placeholder="Descripción" required></textarea>
                             </div>
                         </div>
                     <br>

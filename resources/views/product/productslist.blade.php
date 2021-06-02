@@ -33,7 +33,7 @@
               <form action="{{route('cart.add')}}" method="post" enctype="multipart/form-data">
                   @csrf
                 <h3>{{$product->name}}</h3><hr>
-                <p>{{$product->description}}</p>
+                <p>{{str_replace( "\r\n", '<br>', $product->description )}}</p>
                   <input type="hidden" name="id_product" id="id_product" value="{{$product->id}}">
                   <input type="hidden" name="price" id="price" value="{{$product->price}}">
                 <div class="card_area">
