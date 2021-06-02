@@ -64,6 +64,35 @@
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
                                     <h5>N.º 2</h5>
+                                    <h2> <a href="{{route('catalogues', 3)}}">Mug de Corazón</a></h2>
+                                    <p>¡Mereces un mug tan único y especial como tú!
+                                        <br><br>
+                                        ‑ 11 Oz.
+                                        ‑ Material: cerámica.
+                                        ‑ Color rosa en el borde superior del mug y en el agarre (forma de corazón).
+                                        ‑ Se entrega en caja sellada.
+                                        ‑ El precio incluye ilustración de una persona, y frase que la persona desee.
+                                        <br><br>
+                                        ▪️ Desde $30.000 COP
+                                        <br><br>
+                                        Si deseas agregar más personas a la ilustración, podemos cotizarte.
+                                    </p><br><br>
+                                    <a href="{{route('catalogues', 3)}}" class="btn_3">Explorar más</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single_product_iner">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single_product_img">
+                                    <img src="{{asset('storage/home/4.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-sm-6">
+                                <div class="single_product_content">
+                                    <h5>N.º 3</h5>
                                     <h2> <a href="{{route('catalogues', 3)}}">Mug clásico</a></h2>
                                     <p>¡Mereces un mug tan único y especial como tú!
                                         <br><br>
@@ -85,13 +114,13 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/4.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('storage/home/5.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 3</h5>
+                                    <h5>N.º 4</h5>
                                     <h2> <a href="{{route('catalogues', 6)}}">Cuadro 21 cm X 30 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
@@ -110,13 +139,13 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/5.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('storage/home/6.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 4</h5>
+                                    <h5>N.º 5</h5>
                                     <h2> <a href="{{route('catalogues', 5)}}">Portarretrato 13 cm X 18 cm</a></h2>
                                     <p>¡La mejor manera para apreciar la ilustración!
                                         <br><br>
@@ -137,13 +166,13 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/6.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('storage/home/7.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 5</h5>
+                                    <h5>N.º 6</h5>
                                     <h2> <a href="{{route('catalogues', 4)}}">Camisetas</a></h2>
                                     <p>¡Nadie había lucido tan cool!
                                         <br><br>
@@ -166,13 +195,13 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/7.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('storage/home/8.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 6</h5>
+                                    <h5>N.º 7</h5>
                                     <h2> <a href="{{route('products')}}">Para emprendedores</a></h2>
                                     <p>▫️Diseño de highlight.
                                         Dale un toque de originalidad, y coherencia a tu marca. Resalta entre todos los demás.
@@ -193,13 +222,13 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/8.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('storage/home/9.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
                             <div class="col-lg-5 col-sm-6">
                                 <div class="single_product_content">
-                                    <h5>N.º 7</h5>
+                                    <h5>N.º 8</h5>
                                     <h2> <a href="{{route('catalogues', 1)}}">Grupos</a></h2>
                                     <p>▫¡Compartamos la experiencia en grupo!
                                         <br><br>

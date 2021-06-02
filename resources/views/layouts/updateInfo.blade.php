@@ -2,14 +2,11 @@
 @endforeach
 
 <!-- Modal de Editar-->
-<div class="modal fade" id="updateInformation" data-keyboard="false" tabindex="-1" style="margin-top: 5%;" aria-hidden="true">
+<div class="modal fade" id="updateInformation" style="margin-top: 5%;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background: #BB8FCE;">
                 <h5 class="modal-title" id="exampleModalLabel" style="color: white;">Actualización de información</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <form action="{{route('updateInfo')}}" method="post">
@@ -45,7 +42,7 @@
                     </div>
                     <br>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="close"><i class="far fa-times-circle"></i> Cancelar</button>
+                        <a type="button" class="btn btn-secondary" href="{{route('welcome.index')}}"><i class="far fa-times-circle"></i> Cancelar</a>
                         <button type="submit" class="btn btn-success"><i class="far fa-edit"></i> Actualizar Datos</button>
                     </div>
                 </form>

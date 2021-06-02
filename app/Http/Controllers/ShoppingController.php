@@ -25,9 +25,16 @@ class ShoppingController extends Controller
 
             $order = Order::all()->where('user_id', $id)->where('state', 1)->first();
 
+            if (!$order){
+                $order = Order::all()->where('user_id', $id)->where('state', 2)->first();
+            }
+
             if (isset($order->bill_id)) {
                 $bill_id1 = $order->bill_id;
                 $order = Order::all()->where('user_id', $id)->where('state', 1)->last();
+                if (!$order){
+                    $order = Order::all()->where('user_id', $id)->where('state', 2)->first();
+                }
                 $bill_id2 = $order->bill_id;
             }else{
                 $order = Order::all()->where('user_id', $id)->where('state', 2)->first();
@@ -70,10 +77,10 @@ class ShoppingController extends Controller
 
         if ($bill_id != null){
 
-            $bill = Bill::all()->where('id', $bill_id)->last();
+            $bill = Bill::find($bill_id);
 
             $order = DB::Table('orders')
-                ->join('products', 'orders.product_id','=', 'products.id')
+                ->join('products', 'orders.product_id', 'products.id')
                 ->select( 'products.name as name', 'orders.quantity as quantity', 'orders.total as total')
                 ->where('user_id', $id)
                 ->where('bill_id',$bill->id)
@@ -265,7 +272,7 @@ class ShoppingController extends Controller
                 $message = 'Su Transacción fue rechazada, intente realizar una nueva para continuar con la compra.';
                 $hidden = 0;
 
-            }elseif($transaccion == 3){ //transaccion pendiente
+            }elseif($transaccion == 3 or !empty($transaccion)){ //transaccion pendiente
 
                 $id = Auth::id();
                 $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
@@ -286,7 +293,7 @@ class ShoppingController extends Controller
                 $message = 'Su transacción esta en estado: PENDIENTE. para poder continuar es necesario que realize el pago antes de 24 horas. Una vez el pago sea confirmado la plataforma le permitira continuar con la compra.';
                 $hidden = 1;
 
-            }else/*if($transaccion == 4)*/{ // transaccion cancelada
+            }elseif($transaccion == 4){ // transaccion cancelada
 
                 $message = 0;
                 $hidden = 0;
