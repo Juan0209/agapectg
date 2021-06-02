@@ -23,4 +23,4 @@ Tipo de proyecto: Tienda Online.
 
 Creación del repositorio: 19/03/2021.
 
-Ultima actualización: 14/04/2021.
+Ultima actualización: 2/05/2021.
