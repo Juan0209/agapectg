@@ -183,16 +183,11 @@ class ShoppingController extends Controller
     {
         $id = Auth::id();
         $bill = DB::table("bills")->where("user_id",$id)->orderby('id','DESC')->take(1)->get();
-        if ($bill[0]->payed == 0 and isset($bill[0]->ref_epayco)){
-            return redirect('payment/transaccion/0/0');
-            die();
-        }
-        $bill = DB::table("bills")->where("user_id",$id)->where('payed', 1)->orderby('id','DESC')->take(1)->get();
 
         if (!isset($bill[0]->id)){
             return "<script>
 
-                        alert('Aun no has realizado una compra. O bien, ya han pasado mas de 30 dias desde que recibiste tu pedido');
+                        alert('Aun no has realizado una compra. O bien, ya han pasado mas de 30 dias desde que recibiste tu pedido :)');
                         redireccion();
 
                         function redireccion() {
@@ -202,6 +197,13 @@ class ShoppingController extends Controller
                         }
                     </script>";
         }
+
+        if ($bill[0]->payed == 0 and isset($bill[0]->ref_epayco)){
+            return redirect('payment/transaccion/0/0');
+            die();
+        }
+
+        $bills = DB::table("bills")->where("user_id",$id)->where('payed', 1)->orderby('id','DESC')->take(1)->get();
 
         $order = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
@@ -376,15 +378,21 @@ class ShoppingController extends Controller
             ->where('payed', 1)
             ->get();
 
-        foreach ($orders as $order){
-            $id = $order->id;
-            $order1 = DB::table("orders")->where("bill_id",$id)->orderby('id','DESC')->take(1)->get();
+        if (empty($orders)) {
 
-            foreach ($order1 as $order2) {
-                $state = $order2->state;
-                break;
+            foreach ($orders as $order){
+                $id = $order->id;
+                $order1 = DB::table("orders")->where("bill_id",$id)->orderby('id','DESC')->take(1)->get();
+
+                foreach ($order1 as $order2) {
+                    $state = $order2->state;
+                }
             }
+        	           
+        }else {
+	        $state = "";
         }
+
 
         return view('order.orders', compact('orders', 'state'));
     }
@@ -427,15 +435,22 @@ class ShoppingController extends Controller
             ->where('bills.payed', 1)
             ->get();
 
-        foreach ($deliveries as $order) {
-            $id = $order->id;
-            $order1 = DB::table("orders")->where("bill_id", $id)->orderby('id', 'DESC')->take(1)->get();
+        if (empty($deliveries)) {
 
-            foreach ($order1 as $order2) {
-                $state = $order2->state;
-                break;
+	        foreach ($deliveries as $order) {
+                $id = $order->id;
+                $order1 = DB::table("orders")->where("bill_id", $id)->orderby('id', 'DESC')->take(1)->get();
+
+                foreach ($order1 as $order2) {
+                    $state = $order2->state;
+                    break;
+                }
             }
+
+        } else {
+	        $state = "" ;
         }
+        
         return view('order.delivery', compact('deliveries', 'state'));
     }
 

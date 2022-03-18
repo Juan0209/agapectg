@@ -18,6 +18,7 @@
     <!-- ================ contact section start ================= -->
     <section class="container" style="margin-top: 20px;">
         <div class="container">
+            <br/> <br/>
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -65,6 +66,7 @@
                     </div>
                 </div>
             </div>
+            <br/> <br/> <br/>
         </div>
     </section>
 @endsection

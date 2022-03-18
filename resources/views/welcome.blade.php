@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="banner_img">
-            <img src="{{asset('storage/home/1.jpg')}}" width="90%" class="img-fluid">
+            <img src="{{asset('img/home/1.jpg')}}" width="90%" class="img-fluid">
             <img src="{{asset('img/banner_pattern.png')}}" class="pattern_img img-fluid">
         </div>
     </section>
@@ -34,7 +34,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/2.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/2.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/3.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/3.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/4.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/4.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/5.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/5.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/6.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/6.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/7.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/7.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/8.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/8.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                         <div class="row align-items-center justify-content-between">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="single_product_img">
-                                    <img src="{{asset('storage/home/9.jpg')}}" class="img-fluid" alt="#">
+                                    <img src="{{asset('img/home/9.jpg')}}" class="img-fluid" alt="#">
                                     <img src="{{asset('img/product_overlay.png')}}" alt="#" class="product_overlay img-fluid">
                                 </div>
                             </div>

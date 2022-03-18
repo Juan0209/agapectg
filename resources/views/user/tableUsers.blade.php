@@ -48,6 +48,9 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
+
+                                    <?php if(empty($user->updated_at)){ $user->updated_at = $user->created_at; }?>
+                                    
                                     <td>{{ $user->updated_at->diffForHumans() }}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{($user->id)}}visualizar">
@@ -192,6 +195,7 @@
                     </div>
                 </div>
             </div>
+            <br/> <br/>
         </div>
     </section>
 @endsection
