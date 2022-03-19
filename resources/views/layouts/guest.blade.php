@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ágape | @yield('title')</title>
-    <link rel="shortcut icon" href="{{ asset('img/faviconAgapect/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap CSS -->

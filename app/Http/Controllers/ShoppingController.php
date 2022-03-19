@@ -175,6 +175,8 @@ class ShoppingController extends Controller
                 ->where('state',1)
                 ->get();
 
+        //return $order;
+        //die;
 
         return view('order.cart', compact('order'));
     }
