@@ -4,13 +4,13 @@
 
 ***Antes de Empezar ve a al gestor de bases de datos y crea una base de datos con el nombre `agapectg`***
 
-Ve a la carpeta `www` (Root), click derecho, selecciona `Git Bash Here` y ejecuta los siguientes comandos en Git.
-1. git clone https://github.com/Juan0209/agapectg.git
-2. cd agapectg
-3. composer install
-4. php artisan key: generate
-5. php artisan migrate –seed
-6. php artisan storage:link
+Ve a la carpeta `www` (Root), click derecho, selecciona `Git Bash Here` y ejecuta los siguientes comandos.
+1. `git clone https://github.com/Juan0209/agapectg.git`
+2. `cd agapectg`
+3. `composer install`
+4. `php artisan key: generate`
+5. `php artisan migrate –seed`
+6. `php artisan storage:link`
 
 Listo, con eso ya deberías tener el proyecto funcionando correctamente.
 
