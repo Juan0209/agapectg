@@ -53,6 +53,16 @@ Listo, con eso ya deberías tener el proyecto funcionando correctamente.
 - Response: Transacción pendiente por validación
 
 
+### Requerimientos
+- PHP `^7.8`
+- Composer
+- Node.js
+- Git (Opcional)
+- Laragon (Obligatorio)
+
+*** Actualizar `PHP` a la ultima versión `^8.1` en `Laragon` ***
+
+
 
 ### INFORMACIÓN ADICIONAL
 
