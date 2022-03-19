@@ -24,7 +24,7 @@ class ShoppingController extends Controller
         }else {
 
             $order = Order::all()->where('user_id', $id)->where('state', 1)->first();
-
+           
             if (!$order){
                 $order = Order::all()->where('user_id', $id)->where('state', 2)->first();
             }
@@ -37,11 +37,20 @@ class ShoppingController extends Controller
                 }
                 $bill_id2 = $order->bill_id;
             }else{
+                     
                 $order = Order::all()->where('user_id', $id)->where('state', 2)->first();
-                $bill_id1 = $order->bill_id;
-                $order = Order::all()->where('user_id', $id)->where('state', 2)->last();
-                $bill_id2 = $order->bill_id;
-            }
+                
+                if ($order != null) {
+
+	                $bill_id1 = $order->bill_id;
+                    $order = Order::all()->where('user_id', $id)->where('state', 2)->last();
+                    $bill_id2 = $order->bill_id;
+                }else {
+
+	                $bill_id1 = null;
+                    $bill_id2 = null;
+                }
+            }         
         }
 
         if ($bill_id1 == $bill_id2){
@@ -380,7 +389,7 @@ class ShoppingController extends Controller
             ->where('payed', 1)
             ->get();
 
-        if (empty($orders)) {
+        if (!empty($orders)) {
 
             foreach ($orders as $order){
                 $id = $order->id;
@@ -394,8 +403,7 @@ class ShoppingController extends Controller
         }else {
 	        $state = "";
         }
-
-
+       
         return view('order.orders', compact('orders', 'state'));
     }
 
@@ -437,7 +445,7 @@ class ShoppingController extends Controller
             ->where('bills.payed', 1)
             ->get();
 
-        if (empty($deliveries)) {
+        if (!empty($deliveries)) {
 
 	        foreach ($deliveries as $order) {
                 $id = $order->id;
@@ -452,7 +460,7 @@ class ShoppingController extends Controller
         } else {
 	        $state = "" ;
         }
-        
+               
         return view('order.delivery', compact('deliveries', 'state'));
     }
 

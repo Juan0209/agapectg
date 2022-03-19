@@ -3,10 +3,10 @@
     "",
     "\\app\\Http",
     "\\app\\Http\\Controllers",
-    "\\resources",
     "\\resources\\views",
+    "\\resources\\views\\order",
     "\\resources\\views\\user"
   ],
-  "SelectedNode": "\\resources\\views\\welcome.blade.php",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }

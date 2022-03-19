@@ -177,14 +177,13 @@
                                                     <a href="#">
                                                         <form>
                                                             <?php
-                                                            $key = '7fb5144e899c4c5051732c5ac0baaf2f' ;
-                                                            $privateKey = '96d012f0a403671f4fb06bf2a7f6a704' ;
+                                                            $key = '491d6a0b6e992cf924edd8d3d088aff1' ;                                                          
                                                             ?>
                                                             <script
                                                                 src="https://checkout.epayco.co/checkout.js"
                                                                 class="epayco-button"
                                                                 data-epayco-key="{{$key}}"
-                                                                data-epayco-private-key="{{$privateKey}}"
+                                                                
                                                                 data-epayco-amount="{{$total}}"
                                                                 data-epayco-tax-base="{{$totalbase}}"
                                                                 data-epayco-tax="{{$impuesto}}"
