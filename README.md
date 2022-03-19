@@ -2,7 +2,7 @@
 
 ### TUTORIAL DE INSTALACIÓN (Laragon)
 
-***Antes de Empezar ve a al gestor de bases de datos y crea una base de datos con el nombre `agapectg`***
+***Antes de Empezar ve a al gestor de bases de datos y crea una base de datos con el nombre*** `agapectg`
 
 Ve a la carpeta `www` (Root), click derecho, selecciona `Git Bash Here` y ejecuta los siguientes comandos.
 1. `git clone https://github.com/Juan0209/agapectg.git`
