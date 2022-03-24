@@ -14,7 +14,7 @@ class ShoppingController extends Controller
     public function payment($message, $hidden)
     {
         $id = Auth::id();
-        $bill = Bill::all()->where('user_id', $id)->last();
+        $bill = Bill::all()->where('user_id', $id)->last();       
 
         if (isset($bill) and $bill->payed == 1){
 
@@ -57,7 +57,7 @@ class ShoppingController extends Controller
 
             $bill_id = $bill_id1;
 
-            if ( isset($bill->payed) and $bill->payed == 1 and $bill->send == 1){
+            if ( isset($bill->payed) and $bill->payed == 1){
                 $bill_id = null;
             }
 
@@ -184,9 +184,6 @@ class ShoppingController extends Controller
                 ->where('state',1)
                 ->get();
 
-        //return $order;
-        //die;
-
         return view('order.cart', compact('order'));
     }
 
@@ -220,7 +217,7 @@ class ShoppingController extends Controller
             ->join('products', 'orders.product_id','=', 'products.id')
             ->select('products.name as name','orders.quantity as quantity', 'orders.total as total', 'orders.peoples as peoples')
             ->where('user_id', $id)
-            ->where('state', '>',4)
+            ->where('state', '>',3)
             ->where('bill_id',$bill[0]->id)
             ->get();
 
@@ -241,7 +238,7 @@ class ShoppingController extends Controller
                 $bill = DB::table("bills")->where("user_id",$id)->where("payed",0)->orderby('id','DESC')->take(1)->get();
 
                 if (empty($bill[0]) or $bill[0]->ref_epayco == null ){
-
+             
                     return redirect("/payment/bill/0/0" );
                     die();
                 }else{
@@ -360,9 +357,9 @@ class ShoppingController extends Controller
 
     public function cancelPurchase($id)
     {
-        $records = DB::table('orders')->where('user_id', '=', $id)->get()->toArray();
+        $records = DB::table('orders')->where('user_id', '=', $id)->where('state', '=', '1')->get()->toArray();
         foreach ($records as $fact){
-            $recordsCancel = Order::find($fact->id);
+            $recordsCancel = Order::find($fact->id);           
             $url = str_replace('storage', 'public', $recordsCancel->image);
             Storage::delete($url);
             $recordsCancel->delete();
@@ -398,7 +395,7 @@ class ShoppingController extends Controller
                 foreach ($order1 as $order2) {
                     $state = $order2->state;
                 }
-            }
+            }          
         	           
         }else {
 	        $state = "";

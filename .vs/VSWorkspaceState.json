@@ -1,12 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\app\\Http",
-    "\\app\\Http\\Controllers",
-    "\\resources\\views",
-    "\\resources\\views\\order",
-    "\\resources\\views\\user"
+    "\\resources",
+    "\\resources\\views"
   ],
-  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
