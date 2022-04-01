@@ -20,7 +20,7 @@
         <div class="container">
             @if(isset($payed))
                 <div class="alert alert-danger text-center" role="alert">
-                    <i class="fas fa-exclamation-triangle "></i> Por favor, continua y no abandones esta pagina. De lo contrario, probablemente no podras ingresar de nuevo y podrias perder el pedido. <i class="fas fa-exclamation-triangle"></i>
+                    <i class="fas fa-exclamation-triangle "></i> Por favor, continua y no abandones esta pagina. De lo contrario, probablemente no podrás ingresar de nuevo y podrías perder el pedido. <i class="fas fa-exclamation-triangle"></i>
                 </div>
             @endif
             <div class="cupon_area">
@@ -36,12 +36,12 @@
                     <div class="col-lg-8">
                         @if(isset($payed) and $payed == true)
                             <div class="cupon_area">
-                                <input type="text" placeholder="Ingresa el codigo del cupon" disabled>
+                                <input type="text" placeholder="Ingresa el código del cupón" disabled>
                                 <a class="tp_btn" href="#" disabled="true">Aplicar Cupón</a>
                             </div>
                         @else
                             <div class="cupon_area">
-                                <input type="text" placeholder="Ingresa el codigo del cupon">
+                                <input type="text" placeholder="Ingresa el código del cupón">
                                 <a class="tp_btn" href="#">Aplicar Cupón</a>
                             </div>
                         @endif
@@ -59,11 +59,11 @@
                                         <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}" required>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="number" class="form-control" id="phone2" name="phone2" placeholder="Numero de telefono del destinatario secundario" value="{{ old('phone2') }}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"                                               required>
+                                        <input type="number" class="form-control" id="phone2" name="phone2" placeholder="Numero de teléfono del destinatario secundario" value="{{ old('phone2') }}" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"                                               required>
                                     </div>
 
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="add2" name="add2"placeholder="Direccion de Residencia del destinatario secundario" value="{{ old('add2') }}" required>
+                                        <input type="text" class="form-control" id="add2" name="add2"placeholder="Dirección de Residencia del destinatario secundario" value="{{ old('add2') }}" required>
                                     </div>
                                 </div>
 
@@ -71,13 +71,13 @@
                                     <div class="creat_account">
                                         <h3>Mensaje (OPCIONAL)</h3>
                                     </div>
-                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="¿Quieres agregarle un mensaje al destinatario? este mensaje sera anexado en la entrega del pedido." value="{{ old('messagge') }}"></textarea>
+                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="¿Quieres agregarle un mensaje al destinatario? este mensaje sera anexado en la entrega del pedido." value="{{ old('message') }}"></textarea>
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account">
                                         <h3>Detalles de Presentación (OPCIONAL)</h3>
                                     </div>
-                                    <textarea class="form-control" name="details" id="details" rows="1" placeholder="¿Quieres darnos especificaciones sobre como quieres la presentacion de tu pedido? adelante, escribelo aquí. (Esto Puede Contener Costos Adicionales)" value="{{ old('details') }}"></textarea>
+                                    <textarea class="form-control" name="details" id="details" rows="1" placeholder="¿Quieres darnos especificaciones sobre como quieres la presentación de tu pedido? adelante, escribe aquí y después te contactaremos. (Esto Puede Contener Costos Adicionales)" value="{{ old('details') }}"></textarea>
                                 </div>
 
                             @elseif(!isset($payed))
@@ -89,11 +89,11 @@
                                         <input type="text" class="form-control" id="name2" name="name2" placeholder="Nombres y apellidos del destinatario secundario" value="{{ old('name2') }}" disabled>
                                     </div>
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="phone2" name="phone2" placeholder="Numero de telefono del destinatario secundario" value="{{ old('phone2') }}" disabled>
+                                        <input type="text" class="form-control" id="phone2" name="phone2" placeholder="Numero de teléfono del destinatario secundario" value="{{ old('phone2') }}" disabled>
                                     </div>
 
                                     <div class="col-md-12 form-group p_star">
-                                        <input type="text" class="form-control" id="add2" name="add2"placeholder="Direccion de Residencia del destinatario secundario" value="{{ old('add2') }}" disabled>
+                                        <input type="text" class="form-control" id="add2" name="add2"placeholder="Dirección de Residencia del destinatario secundario" value="{{ old('add2') }}" disabled>
                                     </div>
                                 </div>
 
@@ -101,13 +101,13 @@
                                     <div class="creat_account">
                                         <h3>Mensaje (OPCIONAL)</h3>
                                     </div>
-                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="¿Quieres agregarle un mensaje al destinatario? este mensaje sera anexado en la entrega del pedido." value="{{ old('messagge') }}" disabled></textarea>
+                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="¿Quieres agregarle un mensaje al destinatario? este mensaje sera anexado en la entrega del pedido." value="{{ old('message') }}" disabled></textarea>
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="creat_account">
                                         <h3>Detalles de Presentación (OPCIONAL)</h3>
                                     </div>
-                                    <textarea class="form-control" name="details" id="details" rows="1" placeholder="¿Quieres darnos especificaciones sobre como quieres la presentacion de tu pedido? adelante, escribelo aquí. (Esto Puede Contener Costos Adicionales los cuales le cobraremos mas adelante)" value="{{ old('details') }}" disabled></textarea>
+                                    <textarea class="form-control" name="details" id="details" rows="1" placeholder="¿Quieres darnos especificaciones sobre como quieres la presentación de tu pedido? adelante, escribe aquí y después te contactaremos. (Esto Puede Contener Costos Adicionales los cuales le cobraremos mas adelante)" value="{{ old('details') }}" disabled></textarea>
                                 </div>
                             @endif
 
@@ -202,7 +202,7 @@
                                         </ul>
                                         <div class="text-center">
                                             <br><br>
-                                            <input class="btn_1" type="button" onclick="mensaje('Para poder continuar es necesario que su Transaccion de pago haya sido valida y exitosa.')" value="Continuar">
+                                            <input class="btn_1" type="button" onclick="mensaje('Para poder continuar es necesario que su Transacción de pago haya sido valida y exitosa.\n\n Para poder realizar el pago presiona el botón \'Pagar con ePayco\'.')" value="Continuar">
                                             <script>
                                                 function mensaje(texto) {
                                                     alert(texto);
@@ -212,7 +212,7 @@
                                     @elseif(!isset($payed))
                                         <div class="text-center">
                                             <br><br>
-                                            <input class="btn_1" type="button" onclick="mensaje('Su trasaccion se encuentra en estado PENDIENTE. Para poder continuar es necesario que el pago haya sido validado. En caso de que ya hayas realizado el pago ingresa a \'Mi Compra\', si tienes algun problema ve a la pestaña contactanos y cuentanos tu lo que sucede.')" value="Continuar">
+                                            <input class="btn_1" type="button" onclick="mensaje('Su transacción se encuentra en estado PENDIENTE. Para poder continuar es necesario que el pago haya sido validado. En caso de que ya hayas realizado el pago ingresa a \'Mi Compra\', si tienes algún problema ve a la pestaña contactanos y cuéntanos tu lo que sucede.')" value="Continuar">
                                             <script>
                                                 function mensaje(texto) {
                                                     alert(texto);
@@ -223,7 +223,7 @@
                                         <div class="text-center"><br>
                                             <input type="checkbox" id="f-option4" name="selector" required />
                                             <label for="f-option4">Acepto los </label>
-                                            <a href="#">Terminos & Condiciones</a><br><br>
+                                            <a href="#">Términos & Condiciones</a><br><br>
                                             <button type="submit" class="btn_1">Continuar</button>
                                         </div>
                                     @endif
@@ -236,5 +236,5 @@
             </div>
         </div>
     </section>
-<!--    ================End Checkout Area =================-->
+<!--================End Checkout Area =================-->
 @endsection

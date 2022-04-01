@@ -21,14 +21,14 @@
                 <div class="card shadow mb-4">
                     <div class="card-body">
                         <div class="creat_account">
-                            <h2>Informacion del Cliente</h2><hr>
+                            <h2>Información del Cliente</h2><hr>
                         </div>
                         <div class="col-md-12 form-group p_star">
                             <label>Nombre: </label>
                             <input type="text" class="form-control" value="{{ $date->name }}" disabled>
                         </div>
                         <div class="col-md-6 form-group p_star">
-                            <label>Telefono: </label>
+                            <label>Teléfono: </label>
                             <input type="number" class="form-control" value="{{ $date->phone }}" disabled>
                         </div>
                         <div class="col-md-5 form-group p_star">

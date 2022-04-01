@@ -38,7 +38,7 @@
                                 <p>Total (COP)</p><span>: $ {{number_format($bill[0]->total_price)}}</span>
                             </li>
                             <li>
-                                <p>Metodo de Pago</p><span>: ePayco</span>
+                                <p>Método de Pago</p><span>: ePayco</span>
                             </li>
                         </ul>
                     </div>
@@ -51,7 +51,7 @@
                                 <p>Nombre</p><span>: {{$bill[0]->name2}}</span>
                             </li>
                             <li>
-                                <p>direccion</p><span>: {{$bill[0]->add2}}</span>
+                                <p>dirección</p><span>: {{$bill[0]->add2}}</span>
                             </li>
                             <li>
                                 <p>Celular</p><span>: {{ substr($bill[0]->phone2,0,3) }} {{substr($bill[0]->phone2,3 )}}</span>
@@ -84,7 +84,7 @@
                                 <p>Dirección de Correo</p><span>: agape@gmail.com</span>
                             </li>
                             <li>
-                                <p>Celular y Whatsapp</p><span>: 320 5195817</span>
+                                <p>Celular y WhatsApp</p><span>: 111 1111111</span>
                             </li>
                             <li>
                                 <span>: 101 1101001</span>

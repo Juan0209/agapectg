@@ -58,7 +58,15 @@ class ShoppingController extends Controller
             $bill_id = $bill_id1;
 
             if ( isset($bill->payed) and $bill->payed == 1){
-                $bill_id = null;
+
+                $order = Order::select('orders.id')->where('state', 3 )->get();
+
+                if (empty($order[0])) {
+           	               
+	                $bill_id = null;
+                    
+                }
+            
             }
 
         }else{
@@ -141,7 +149,7 @@ class ShoppingController extends Controller
             $order = Order::select('orders.*')->where('user_id', $id )->where('state', 2)->get();
 
             if ( $order != '[]'){
-                return back()->with(['danger' => '¡Tienes una factura pendiente!, terminala para poder realizar otro pedido.']);
+                return back()->with(['danger' => '¡Tienes una factura pendiente!, termina para poder realizar otro pedido.']);
                 die();
             }
 
@@ -211,7 +219,7 @@ class ShoppingController extends Controller
             die();
         }
 
-        $bills = DB::table("bills")->where("user_id",$id)->where('payed', 1)->orderby('id','DESC')->take(1)->get();
+        $bill = DB::table("bills")->where("user_id",$id)->where('payed', 1)->orderby('id','DESC')->take(1)->get();
 
         $order = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
@@ -220,7 +228,7 @@ class ShoppingController extends Controller
             ->where('state', '>',3)
             ->where('bill_id',$bill[0]->id)
             ->get();
-
+          
         return view('order.confirmation', compact('order', 'bill'));
     }
 

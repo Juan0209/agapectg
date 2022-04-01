@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Http\\Controllers",
     "\\resources",
-    "\\resources\\views"
+    "\\resources\\views",
+    "\\resources\\views\\order"
   ],
+  "SelectedNode": "\\resources\\views\\order\\confirmation.blade.php",
   "PreviewInSolutionExplorer": false
 }

@@ -30,7 +30,7 @@
                                 <tr>
                                     <th>ID Factura</th>
                                     <th>Nombre</th>
-                                    <th>Telefono</th>
+                                    <th>Teléfono</th>
                                     <th>Precio</th>
                                     <th>Opciones</th>
                                 </tr>
