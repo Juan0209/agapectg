@@ -390,8 +390,8 @@ class ShoppingController extends Controller
     {
         $orders = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
-            ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.total_price as total')
-            ->where('payed', 1)
+            ->select('users.name as name','users.phone as phone', 'bills.id as id', 'bills.send as send', 'bills.total_price as total')
+            ->where([ ['payed', 1], ['send', 0] ])
             ->get();
 
         if (!empty($orders)) {
@@ -402,16 +402,21 @@ class ShoppingController extends Controller
                 $id = $order->id;
                 $order1 = DB::table("orders")->where("bill_id",$id)->orderby('id','DESC')->take(1)->get();
 
-                foreach ($order1 as $order2) {
-                    $state[$i] = $order2->state;
-                    $i++;
+                if($order1[0]->state > 4){
+                    unset($orders[$i]);
+                }else{
+                    foreach ($order1 as $order2) {
+                        $state[$i] = $order2->state;
+                        $i++;
+                    }
                 }
+                
             }          
         	           
         }else {
 	        $state = "";
         }
-        
+                
         return view('order.orders', compact('orders', 'state'));
     }
 
@@ -450,19 +455,27 @@ class ShoppingController extends Controller
         $deliveries = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('bills.id as id', 'users.name as name','users.address as address','users.phone as phone', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
-            ->where('bills.payed', 1)
+            ->where([ ['bills.payed', 1], ['bills.send', 0] ])
             ->get();
 
         if (!empty($deliveries)) {
+
+            $i=0;
 
 	        foreach ($deliveries as $order) {
                 $id = $order->id;
                 $order1 = DB::table("orders")->where("bill_id", $id)->orderby('id', 'DESC')->take(1)->get();
 
-                foreach ($order1 as $order2) {
-                    $state = $order2->state;
-                    break;
+                if ($order1[0]->state > 5 or $order1[0]->state < 5) {
+                    unset($deliveries[$i]);
+                }else{
+                    foreach ($order1 as $order2) {
+                        $state[$i] = $order2->state;
+                    }
+                    
+                    $i++;
                 }
+            
             }
 
         } else {
@@ -477,8 +490,7 @@ class ShoppingController extends Controller
         $deliveries = DB::Table('bills')
             ->join('users', 'bills.user_id','=', 'users.id')
             ->select('users.name as name', 'users.id as id_user','users.address as address','users.phone as phone', 'bills.id as id', 'bills.total_price as total', 'bills.name2 as name2', 'bills.phone2 as phone2','bills.add2 as add2')
-            ->where('payed', 1)
-            ->where('send', 0)
+            ->where([ ['payed', 1], ['send', 0] ])
             ->get();
 
         $products = DB::Table('orders')
