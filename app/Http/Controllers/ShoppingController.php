@@ -396,19 +396,22 @@ class ShoppingController extends Controller
 
         if (!empty($orders)) {
 
+            $i=0;
+
             foreach ($orders as $order){
                 $id = $order->id;
                 $order1 = DB::table("orders")->where("bill_id",$id)->orderby('id','DESC')->take(1)->get();
 
                 foreach ($order1 as $order2) {
-                    $state = $order2->state;
+                    $state[$i] = $order2->state;
+                    $i++;
                 }
             }          
         	           
         }else {
 	        $state = "";
         }
-       
+        
         return view('order.orders', compact('orders', 'state'));
     }
 
@@ -425,9 +428,9 @@ class ShoppingController extends Controller
         $orders = DB::Table('orders')
             ->join('products', 'orders.product_id','=', 'products.id')
             ->select('products.name as name','orders.quantity as quantity', 'orders.image as image', 'orders.peoples as peoples')
-            ->where('state', 4)
-            ->orWhere('state', 7)
             ->where('bill_id', $bill_id)
+            ->where('state', 4)
+            ->orWhere('state', 7)            
             ->get();
 
         $mod = $mode;
